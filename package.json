@@ -1,0 +1,14 @@
+{
+  "name": "codebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startClient": "cd client && npm start",
+    "startServer": "cd server && npm run startDev",
+    "runAll": "concurrently \"npm run startClient\" \"npm run startServer\""
+  },
+  "author": "",
+  "license": "ISC"
+}
