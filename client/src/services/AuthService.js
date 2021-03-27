@@ -21,11 +21,11 @@ class AuthService {
   }
 
   // User Authenticator private method
-  async _handleAuthentication(path, credentials) {
+  async _handleAuthentication(path, data) {
     try {
       let response;
       // if the authentication succeeds we return the server response
-      await axios.post(getApiPath(path), credentials).then((resp) => {
+      await axios.post(getApiPath(path), data).then((resp) => {
         response = resp;
       });
       return response;
@@ -59,6 +59,14 @@ class AuthService {
     this.auth.isSigned = false;
     this._deleteToken();
     console.log("User has logged out successfully");
+  }
+
+  async registerUser(registerData) {
+    const response = await this._handleAuthentication(
+      "/user/register",
+      registerData
+    );
+    return response;
   }
 }
 
