@@ -41,6 +41,10 @@ UserSchema.methods = {
     return bcrypt.compareSync(reqPassword, this.password);
   },
 
+  setPassword(reqPassword) {
+    this.password = bcrypt.hashSync(reqPassword, 10);
+  },
+
   generateJWT() {
     return jwt.sign({ id: this._id, email: this.email }, process.env.SECRET, {
       expiresIn: "1d",

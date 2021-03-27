@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AuthService from "../../services/AuthService";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function Login() {
   let history = useHistory(); // The useHistory hook gives you access to the history instance that you may use to navigate. (https://reactrouter.com/web/api/Hooks/usehistory)
@@ -32,36 +32,46 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label for="Email">Email</label>
+          <input
+            type="text"
+            placeholder="Email"
+            id="Email"
+            onChange={(e) => {
+              setLoginCredentials({
+                ...loginCredentials,
+                email: e.target.value,
+              });
+            }}
+          ></input>
+        </div>
+        <div>
+          <label for="Password">Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            id="Password"
+            onChange={(e) => {
+              setLoginCredentials({
+                ...loginCredentials,
+                password: e.target.value,
+              });
+            }}
+          ></input>
+        </div>
+        <button value="login" type="submit">
+          Log In
+        </button>
+      </form>
+
       <div>
-        <label for="Email">Email</label>
-        <input
-          type="text"
-          placeholder="Email"
-          id="Email"
-          onChange={(e) => {
-            setLoginCredentials({ ...loginCredentials, email: e.target.value });
-          }}
-        ></input>
+        <p>Don't have a link?</p>
+        <Link to="/register">Register</Link>
       </div>
-      <div>
-        <label for="Password">Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          id="Password"
-          onChange={(e) => {
-            setLoginCredentials({
-              ...loginCredentials,
-              password: e.target.value,
-            });
-          }}
-        ></input>
-      </div>
-      <button value="login" type="submit">
-        Log In
-      </button>
-    </form>
+    </div>
   );
 }
 
