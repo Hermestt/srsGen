@@ -1,33 +1,28 @@
 import React from "react";
-import { Router, Link, Redirect } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
-import Routes from "./routes";
-import history from "./history";
-
-import { AuthProvider } from "./Context/AuthProvider";
+//Import components
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Register from "./components/Login/Register";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router history={history}>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/register">Register</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <Routes />
-      </Router>
-    </AuthProvider>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Redirect from="*" to="/login" />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
