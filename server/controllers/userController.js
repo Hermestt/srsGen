@@ -17,7 +17,7 @@ async function handleUserRegistration(req, res) {
   newUser.setPassword(req.body.password);
 
   // Save User
-  newUser.save();
+  newUser.saveNewUser();
 
   // Responde to the client side the success
   res.json({
