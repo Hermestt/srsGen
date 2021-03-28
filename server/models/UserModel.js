@@ -27,7 +27,6 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    documents: [DocumentModel],
   },
   { timestamps: true }
 );
@@ -49,6 +48,15 @@ UserSchema.methods = {
     return jwt.sign({ id: this._id, email: this.email }, process.env.SECRET, {
       expiresIn: "1d",
     });
+  },
+
+  saveNewUser() {
+    try {
+      this.save();
+      console.log("user was saved successfuly");
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 
