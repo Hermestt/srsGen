@@ -2,9 +2,14 @@ import { getApiPath } from "../Utils/api";
 import axios from "axios";
 
 const SESSION_KEY = "jwt_token";
+const USER_DATA = "user_data";
+
 class AuthService {
   constructor() {
-    this.auth = { isSigned: Boolean(this._getToken()) }; //This only works when a log in was successfull
+    this.auth = {
+      isSigned: Boolean(this._getToken()),
+      user: {},
+    }; //This only works when a log in was successfull
   }
 
   // Methods related to the Saving, reading and deletion of JWT
@@ -18,6 +23,19 @@ class AuthService {
 
   _deleteToken() {
     localStorage.removeItem(SESSION_KEY);
+  }
+
+  // Methods related to the Saving, reading and deletion of User Data
+  _saveUser(userData) {
+    localStorage.setItem(USER_DATA, userData);
+  }
+
+  _getUser() {
+    return localStorage.getItem(USER_DATA);
+  }
+
+  _deleteUser() {
+    localStorage.removeItem(USER_DATA);
   }
 
   // User Authenticator private method
@@ -47,7 +65,9 @@ class AuthService {
 
     if (response.data.success) {
       this._saveToken(response.data.token);
+      this._saveUser(response.data.userData);
       this.auth.isSigned = true;
+      this.auth.user = response.data.userData;
     }
 
     return response;
@@ -57,6 +77,7 @@ class AuthService {
   // Clean localStorage, set isSigned to false
   logout() {
     this.auth.isSigned = false;
+    this._deleteUser();
     this._deleteToken();
     console.log("User has logged out successfully");
   }

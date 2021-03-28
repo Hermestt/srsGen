@@ -1,19 +1,39 @@
 // USER SCHEMAAAA
 const mongoose = require("mongoose");
 
-const DocumentsSchema = new mongoose.Schema(
+const DocumentSchema = new mongoose.Schema(
   {
-    _id: Number,
     name: String,
+    description: String,
     sharableLink: String,
     dataOfCreation: {
       type: Date,
       default: Date.now,
     },
+    goalsAndDescription: {
+      goals: String,
+      problemsToSolve: String,
+      vision: String,
+    },
   },
   { timestamps: true }
 );
 
-const DocumentModel = mongoose.model("Document", DocumentsSchema);
+/**
+ * Define custom UserSchema instance methods
+ * more info: https://mongoosejs.com/docs/guide.html#methods
+ */
+DocumentSchema.methods = {
+  saveNewDocument() {
+    try {
+      this.save();
+      console.log("Document was saved successfuly");
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
 
-module.export = DocumentModel;
+const DocumentModel = mongoose.model("Document", DocumentSchema);
+
+module.exports = DocumentModel;

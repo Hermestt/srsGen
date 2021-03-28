@@ -12,6 +12,7 @@ const passport = require("passport");
 const Routers = require("./routes/index");
 const authRouter = Routers.authRouter;
 const userRouter = Routers.userRouter;
+const documentRouter = Routers.documentRouter;
 
 // Initiate app with CORS and json parser.
 app.use(cors());
@@ -20,6 +21,7 @@ app.use(express.json());
 // Set Express Routers
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
+app.use("/document", documentRouter);
 
 // We have a pending connection to the url database running on Atlas. We now need to get notified if we connect successfully or if a connection error occurs:
 dbConnection.on("Error", console.error.bind(console, "connection error:"));
