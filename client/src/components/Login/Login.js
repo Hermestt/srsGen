@@ -6,6 +6,7 @@ function Login() {
   let history = useHistory(); // The useHistory hook gives you access to the history instance that you may use to navigate. (https://reactrouter.com/web/api/Hooks/usehistory)
 
   // We'll use this states to send them to the database through our AuthService
+  // use context for this?
   const [loginCredentials, setLoginCredentials] = useState({
     email: "",
     password: "",

@@ -1,18 +1,19 @@
 import DocumentService from "../../services/DocumentService";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
-import axios from "axios";
+import { documentContext } from "../../Contexts/documentContext";
 
 function Dashboard() {
   const history = useHistory();
-
+  const { setDocumentValue } = useContext(documentContext);
   const handleDocumentCreation = () => {
     history.push("/document/create");
   };
 
   const [documentsList, setDocumentsList] = useState([]);
   useEffect(() => {
+    setDocumentValue(null);
     async function get() {
       let response = await DocumentService.listDocuments();
       setDocumentsList(response.data.list);
@@ -21,7 +22,7 @@ function Dashboard() {
   }, [documentsList]);
 
   const handleClick = async (e) => {
-    DocumentService.getDocument(e.target.value);
+    setDocumentValue(e.target.value);
     history.push("/document/read");
   };
 
