@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import DocumentService from "../../services/DocumentService";
 import { useHistory } from "react-router-dom";
+import { documentContext } from "../../Contexts/documentContext";
+
 function DocumentDetail() {
   const history = useHistory();
+  const { documentValue, setDocumentValue } = useContext(documentContext);
   const [document, setDocument] = useState(null);
 
   useEffect(() => {
     async function wele() {
       const response = await DocumentService.getDocument({
-        id: "6060f22c53c2f21b84588572",
-      }); // This id has to be dynamic, maybe it's time to implement React Context
+        id: documentValue,
+      });
       setDocument(response.data.document[0]);
     }
     wele();
@@ -19,6 +22,7 @@ function DocumentDetail() {
   const handleClick = (e) => {
     e.preventDefault();
     DocumentService.deleteDocument({ _id: document._id });
+    setDocumentValue(null);
     history.push("/");
   };
 
