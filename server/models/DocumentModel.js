@@ -23,16 +23,7 @@ const DocumentSchema = new mongoose.Schema(
  * Define custom UserSchema instance methods
  * more info: https://mongoosejs.com/docs/guide.html#methods
  */
-DocumentSchema.methods = {
-  saveNewDocument() {
-    try {
-      this.save();
-      console.log("Document was saved successfuly");
-    } catch (error) {
-      console.log(error);
-    }
-  },
-};
+DocumentSchema.methods = {};
 
 const DocumentModel = mongoose.model("Document", DocumentSchema);
 

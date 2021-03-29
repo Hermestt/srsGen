@@ -50,6 +50,7 @@ UserSchema.methods = {
     });
   },
 
+  // Remove this and pass it to controller
   saveNewUser() {
     try {
       this.save();
