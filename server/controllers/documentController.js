@@ -20,8 +20,6 @@ async function handleDocumentListing(req, res) {
 
 // handleDocumentDeletion
 async function handleDocumentDeletion(req, res) {
-  console.log("This is req");
-  console.log(req.body);
   await DocumentModel.deleteOne(req.body);
   res.json({
     success: true,
@@ -31,10 +29,8 @@ async function handleDocumentDeletion(req, res) {
 
 // handleDocumentDelivery
 async function handleDocumentDelivery(req, res) {
-  console.log("req.body");
-  console.log(req.body);
-
-  const document = await DocumentModel.find({ _id: req.body.id });
+  const data = req.body;
+  const document = await DocumentModel.find({ _id: data.id });
 
   res.json({
     success: true,
@@ -42,9 +38,25 @@ async function handleDocumentDelivery(req, res) {
   });
 }
 
+async function handleDocumentUpdate(req, res) {
+  const data = req.body;
+  await DocumentModel.findOneAndUpdate(
+    { _id: data._id },
+    data,
+    function (error, data) {
+      if (error) {
+        console.log(error);
+      } else {
+        res.status(200).json({ message: "updated" });
+      }
+    }
+  );
+}
+
 module.exports = {
   handleDocumentCreation,
   handleDocumentListing,
   handleDocumentDeletion,
   handleDocumentDelivery,
+  handleDocumentUpdate,
 };

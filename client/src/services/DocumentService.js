@@ -18,6 +18,20 @@ class DocumentService {
     }
   }
 
+  async updateDocument(data) {
+    let path = "/document/update";
+    try {
+      let response;
+      await axios
+        .post(getApiPath(path), data)
+        .then((resp) => (response = resp));
+      return response;
+    } catch (error) {
+      console.log(error);
+      return { success: false, message: "something is wrong" };
+    }
+  }
+
   async listDocuments() {
     let path = "/document/listing";
     try {

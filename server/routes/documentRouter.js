@@ -12,6 +12,9 @@ documentRouter.post("/delete", hasBody, controller.handleDocumentDeletion);
 // Read selected Document
 documentRouter.post("/read", hasBody, controller.handleDocumentDelivery);
 
+// Update selected Document
+documentRouter.post("/update", hasBody, controller.handleDocumentUpdate);
+
 // Read all documents
 documentRouter.get("/listing", controller.handleDocumentListing);
 
