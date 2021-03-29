@@ -26,6 +26,11 @@ function DocumentDetail() {
     history.push("/");
   };
 
+  const handleEdit = (e) => {
+    e.preventDefault();
+    history.push("/document/create");
+  };
+
   return (
     <div>
       <NavBar />
@@ -57,6 +62,7 @@ function DocumentDetail() {
           : "Not loaded yet"}
       </p>
       <button onClick={handleClick}>Delete this document</button>
+      <button onClick={handleEdit}>Edit this document</button>
     </div>
   );
 }

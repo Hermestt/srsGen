@@ -17,7 +17,7 @@ import DocumentDetail from "./components/Document/DocumentDetail";
 import { documentContext } from "./Contexts/documentContext";
 
 function App() {
-  const [documentValue, setDocumentValue] = useState("Hello from context");
+  const [documentValue, setDocumentValue] = useState(null);
 
   return (
     <documentContext.Provider value={{ documentValue, setDocumentValue }}>
