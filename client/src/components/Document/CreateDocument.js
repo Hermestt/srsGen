@@ -20,10 +20,7 @@ function CreateDocument() {
       goalsAndDescription,
     };
     e.preventDefault();
-    console.log(documentPack);
     const response = await DocumentService.saveDocument(documentPack);
-    console.log("Response is");
-    console.log(response);
   };
 
   return (

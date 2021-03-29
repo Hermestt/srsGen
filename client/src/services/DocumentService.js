@@ -1,7 +1,7 @@
 import { getApiPath } from "../Utils/api";
 import axios from "axios";
 
-// import the token to send with the request and check in the server if it is valid
+//This will need to be set in the context, just want to see if this works
 
 class DocumentService {
   async saveDocument(data) {
@@ -11,6 +11,44 @@ class DocumentService {
       await axios
         .post(getApiPath(path), data)
         .then((resp) => (response = resp));
+      return response;
+    } catch (error) {
+      console.log(error);
+      return { success: false, message: "something is wrong" };
+    }
+  }
+
+  async listDocuments() {
+    let path = "/document/listing";
+    try {
+      let response;
+      await axios.get(getApiPath(path)).then((resp) => (response = resp));
+      return response;
+    } catch (error) {
+      console.log(error);
+      return { success: false, message: "something is wrong" };
+    }
+  }
+
+  async getDocument(id) {
+    let path = "/document/read";
+    try {
+      let response;
+      await axios.post(getApiPath(path), id).then((resp) => (response = resp));
+      return response;
+    } catch (error) {
+      console.log(error);
+      return { success: false, message: "something is wrong" };
+    }
+  }
+
+  async deleteDocument(id) {
+    console.log("This is id ");
+    console.log(id);
+    let path = "/document/delete";
+    try {
+      let response;
+      await axios.post(getApiPath(path), id).then((resp) => (response = resp));
       return response;
     } catch (error) {
       console.log(error);
