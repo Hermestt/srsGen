@@ -3,6 +3,9 @@ import NavBar from "../NavBar/NavBar";
 import DocumentService from "../../services/DocumentService";
 import { useHistory } from "react-router-dom";
 import { documentContext } from "../../Contexts/documentContext";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 function DocumentDetail() {
   const history = useHistory();
@@ -29,6 +32,19 @@ function DocumentDetail() {
   const handleEdit = (e) => {
     e.preventDefault();
     history.push("/document/create");
+  };
+
+  const handleDownload = (e) => {
+    var docDefinition = {
+      content: [
+        `${document.name}`,
+        `${document.description}`,
+        `${document.goalsAndDescription.goals}`,
+        `${document.goalsAndDescription.problemsToSolve}`,
+        `${document.goalsAndDescription.vision}`,
+      ],
+    };
+    pdfMake.createPdf(docDefinition).download();
   };
 
   return (
@@ -63,6 +79,7 @@ function DocumentDetail() {
       </p>
       <button onClick={handleClick}>Delete this document</button>
       <button onClick={handleEdit}>Edit this document</button>
+      <button onClick={handleDownload}>Download pdf</button>
     </div>
   );
 }
