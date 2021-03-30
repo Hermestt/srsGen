@@ -19,7 +19,7 @@ function Dashboard() {
       setDocumentsList(response.data.list);
     }
     get();
-  }, [documentsList]);
+  }, []);
 
   const handleClick = async (e) => {
     setDocumentValue(e.target.value);
