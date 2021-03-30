@@ -2,7 +2,6 @@
  * Responsible for checking if the body of the request that the router received is empty or not,
  * if it is empty it must return a response with a 400 to the user and stop the process.
  */
-
 function hasBody(req, res, next) {
   if (isEmpty(req.body)) {
     return res.status(400).json({
@@ -11,7 +10,7 @@ function hasBody(req, res, next) {
     });
   }
 
-  next(); // Body wasn't empty, go to the next middleware.
+  next();
 }
 
 // Check if the request body is empty
