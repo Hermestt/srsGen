@@ -10,16 +10,12 @@ async function handleUserRegistration(req, res) {
     return res.status(409).json({ message });
   }
 
-  // Doesn't exist, proceed
   const newUser = new UserModel(req.body);
 
-  // Hash user password
   newUser.setPassword(req.body.password);
 
-  // Save User
   newUser.saveNewUser();
 
-  // Responde to the client side the success
   res.json({
     success: true,
     userData: {

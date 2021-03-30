@@ -14,9 +14,9 @@ function DocumentDetail() {
 
   useEffect(() => {
     async function wele() {
-      const response = await DocumentService.getDocument({
-        id: documentValue,
-      });
+      const response = await DocumentService.getDocument(documentValue);
+      console.log("This is response");
+      console.log(response);
       setDocument(response.data.document[0]);
     }
     wele();
@@ -24,7 +24,7 @@ function DocumentDetail() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    DocumentService.deleteDocument({ _id: document._id });
+    DocumentService.deleteDocument(document._id);
     setDocumentValue(null);
     history.push("/");
   };

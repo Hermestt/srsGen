@@ -54,7 +54,6 @@ UserSchema.methods = {
   saveNewUser() {
     try {
       this.save();
-      console.log("user was saved successfuly");
     } catch (error) {
       console.log(error);
     }

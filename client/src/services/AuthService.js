@@ -6,10 +6,18 @@ const USER_DATA = "user_data";
 
 class AuthService {
   constructor() {
-    this.auth = {
-      isSigned: Boolean(this._getToken()),
-      user: {},
-    }; //This only works when a log in was successfull
+    const token = this._getToken();
+    if (token) {
+      this.auth = {
+        isSigned: Boolean(token),
+        user: this._getUser(),
+      };
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+      this.auth = {
+        isSigned: false,
+      };
+    }
   }
 
   // Methods related to the Saving, reading and deletion of JWT
@@ -19,19 +27,23 @@ class AuthService {
 
   _saveToken(token) {
     localStorage.setItem(SESSION_KEY, token);
+
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
   _deleteToken() {
     localStorage.removeItem(SESSION_KEY);
+
+    axios.defaults.headers.common["Authorization"] = null;
   }
 
   // Methods related to the Saving, reading and deletion of User Data
   _saveUser(userData) {
-    localStorage.setItem(USER_DATA, userData);
+    localStorage.setItem(USER_DATA, JSON.stringify(userData));
   }
 
   _getUser() {
-    return localStorage.getItem(USER_DATA);
+    return JSON.parse(localStorage.getItem(USER_DATA));
   }
 
   _deleteUser() {
@@ -41,11 +53,7 @@ class AuthService {
   // User Authenticator private method
   async _handleAuthentication(path, data) {
     try {
-      let response;
-      // if the authentication succeeds we return the server response
-      await axios.post(getApiPath(path), data).then((resp) => {
-        response = resp;
-      });
+      let response = await axios.post(getApiPath(path), data);
       return response;
     } catch (error) {
       // if the authentication fails we have to clean the localStorage and set isSigned property to false
@@ -69,11 +77,10 @@ class AuthService {
       this.auth.isSigned = true;
       this.auth.user = response.data.userData;
     }
-
     return response;
   }
 
-  // Logout, user is going co caralho
+  // Logout
   // Clean localStorage, set isSigned to false
   logout() {
     this.auth.isSigned = false;
