@@ -16,6 +16,7 @@ async function handleLogin(req, res) {
     return res.status(401).json({ message });
   }
 
+  let thisToken = user.generateJWT(user);
   // succeeded
   res.json({
     success: true,
@@ -24,7 +25,7 @@ async function handleLogin(req, res) {
       lastName: user.lastName,
       email: user.email,
     },
-    token: user.generateJWT(user),
+    token: thisToken,
   });
 }
 

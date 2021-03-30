@@ -1,72 +1,57 @@
 import { getApiPath } from "../Utils/api";
 import axios from "axios";
 
-//This will need to be set in the context, just want to see if this works
-
 class DocumentService {
   async saveDocument(data) {
     let path = "/document/create";
     try {
-      let response;
-      await axios
-        .post(getApiPath(path), data)
-        .then((resp) => (response = resp));
+      let response = await axios.post(getApiPath(path), data);
       return response;
     } catch (error) {
       console.log(error);
-      return { success: false, message: "something is wrong" };
     }
   }
 
   async updateDocument(data) {
     let path = "/document/update";
     try {
-      let response;
-      await axios
-        .post(getApiPath(path), data)
-        .then((resp) => (response = resp));
+      let response = await axios.put(getApiPath(path), data);
       return response;
     } catch (error) {
       console.log(error);
-      return { success: false, message: "something is wrong" };
     }
   }
 
   async listDocuments() {
     let path = "/document/listing";
     try {
-      let response;
-      await axios.get(getApiPath(path)).then((resp) => (response = resp));
+      let response = await axios.get(getApiPath(path));
       return response;
     } catch (error) {
       console.log(error);
-      return { success: false, message: "something is wrong" };
+      return { data: { list: [] } };
     }
   }
 
   async getDocument(id) {
-    let path = "/document/read";
+    let path = "/document/read/" + id;
     try {
-      let response;
-      await axios.post(getApiPath(path), id).then((resp) => (response = resp));
+      let response = await axios.get(getApiPath(path), { data: { _id: id } });
       return response;
     } catch (error) {
       console.log(error);
-      return { success: false, message: "something is wrong" };
     }
   }
 
   async deleteDocument(id) {
-    console.log("This is id ");
-    console.log(id);
-    let path = "/document/delete";
+    let path = "/document/delete/" + id;
     try {
-      let response;
-      await axios.post(getApiPath(path), id).then((resp) => (response = resp));
+      let response = await axios.delete(getApiPath(path), {
+        data: { _id: id },
+      });
       return response;
     } catch (error) {
       console.log(error);
-      return { success: false, message: "something is wrong" };
     }
   }
 }

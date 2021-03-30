@@ -1,21 +1,31 @@
 const express = require("express");
 const documentRouter = express.Router();
 const hasBody = require("../middlewares/hasBody.js");
+const hasJwt = require("../middlewares/hasJwt.js");
 const controller = require("../controllers/documentController");
 
 // Create new Document
-documentRouter.post("/create", hasBody, controller.handleDocumentCreation);
+documentRouter.post(
+  "/create",
+  hasJwt,
+  hasBody,
+  controller.handleDocumentCreation
+);
 
 // Delete selected document
-documentRouter.post("/delete", hasBody, controller.handleDocumentDeletion);
+documentRouter.delete(
+  "/delete/:id",
+  hasBody,
+  controller.handleDocumentDeletion
+);
 
 // Read selected Document
-documentRouter.post("/read", hasBody, controller.handleDocumentDelivery);
+documentRouter.get("/read/:id", hasJwt, controller.handleDocumentDelivery);
 
 // Update selected Document
-documentRouter.post("/update", hasBody, controller.handleDocumentUpdate);
+documentRouter.put("/update", hasJwt, hasBody, controller.handleDocumentUpdate);
 
 // Read all documents
-documentRouter.get("/listing", controller.handleDocumentListing);
+documentRouter.get("/listing", hasJwt, controller.handleDocumentListing);
 
 module.exports = documentRouter;
