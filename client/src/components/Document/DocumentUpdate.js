@@ -4,12 +4,11 @@ import React, { useContext, useEffect, useState } from "react";
 // Import Contexts
 import { documentContext } from "../../Contexts/documentContext";
 
-import DocumentForm from "./DocumentForm";
-
 // React Router Components
 import { useHistory } from "react-router-dom";
 
 // Import Components and Styles
+import DocumentForm from "./DocumentForm";
 import MyNavBar from "../NavBar/NavBar";
 import { Button, Row, Col } from "react-bootstrap";
 
@@ -61,7 +60,7 @@ function DocumentUpdate() {
       </Row>
       <Row className="justify-content-md-center">
         <Col sm={8} className="d-flex flex-row-reverse">
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
             Update
           </Button>
         </Col>

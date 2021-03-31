@@ -6,12 +6,16 @@ import { Button, Row, Col } from "react-bootstrap";
 import MyNavBar from "../NavBar/NavBar";
 import DocumentForm from "./DocumentForm";
 
+// React Router Components
+import { useHistory } from "react-router-dom";
+
 // Import Services
 import DocumentService from "../../services/DocumentService";
 import AuthService from "../../services/AuthService";
 
 function DocumentCreate() {
   const [documentData, setDocumentData] = useState({});
+  const history = useHistory();
 
   const onInputChange = (childName, childValue) => {
     setDocumentData({ ...documentData, [childName]: childValue });
@@ -29,6 +33,7 @@ function DocumentCreate() {
       },
     };
     await DocumentService.saveDocument(documentPack);
+    history.push("/");
   };
 
   return (

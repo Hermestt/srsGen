@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { documentContext } from "../../Contexts/documentContext";
 
 // React Router Components
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 // Import Components and Styles
 import { Button, ButtonGroup, Row, Col } from "react-bootstrap";
@@ -21,12 +21,14 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 function DocumentDetail() {
   const history = useHistory();
+  let { id } = useParams();
+
   const { documentValue, setDocumentValue } = useContext(documentContext);
   const [document, setDocument] = useState(null);
 
   useEffect(() => {
     async function fetchDocument() {
-      const givenDocument = await DocumentService.getDocument(documentValue);
+      const givenDocument = await DocumentService.getDocument(id);
       setDocument(givenDocument);
     }
     fetchDocument();
@@ -41,7 +43,7 @@ function DocumentDetail() {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    history.push("/document/update");
+    history.push("/document/update/" + id);
   };
 
   const handleDownload = (e) => {
