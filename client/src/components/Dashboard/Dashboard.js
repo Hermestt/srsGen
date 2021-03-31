@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { documentContext } from "../../Contexts/documentContext";
 
+import AuthService from "../../services/AuthService";
+
 function Dashboard() {
   const history = useHistory();
   const { setDocumentValue } = useContext(documentContext);
@@ -14,8 +16,9 @@ function Dashboard() {
   const [documentsList, setDocumentsList] = useState([]);
   useEffect(() => {
     setDocumentValue(null);
+    let id = AuthService.auth.user.id;
     async function get() {
-      let response = await DocumentService.listDocuments();
+      let response = await DocumentService.listDocuments(id);
       setDocumentsList(response.data.list);
     }
     get();

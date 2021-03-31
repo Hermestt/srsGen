@@ -13,7 +13,8 @@ async function handleDocumentCreation(req, res) {
 
 // handleDocumentListing
 async function handleDocumentListing(req, res) {
-  const list = await DocumentModel.find({});
+  const data = req.params.id;
+  const list = await DocumentModel.find({ creator_id: data });
 
   res.json({ list });
 }

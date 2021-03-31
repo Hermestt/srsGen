@@ -13,13 +13,11 @@ function DocumentDetail() {
   const [document, setDocument] = useState(null);
 
   useEffect(() => {
-    async function wele() {
-      const response = await DocumentService.getDocument(documentValue);
-      console.log("This is response");
-      console.log(response);
-      setDocument(response.data.document[0]);
+    async function fetchDocument() {
+      const givenDocument = await DocumentService.getDocument(documentValue);
+      setDocument(givenDocument);
     }
-    wele();
+    fetchDocument();
   }, []);
 
   const handleClick = (e) => {
@@ -31,18 +29,12 @@ function DocumentDetail() {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    history.push("/document/create");
+    history.push("/document/update");
   };
 
   const handleDownload = (e) => {
     var docDefinition = {
-      content: [
-        `${document.name}`,
-        `${document.description}`,
-        `${document.goalsAndDescription.goals}`,
-        `${document.goalsAndDescription.problemsToSolve}`,
-        `${document.goalsAndDescription.vision}`,
-      ],
+      content: [`${document.name}`, `${document.description}`],
     };
     pdfMake.createPdf(docDefinition).download();
   };
@@ -57,24 +49,6 @@ function DocumentDetail() {
       <p>
         {document && document.description
           ? document.description
-          : "Not loaded yet"}
-      </p>
-      <h4>Project Goals</h4>
-      <p>
-        {document && document.goalsAndDescription.goals
-          ? document.goalsAndDescription.goals
-          : "Not loaded yet"}
-      </p>
-      <h4>Problems to Solve</h4>
-      <p>
-        {document && document.goalsAndDescription.problemsToSolve
-          ? document.goalsAndDescription.problemsToSolve
-          : "Not loaded yet"}
-      </p>
-      <h4>Project Vision</h4>
-      <p>
-        {document && document.goalsAndDescription.vision
-          ? document.goalsAndDescription.vision
           : "Not loaded yet"}
       </p>
       <button onClick={handleClick}>Delete this document</button>
