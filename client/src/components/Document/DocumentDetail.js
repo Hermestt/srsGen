@@ -14,10 +14,8 @@ import MyNavBar from "../NavBar/NavBar";
 // Import Services
 import DocumentService from "../../services/DocumentService";
 
-// Import Plugins
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// Import Utils
+import createPDF from "../../Utils/pdf";
 
 function DocumentDetail() {
   const history = useHistory();
@@ -47,10 +45,7 @@ function DocumentDetail() {
   };
 
   const handleDownload = (e) => {
-    var docDefinition = {
-      content: [`${document.name}`, `${document.description}`],
-    };
-    pdfMake.createPdf(docDefinition).download();
+    createPDF(document);
   };
 
   return (
