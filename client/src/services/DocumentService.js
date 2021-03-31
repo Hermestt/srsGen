@@ -14,6 +14,7 @@ class DocumentService {
 
   async updateDocument(data) {
     let path = "/document/update";
+    console.log(data);
     try {
       let response = await axios.put(getApiPath(path), data);
       return response;
@@ -22,10 +23,12 @@ class DocumentService {
     }
   }
 
-  async listDocuments() {
-    let path = "/document/listing";
+  async listDocuments(id) {
+    let path = "/document/listing/" + id;
     try {
-      let response = await axios.get(getApiPath(path));
+      let response = await axios.get(getApiPath(path), {
+        data: { creator_id: id },
+      });
       return response;
     } catch (error) {
       console.log(error);
@@ -37,7 +40,9 @@ class DocumentService {
     let path = "/document/read/" + id;
     try {
       let response = await axios.get(getApiPath(path), { data: { _id: id } });
-      return response;
+      let documentOnly = response.data.document[0];
+
+      return documentOnly;
     } catch (error) {
       console.log(error);
     }
