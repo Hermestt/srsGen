@@ -1,8 +1,20 @@
+// Import React Libs
 import React, { useContext, useEffect, useState } from "react";
-import NavBar from "../NavBar/NavBar";
-import DocumentService from "../../services/DocumentService";
-import { useHistory } from "react-router-dom";
+
+// Import Contexts
 import { documentContext } from "../../Contexts/documentContext";
+
+// React Router Components
+import { useHistory } from "react-router-dom";
+
+// Import Components and Styles
+import { Button, ButtonGroup, Row, Col } from "react-bootstrap";
+import MyNavBar from "../NavBar/NavBar";
+
+// Import Services
+import DocumentService from "../../services/DocumentService";
+
+// Import Plugins
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -20,7 +32,7 @@ function DocumentDetail() {
     fetchDocument();
   }, []);
 
-  const handleClick = (e) => {
+  const handleDelete = (e) => {
     e.preventDefault();
     DocumentService.deleteDocument(document._id);
     setDocumentValue(null);
@@ -41,19 +53,33 @@ function DocumentDetail() {
 
   return (
     <div>
-      <NavBar />
-      <span>Project Name</span>
-      <h2>{document && document.name ? document.name : "Not loaded yet"}</h2>
-      <h2>{document && document._id ? document._id : "Not loaded yet"}</h2>
-      <h4>Project Description</h4>
-      <p>
-        {document && document.description
-          ? document.description
-          : "Not loaded yet"}
-      </p>
-      <button onClick={handleClick}>Delete this document</button>
-      <button onClick={handleEdit}>Edit this document</button>
-      <button onClick={handleDownload}>Download pdf</button>
+      <MyNavBar />
+      <Row>
+        <Col sm={8}>
+          <span>Project Name</span>
+          <h1>
+            {document && document.name ? document.name : "Not loaded yet"}
+          </h1>
+          <span>Project Description</span>
+          <p>
+            {document && document.description
+              ? document.description
+              : "Not loaded yet"}
+          </p>
+        </Col>
+      </Row>
+
+      <ButtonGroup aria-label="Basic example">
+        <Button variant="secondary" onClick={handleDelete}>
+          Delete
+        </Button>
+        <Button variant="secondary" onClick={handleEdit}>
+          Update
+        </Button>
+        <Button variant="primary" onClick={handleDownload}>
+          Download
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }

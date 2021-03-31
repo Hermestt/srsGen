@@ -1,6 +1,13 @@
+// Import React Libs
 import React, { useState } from "react";
+
+// Import Services
 import AuthService from "../../services/AuthService";
-import { Link, useHistory } from "react-router-dom";
+
+// Import Components and Styles
+import { useHistory, Link } from "react-router-dom";
+import { Button, Col, Row, Form } from "react-bootstrap";
+import "./Register.css";
 
 function Register() {
   const history = useHistory();
@@ -34,87 +41,85 @@ function Register() {
   };
 
   return (
-    <div>
-      <div>
-        <p>Already have an account?</p>
-        <Link to="/login">Log In</Link>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label for="first-name">First Name</label>
-          <input
-            type="text"
-            placeholder="e.g John"
-            id="first-name"
-            onChange={(e) => {
-              setRegisterData({
-                ...registerData,
-                firstName: e.target.value,
-              });
-            }}
-          ></input>
+    <Row className="justify-content-md-center">
+      <Col md="auto">
+        <div className="form-container">
+          <h2>Create a new SRS Gen account.</h2>
+          <p>We'll protect your data as best as you can.</p>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="firstName">
+              <Form.Label>First name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="e.g John"
+                onChange={(e) => {
+                  setRegisterData({
+                    ...registerData,
+                    firstName: e.target.value,
+                  });
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="lastName">
+              <Form.Label>Last name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="e.g Doe"
+                onChange={(e) => {
+                  setRegisterData({
+                    ...registerData,
+                    lastName: e.target.value,
+                  });
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="e.g john@doe.com"
+                onChange={(e) => {
+                  setRegisterData({
+                    ...registerData,
+                    email: e.target.value,
+                  });
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setRegisterData({
+                    ...registerData,
+                    password: e.target.value,
+                  });
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="confirmPassword">
+              <Form.Label>Confirm password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm password"
+                onChange={(e) => {
+                  setRegisterData({
+                    ...registerData,
+                    password2: e.target.value,
+                  });
+                }}
+              />
+            </Form.Group>
+
+            <Button value="login" type="submit" variant="primary">
+              Register account
+            </Button>
+          </Form>
         </div>
-        <div>
-          <label for="last-name">Last name</label>
-          <input
-            type="text"
-            placeholder="e.g Doe"
-            id="last-name"
-            onChange={(e) => {
-              setRegisterData({
-                ...registerData,
-                lastName: e.target.value,
-              });
-            }}
-          ></input>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input
-            type="text"
-            placeholder="e.g johndoe@mail.io"
-            id="email"
-            onChange={(e) => {
-              setRegisterData({
-                ...registerData,
-                email: e.target.value,
-              });
-            }}
-          ></input>
-        </div>
-        <div>
-          <label for="Password">Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            id="Password"
-            onChange={(e) => {
-              setRegisterData({
-                ...registerData,
-                password: e.target.value,
-              });
-            }}
-          ></input>
-        </div>
-        <div>
-          <label for="password2">Confirm password</label>
-          <input
-            type="password"
-            placeholder="Confirm password"
-            id="password2"
-            onChange={(e) => {
-              setRegisterData({
-                ...registerData,
-                password2: e.target.value,
-              });
-            }}
-          ></input>
-        </div>
-        <button value="register" type="submit">
-          Register Account
-        </button>
-      </form>
-    </div>
+      </Col>
+    </Row>
   );
 }
 
