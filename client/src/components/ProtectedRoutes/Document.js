@@ -1,10 +1,13 @@
+// Import React Libs
 import React from "react";
-import CreateDocument from "../Document/CreateDocument";
+
+// Import Components and Styles
+import DocumentCreate from "../Document/DocumentCreate";
 import ProtectedRouteController from "../ProtectedRouteController/ProtectedRouteController";
 
 function Document() {
   // Here we must check what specific page of the Document Route the user wants, create or view
-  return <ProtectedRouteController component={CreateDocument} />;
+  return <ProtectedRouteController component={DocumentCreate} />;
 }
 
 export default Document;
