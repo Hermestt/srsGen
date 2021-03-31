@@ -1,6 +1,13 @@
+// Import React Libs
 import React, { useState } from "react";
+
+// Import Services
 import AuthService from "../../services/AuthService";
+
+// Import Components and Styles
 import { useHistory, Link } from "react-router-dom";
+import { Button, Col, Row, Form } from "react-bootstrap";
+import "./Login.css";
 
 function Login() {
   let history = useHistory(); // The useHistory hook gives you access to the history instance that you may use to navigate. (https://reactrouter.com/web/api/Hooks/usehistory)
@@ -33,46 +40,56 @@ function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label for="Email">Email</label>
-          <input
-            type="text"
-            placeholder="Email"
-            id="Email"
-            onChange={(e) => {
-              setLoginCredentials({
-                ...loginCredentials,
-                email: e.target.value,
-              });
-            }}
-          ></input>
-        </div>
-        <div>
-          <label for="Password">Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            id="Password"
-            onChange={(e) => {
-              setLoginCredentials({
-                ...loginCredentials,
-                password: e.target.value,
-              });
-            }}
-          ></input>
-        </div>
-        <button value="login" type="submit">
-          Log In
-        </button>
-      </form>
+    <Row className="justify-content-md-center">
+      <Col md="auto">
+        <div className="form-container">
+          <h2>SRS Gen</h2>
+          <p>Welcome, please sign to access your documents.</p>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={(e) => {
+                  setLoginCredentials({
+                    ...loginCredentials,
+                    email: e.target.value,
+                  });
+                }}
+              />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
 
-      <div>
-        <p>Don't have a link?</p>
-        <Link to="/register">Register</Link>
-      </div>
-    </div>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setLoginCredentials({
+                    ...loginCredentials,
+                    password: e.target.value,
+                  });
+                }}
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+
+            <Button value="login" type="submit" variant="primary">
+              Log In
+            </Button>
+          </Form>
+        </div>
+        <p className="no-account">
+          Don't have an account? <Link to="/register">Register one now</Link>
+        </p>
+      </Col>
+    </Row>
   );
 }
 
