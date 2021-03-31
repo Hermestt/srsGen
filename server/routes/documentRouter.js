@@ -26,6 +26,6 @@ documentRouter.get("/read/:id", hasJwt, controller.handleDocumentDelivery);
 documentRouter.put("/update", hasJwt, hasBody, controller.handleDocumentUpdate);
 
 // Read all documents
-documentRouter.get("/listing", hasJwt, controller.handleDocumentListing);
+documentRouter.get("/listing/:id", hasJwt, controller.handleDocumentListing);
 
 module.exports = documentRouter;
