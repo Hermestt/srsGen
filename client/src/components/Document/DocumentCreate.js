@@ -1,11 +1,16 @@
+// Import React Libs
 import React, { useState } from "react";
-import NavBar from "../NavBar/NavBar";
-import DocumentService from "../../services/DocumentService";
+
+// Import Components and Styles
+import { Button, Row, Col } from "react-bootstrap";
+import MyNavBar from "../NavBar/NavBar";
 import DocumentForm from "./DocumentForm";
 
+// Import Services
+import DocumentService from "../../services/DocumentService";
 import AuthService from "../../services/AuthService";
 
-function CreateDocument() {
+function DocumentCreate() {
   const [documentData, setDocumentData] = useState({});
 
   const onInputChange = (childName, childValue) => {
@@ -28,11 +33,21 @@ function CreateDocument() {
 
   return (
     <div>
-      <NavBar />
-      <DocumentForm onFormChange={onInputChange} document={documentData} />
-      <button onClick={handleSubmit}>Save</button>
+      <MyNavBar />
+      <Row className="justify-content-md-center">
+        <Col sm={8}>
+          <DocumentForm onFormChange={onInputChange} document={documentData} />
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center">
+        <Col sm={8} className="d-flex flex-row-reverse">
+          <Button variant="primary" onClick={handleSubmit}>
+            Save
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 }
 
-export default CreateDocument;
+export default DocumentCreate;

@@ -1,17 +1,24 @@
-import DocumentService from "../../services/DocumentService";
+// Import React Libs
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
+
+// Import Contexts
 import { documentContext } from "../../Contexts/documentContext";
 
+// React Router Components
+import { useHistory } from "react-router-dom";
+
+// Import Components and Styles
+import MyNavBar from "../NavBar/NavBar";
+import { ListGroup, Button } from "react-bootstrap";
+import "./Dashboard.css";
+
+// Import Services
+import DocumentService from "../../services/DocumentService";
 import AuthService from "../../services/AuthService";
 
 function Dashboard() {
   const history = useHistory();
   const { setDocumentValue } = useContext(documentContext);
-  const handleDocumentCreation = () => {
-    history.push("/document/create");
-  };
 
   const [documentsList, setDocumentsList] = useState([]);
   useEffect(() => {
@@ -24,6 +31,10 @@ function Dashboard() {
     get();
   }, []);
 
+  const handleDocumentCreation = () => {
+    history.push("/document/create");
+  };
+
   const handleClick = async (e) => {
     setDocumentValue(e.target.value);
     history.push("/document/read");
@@ -31,24 +42,33 @@ function Dashboard() {
 
   return (
     <div>
-      <NavBar />
-      <div>
-        <h2>This is your documents list</h2>
-        <div>
-          <button onClick={handleDocumentCreation}>Create new document</button>
-          <ul>
-            <p>{`Found ${documentsList.length} documents`}</p>
-            {documentsList.map((documentItem, i) => (
-              <li key={i}>
-                {documentItem.name}
-                <button value={documentItem._id} onClick={handleClick}>
-                  view
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <MyNavBar />
+      <Button
+        value="login"
+        type="submit"
+        variant="primary"
+        onClick={handleDocumentCreation}
+      >
+        Create new document
+      </Button>
+      {documentsList && documentsList.length > 0 ? (
+        <ListGroup>
+          {documentsList.map((documentItem, i) => (
+            <ListGroup.Item
+              key={i}
+              onClick={handleClick}
+              value={documentItem._id}
+              action={true}
+            >
+              {documentItem.name}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      ) : (
+        <p className="no-items">
+          "You don't have any documents yet, create a new one."
+        </p>
+      )}
     </div>
   );
 }
