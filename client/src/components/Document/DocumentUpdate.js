@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import DocumentService from "../../services/DocumentService";
 import DocumentForm from "./DocumentForm";
 
 import AuthService from "../../services/AuthService";
+import { documentContext } from "../../Contexts/documentContext";
 
-function CreateDocument() {
-  const [documentData, setDocumentData] = useState({});
+function DocumentUpdate() {
+  const { documentValue, setDocumentValue } = useContext(documentContext);
+  const [documentData, setDocumentData] = useState(null);
+
+  useEffect(() => {
+    async function fetchDocument() {
+      const givenDocument = await DocumentService.getDocument(documentValue);
+      setDocumentData(givenDocument);
+    }
+    fetchDocument();
+  }, []);
 
   const onInputChange = (childName, childValue) => {
     setDocumentData({ ...documentData, [childName]: childValue });
@@ -15,6 +25,7 @@ function CreateDocument() {
   const handleSubmit = async () => {
     let documentPack = {
       creator_id: AuthService.auth.user.id,
+      _id: documentValue,
       name: documentData.name,
       description: documentData.description,
       goalsAndDescription: {
@@ -23,16 +34,17 @@ function CreateDocument() {
         vision: documentData.vision,
       },
     };
-    await DocumentService.saveDocument(documentPack);
+    console.log(documentPack);
+    await DocumentService.updateDocument(documentPack);
   };
 
   return (
     <div>
       <NavBar />
       <DocumentForm onFormChange={onInputChange} document={documentData} />
-      <button onClick={handleSubmit}>Save</button>
+      <button onClick={handleSubmit}>Update</button>
     </div>
   );
 }
 
-export default CreateDocument;
+export default DocumentUpdate;

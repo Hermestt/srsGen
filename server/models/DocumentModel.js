@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const DocumentSchema = new mongoose.Schema(
   {
+    creator_id: String,
     name: String,
     description: String,
     sharableLink: String,
