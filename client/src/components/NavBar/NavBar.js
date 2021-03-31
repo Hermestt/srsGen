@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from "react";
 
 // React Router Components
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // Import Components and Styles
+import { Button } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.css";
 
@@ -35,9 +36,14 @@ function MyNavBar() {
           Signed in as:{" "}
           <a href="#login">{`${userData.firstName} ${userData.lastName}`}</a>
         </Navbar.Text>
-        <Link style={{ marginLeft: 24 }} onClick={handleLogout}>
+        <Button
+          variant="outline-secondary"
+          onClick={handleLogout}
+          id="logout-btn"
+          size="sm"
+        >
           Log out
-        </Link>
+        </Button>
       </Navbar.Collapse>
     </Navbar>
   );

@@ -18,11 +18,10 @@ import AuthService from "../../services/AuthService";
 
 function Dashboard() {
   const history = useHistory();
-  const { setDocumentValue } = useContext(documentContext);
+  const { documentValue, setDocumentValue } = useContext(documentContext);
 
   const [documentsList, setDocumentsList] = useState([]);
   useEffect(() => {
-    setDocumentValue(null);
     let id = AuthService.auth.user.id;
     async function get() {
       let response = await DocumentService.listDocuments(id);
@@ -35,9 +34,9 @@ function Dashboard() {
     history.push("/document/create");
   };
 
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     setDocumentValue(e.target.value);
-    history.push("/document/read");
+    history.push("/document/read/" + e.target.value);
   };
 
   return (
