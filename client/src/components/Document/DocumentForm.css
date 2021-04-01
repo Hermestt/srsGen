@@ -1,0 +1,7 @@
+form {
+  margin-top: 40px;
+}
+
+form:first-child {
+  margin-top: 0;
+}
