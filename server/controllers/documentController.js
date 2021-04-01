@@ -14,7 +14,9 @@ async function handleDocumentCreation(req, res) {
 // handleDocumentListing
 async function handleDocumentListing(req, res) {
   const data = req.params.id;
-  const list = await DocumentModel.find({ creator_id: data });
+  const list = await DocumentModel.find({ creator_id: data }).select(
+    "name description"
+  );
 
   res.json({ list });
 }
@@ -31,6 +33,7 @@ async function handleDocumentDeletion(req, res) {
 // handleDocumentDelivery
 async function handleDocumentDelivery(req, res) {
   const data = req.params.id;
+
   const document = await DocumentModel.find({ _id: data });
 
   res.json({
