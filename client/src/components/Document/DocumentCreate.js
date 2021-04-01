@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import MyNavBar from "../NavBar/NavBar";
 import DocumentForm from "./DocumentForm";
+import "./DocumentFormContainer.css";
 
 // React Router Components
 import { useHistory } from "react-router-dom";
@@ -39,18 +40,23 @@ function DocumentCreate() {
   return (
     <div>
       <MyNavBar />
-      <Row className="justify-content-md-center">
-        <Col sm={8}>
-          <DocumentForm onFormChange={onInputChange} document={documentData} />
-        </Col>
-      </Row>
-      <Row className="justify-content-md-center">
-        <Col sm={8} className="d-flex flex-row-reverse">
-          <Button variant="primary" onClick={handleSubmit}>
-            Save
-          </Button>
-        </Col>
-      </Row>
+      <div className="document-form_container">
+        <Row className="justify-content-md-center">
+          <Col sm={8}>
+            <DocumentForm
+              onFormChange={onInputChange}
+              document={documentData}
+            />
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col sm={8} className="d-flex flex-row-reverse">
+            <Button variant="primary" onClick={handleSubmit}>
+              Save
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 }

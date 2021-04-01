@@ -20,7 +20,6 @@ import Document from "./components/ProtectedRoutes/Document";
 import DocumentDetail from "./components/Document/DocumentDetail";
 import DocumentUpdate from "./components/Document/DocumentUpdate";
 import Container from "react-bootstrap/Container";
-import MyNavBar from "./components/NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

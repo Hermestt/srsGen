@@ -29,7 +29,7 @@ function MyNavBar() {
 
   return (
     <Navbar>
-      <Navbar.Brand href="#home">SRSGen</Navbar.Brand>
+      <Navbar.Brand href="/">SRSGen</Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
