@@ -15,23 +15,38 @@ import DocumentService from "../../services/DocumentService";
 import AuthService from "../../services/AuthService";
 
 function DocumentCreate() {
-  const [documentData, setDocumentData] = useState({});
+  const [documentInfo, setDocumentInfo] = useState({});
+  const [documentStories, setDocumentStories] = useState([]);
+  const [documentPages, setDocumentPages] = useState([]);
+  const [documentBackend, setDocumentBackend] = useState([]);
+
   const history = useHistory();
 
-  const onInputChange = (childName, childValue) => {
-    setDocumentData({ ...documentData, [childName]: childValue });
+  const onInfoChange = (childName, childValue) => {
+    setDocumentInfo({ ...documentInfo, [childName]: childValue });
+  };
+  const onStoryChange = (array) => {
+    console.log("Story change");
+    setDocumentStories(array);
+  };
+  const onPageChange = (array) => {
+    console.log("Page change");
+    setDocumentPages(array);
+  };
+  const onBackendChange = (array) => {
+    console.log("Page change");
+    setDocumentBackend(array);
   };
 
+  console.log(documentPages);
   const handleSubmit = async () => {
     let documentPack = {
       creator_id: AuthService.auth.user.id,
-      name: documentData.name,
-      description: documentData.description,
-      goalsAndDescription: {
-        goals: documentData.goals,
-        problemsToSolve: documentData.problems,
-        vision: documentData.vision,
-      },
+      name: documentInfo.name,
+      description: documentInfo.description,
+      goals: documentInfo.goals,
+      problems: documentInfo.problems,
+      vision: documentInfo.vision,
     };
     await DocumentService.saveDocument(documentPack);
     history.push("/");
@@ -44,8 +59,11 @@ function DocumentCreate() {
         <Row className="justify-content-md-center">
           <Col sm={8}>
             <DocumentForm
-              onFormChange={onInputChange}
-              document={documentData}
+              onInfoChange={onInfoChange}
+              onStoryChange={onStoryChange}
+              onPageChange={onPageChange}
+              onBackendChange={onBackendChange}
+              document={documentInfo}
             />
           </Col>
         </Row>

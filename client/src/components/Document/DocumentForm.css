@@ -5,3 +5,9 @@ form {
 form:first-child {
   margin-top: 0;
 }
+
+.user-story-container .btn,
+.page-container .btn,
+.feature-container .btn {
+  margin-top: 32px;
+}
