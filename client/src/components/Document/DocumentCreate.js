@@ -31,7 +31,6 @@ function DocumentCreate() {
   const [documentTBR, setDocumentTBR] = useState([]);
   const [documentFeatures, setDocumentFeatures] = useState([]);
 
-  const [docContainer, setDocContainer] = useState({});
   const history = useHistory();
 
   const onInfoChange = (childName, childValue) => {
@@ -86,10 +85,10 @@ function DocumentCreate() {
       creator_id: AuthService.auth.user.id,
       name: documentInfo.name,
       description: documentInfo.description || "",
-      goalsAndDescriptions: {
-        goals: documentInfo.goals || "",
-        problems: documentInfo.problems || "",
-        vision: documentInfo.vision || "",
+      goalsAndDescription: {
+        goals: documentGPV.goals || "",
+        problems: documentGPV.problems || "",
+        vision: documentGPV.vision || "",
       },
       userStories: documentStories,
       tech: {
