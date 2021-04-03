@@ -7,6 +7,8 @@ import "./DocumentForm.css";
 
 function DocumentForm(props) {
   const document = props.document ? props.document : null;
+  console.log("DOCUMENT IS ");
+  console.log(document);
 
   // STORIES HANDLES AND STATE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   const [stories, setStories] = useState([]);
@@ -183,8 +185,6 @@ function DocumentForm(props) {
     setLibrary(newArr);
   };
 
-  console.log(document);
-
   return (
     <div className="forms-container">
       {/*Step 1 ############################################################################################### */}
@@ -224,8 +224,8 @@ function DocumentForm(props) {
             as="textarea"
             rows={1}
             value={
-              document && document.goalsAndDescriptions
-                ? document.goalsAndDescriptions.goals
+              document && document.goalsAndDescription
+                ? document.goalsAndDescription.goals
                 : ""
             }
             onChange={(e) => {
@@ -239,8 +239,8 @@ function DocumentForm(props) {
             as="textarea"
             rows={1}
             value={
-              document && document.goalsAndDescriptions
-                ? document.goalsAndDescriptions.problems
+              document && document.goalsAndDescription
+                ? document.goalsAndDescription.problems
                 : ""
             }
             onChange={(e) => {
@@ -254,8 +254,8 @@ function DocumentForm(props) {
             as="textarea"
             rows={1}
             value={
-              document && document.goalsAndDescriptions
-                ? document.goalsAndDescriptions.vision
+              document && document.goalsAndDescription
+                ? document.goalsAndDescription.vision
                 : ""
             }
             onChange={(e) => {
@@ -269,48 +269,50 @@ function DocumentForm(props) {
       <Form>
         <h3>User stories</h3>
         <ul>
-          {stories.map((story, i) => (
-            <li key={i}>
-              <Form.Group className="user-story-container d-flex">
-                <div>
-                  <Form.Label>As a...</Form.Label>
-                  <Form.Control
-                    value={story.who}
-                    onChange={(e) =>
-                      handleStory("who", story.id, e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <Form.Label>I want to...</Form.Label>
-                  <Form.Control
-                    value={story.wants}
-                    onChange={(e) =>
-                      handleStory("wants", story.id, e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <Form.Label>So I can...</Form.Label>
-                  <Form.Control
-                    value={story.objective}
-                    onChange={(e) =>
-                      handleStory("objective", story.id, e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <Button
-                    variant="secondary"
-                    onClick={removeStory}
-                    value={story.id}
-                  >
-                    X
-                  </Button>
-                </div>
-              </Form.Group>
-            </li>
-          ))}
+          {document && document.userStories
+            ? document.userStories.map((story, i) => (
+                <li key={i}>
+                  <Form.Group className="user-story-container d-flex">
+                    <div>
+                      <Form.Label>As a...</Form.Label>
+                      <Form.Control
+                        value={story.who}
+                        onChange={(e) =>
+                          handleStory("who", story.id, e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Form.Label>I want to...</Form.Label>
+                      <Form.Control
+                        value={story.wants}
+                        onChange={(e) =>
+                          handleStory("wants", story.id, e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Form.Label>So I can...</Form.Label>
+                      <Form.Control
+                        value={story.objective}
+                        onChange={(e) =>
+                          handleStory("objective", story.id, e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Button
+                        variant="secondary"
+                        onClick={removeStory}
+                        value={story.id}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </Form.Group>
+                </li>
+              ))
+            : "No stories"}
         </ul>
       </Form>
 
@@ -322,39 +324,41 @@ function DocumentForm(props) {
       <Form>
         <h3>Pages</h3>
         <ul>
-          {pages.map((page, i) => (
-            <li key={i}>
-              <Form.Group className="page-container d-flex">
-                <div>
-                  <Form.Label>Page name</Form.Label>
-                  <Form.Control
-                    value={page.name}
-                    onChange={(e) =>
-                      handlePage("name", page.id, e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <Form.Label>Page description</Form.Label>
-                  <Form.Control
-                    value={page.description}
-                    onChange={(e) =>
-                      handlePage("description", page.id, e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <Button
-                    variant="secondary"
-                    onClick={removePage}
-                    value={page.id}
-                  >
-                    X
-                  </Button>
-                </div>
-              </Form.Group>
-            </li>
-          ))}
+          {document && document.pages
+            ? document.pages.map((page, i) => (
+                <li key={i}>
+                  <Form.Group className="page-container d-flex">
+                    <div>
+                      <Form.Label>Page name</Form.Label>
+                      <Form.Control
+                        value={page.name}
+                        onChange={(e) =>
+                          handlePage("name", page.id, e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Form.Label>Page description</Form.Label>
+                      <Form.Control
+                        value={page.description}
+                        onChange={(e) =>
+                          handlePage("description", page.id, e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Button
+                        variant="secondary"
+                        onClick={removePage}
+                        value={page.id}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </Form.Group>
+                </li>
+              ))
+            : "No Pages"}
         </ul>
       </Form>
 
@@ -371,9 +375,10 @@ function DocumentForm(props) {
             <Form.Group controlId="documentBackend">
               <Form.Label>Backend</Form.Label>
               <ul>
-                {backend.map((item, i) => (
+                {document.tech.backend.map((item, i) => (
                   <li key={i}>
                     <Form.Control
+                      value={item.description}
                       onChange={(e) =>
                         handleBackend("description", item.id, e.target.value)
                       }
@@ -402,9 +407,10 @@ function DocumentForm(props) {
             <Form.Group controlId="documentFrontend">
               <Form.Label>Frontend</Form.Label>
               <ul>
-                {frontend.map((item, i) => (
+                {document.tech.frontend.map((item, i) => (
                   <li key={i}>
                     <Form.Control
+                      value={item.description}
                       onChange={(e) =>
                         handleFrontend("description", item.id, e.target.value)
                       }
@@ -433,9 +439,10 @@ function DocumentForm(props) {
             <Form.Group controlId="documentSecurity">
               <Form.Label>Security</Form.Label>
               <ul>
-                {security.map((item, i) => (
+                {document.tech.security.map((item, i) => (
                   <li key={i}>
                     <Form.Control
+                      value={item.description}
                       onChange={(e) =>
                         handleSecurity("description", item.id, e.target.value)
                       }
@@ -464,9 +471,10 @@ function DocumentForm(props) {
             <Form.Group controlId="documentLibraries">
               <Form.Label>Libraries</Form.Label>
               <ul>
-                {libraries.map((item, i) => (
+                {document.tech.libraries.map((item, i) => (
                   <li key={i}>
                     <Form.Control
+                      value={item.description}
                       onChange={(e) =>
                         handleLibrary("description", item.id, e.target.value)
                       }
@@ -536,39 +544,45 @@ function DocumentForm(props) {
       <Form>
         <h3>Future implementations</h3>
         <ul>
-          {features.map((feature, i) => (
-            <li key={i}>
-              <Form.Group className="feature-container d-flex">
-                <div>
-                  <Form.Label>Feature</Form.Label>
-                  <Form.Control
-                    value={feature.name}
-                    onChange={(e) =>
-                      handleFeature("name", feature.id, e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <Form.Label>Feature description</Form.Label>
-                  <Form.Control
-                    value={feature.description}
-                    onChange={(e) =>
-                      handleFeature("description", feature.id, e.target.value)
-                    }
-                  />
-                </div>
-                <div>
-                  <Button
-                    variant="secondary"
-                    onClick={removeFeature}
-                    value={feature.id}
-                  >
-                    X
-                  </Button>
-                </div>
-              </Form.Group>
-            </li>
-          ))}
+          {document && document.features
+            ? document.features.map((feature, i) => (
+                <li key={i}>
+                  <Form.Group className="feature-container d-flex">
+                    <div>
+                      <Form.Label>Feature</Form.Label>
+                      <Form.Control
+                        value={feature.name}
+                        onChange={(e) =>
+                          handleFeature("name", feature.id, e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Form.Label>Feature description</Form.Label>
+                      <Form.Control
+                        value={feature.description}
+                        onChange={(e) =>
+                          handleFeature(
+                            "description",
+                            feature.id,
+                            e.target.value
+                          )
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Button
+                        variant="secondary"
+                        onClick={removeFeature}
+                        value={feature.id}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </Form.Group>
+                </li>
+              ))
+            : "No features"}
         </ul>
       </Form>
 

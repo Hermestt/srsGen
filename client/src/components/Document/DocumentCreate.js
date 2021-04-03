@@ -18,7 +18,7 @@ import DocumentService from "../../services/DocumentService";
 import AuthService from "../../services/AuthService";
 
 function DocumentCreate() {
-  const { document, setDocument } = useContext(documentContext);
+  const history = useHistory();
 
   const [documentInfo, setDocumentInfo] = useState({});
   const [documentGPV, setDocumentGPV] = useState({});
@@ -30,8 +30,6 @@ function DocumentCreate() {
   const [documentLibraries, setDocumentLibrary] = useState([]);
   const [documentTBR, setDocumentTBR] = useState([]);
   const [documentFeatures, setDocumentFeatures] = useState([]);
-
-  const history = useHistory();
 
   const onInfoChange = (childName, childValue) => {
     setDocumentInfo({ ...documentInfo, [childName]: childValue });
@@ -67,12 +65,6 @@ function DocumentCreate() {
   };
 
   const handleSubmit = async () => {
-    /*documentStories.map((item, i) => delete item.id);
-    documentBackend.map((item, i) => delete item.id);
-    documentFrontend.map((item, i) => delete item.id);
-    documentSecurity.map((item, i) => delete item.id);
-    documentLibraries.map((item, i) => delete item.id);
-    documentPages.map((item, i) => delete item.id); */
     const doc = factory();
     console.log("doc is ");
     console.log(doc);
