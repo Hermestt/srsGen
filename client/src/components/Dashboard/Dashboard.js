@@ -35,7 +35,6 @@ function Dashboard() {
   };
 
   const handleClick = (e) => {
-    setDocumentValue(e.target.value);
     history.push("/document/read/" + e.target.value);
   };
 
@@ -65,7 +64,7 @@ function Dashboard() {
         </ListGroup>
       ) : (
         <p className="no-items">
-          "You don't have any documents yet, create a new one."
+          You don't have any documents yet, create a new one.
         </p>
       )}
     </div>

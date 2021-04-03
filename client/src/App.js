@@ -23,11 +23,11 @@ import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [documentValue, setDocumentValue] = useState(null);
+  const [document, setDocument] = useState({});
 
   return (
     <Container fluid="sm">
-      <documentContext.Provider value={{ documentValue, setDocumentValue }}>
+      <documentContext.Provider value={{ document, setDocument }}>
         <Router>
           <div className="App">
             <Switch>

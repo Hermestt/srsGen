@@ -11,3 +11,10 @@ form:first-child {
 .feature-container .btn {
   margin-top: 32px;
 }
+
+.multi-form-container {
+  flex-wrap: wrap;
+}
+.multi-form-container .form-container {
+  width: 50%;
+}
