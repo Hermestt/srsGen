@@ -13,9 +13,23 @@ const DocumentSchema = new mongoose.Schema(
     },
     goalsAndDescription: {
       goals: String,
-      problemsToSolve: String,
+      problems: String,
       vision: String,
     },
+    userStories: [],
+    tech: {
+      backend: [],
+      frontend: [],
+      security: [],
+      libraries: [],
+    },
+    pages: [],
+    timeBudgetRisks: {
+      timeline: String,
+      budget: String,
+      risks: String,
+    },
+    features: [],
   },
   { timestamps: true }
 );

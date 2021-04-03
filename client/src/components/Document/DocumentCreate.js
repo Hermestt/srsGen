@@ -1,5 +1,8 @@
 // Import React Libs
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+// Import Contexts
+import { documentContext } from "../../Contexts/documentContext";
 
 // Import Components and Styles
 import { Button, Row, Col } from "react-bootstrap";
@@ -15,41 +18,87 @@ import DocumentService from "../../services/DocumentService";
 import AuthService from "../../services/AuthService";
 
 function DocumentCreate() {
+  const history = useHistory();
+
   const [documentInfo, setDocumentInfo] = useState({});
+  const [documentGPV, setDocumentGPV] = useState({});
   const [documentStories, setDocumentStories] = useState([]);
   const [documentPages, setDocumentPages] = useState([]);
   const [documentBackend, setDocumentBackend] = useState([]);
-
-  const history = useHistory();
+  const [documentFrontend, setDocumentFrontend] = useState([]);
+  const [documentSecurity, setDocumentSecurity] = useState([]);
+  const [documentLibraries, setDocumentLibrary] = useState([]);
+  const [documentTBR, setDocumentTBR] = useState([]);
+  const [documentFeatures, setDocumentFeatures] = useState([]);
 
   const onInfoChange = (childName, childValue) => {
     setDocumentInfo({ ...documentInfo, [childName]: childValue });
   };
+  const onGPVChange = (childName, childValue) => {
+    setDocumentGPV({ ...documentGPV, [childName]: childValue });
+  };
+
   const onStoryChange = (array) => {
-    console.log("Story change");
     setDocumentStories(array);
   };
   const onPageChange = (array) => {
-    console.log("Page change");
     setDocumentPages(array);
   };
   const onBackendChange = (array) => {
-    console.log("Page change");
     setDocumentBackend(array);
   };
+  const onFrontendChange = (array) => {
+    setDocumentFrontend(array);
+  };
+  const onSecurityChange = (array) => {
+    setDocumentSecurity(array);
+  };
+  const onLibraryChange = (array) => {
+    setDocumentLibrary(array);
+  };
+  const onFeatureChange = (array) => {
+    setDocumentFeatures(array);
+  };
 
-  console.log(documentPages);
+  const onTBRChange = (childName, childValue) => {
+    setDocumentTBR({ ...documentTBR, [childName]: childValue });
+  };
+
   const handleSubmit = async () => {
+    const doc = factory();
+    console.log("doc is ");
+    console.log(doc);
+    await DocumentService.saveDocument(doc);
+    history.push("/");
+  };
+
+  const factory = () => {
     let documentPack = {
       creator_id: AuthService.auth.user.id,
       name: documentInfo.name,
-      description: documentInfo.description,
-      goals: documentInfo.goals,
-      problems: documentInfo.problems,
-      vision: documentInfo.vision,
+      description: documentInfo.description || "",
+      goalsAndDescription: {
+        goals: documentGPV.goals || "",
+        problems: documentGPV.problems || "",
+        vision: documentGPV.vision || "",
+      },
+      userStories: documentStories,
+      tech: {
+        backend: documentBackend,
+        frontend: documentFrontend,
+        security: documentSecurity,
+        libraries: documentLibraries,
+      },
+      pages: documentPages,
+      timeBudgetRisks: {
+        timeline: documentTBR.timeline,
+        budget: documentTBR.budget,
+        risks: documentTBR.risks,
+      },
+      features: documentFeatures,
     };
-    await DocumentService.saveDocument(documentPack);
-    history.push("/");
+    console.log(documentPack);
+    return documentPack;
   };
 
   return (
@@ -60,10 +109,37 @@ function DocumentCreate() {
           <Col sm={8}>
             <DocumentForm
               onInfoChange={onInfoChange}
+              onGPVChange={onGPVChange}
+              onTBRChange={onTBRChange}
               onStoryChange={onStoryChange}
               onPageChange={onPageChange}
               onBackendChange={onBackendChange}
-              document={documentInfo}
+              onFrontendChange={onFrontendChange}
+              onSecurityChange={onSecurityChange}
+              onLibraryChange={onLibraryChange}
+              onFeatureChange={onFeatureChange}
+              document={{
+                ...documentInfo,
+                goalsAndDescriptions: {
+                  goals: documentGPV.goals,
+                  problems: documentGPV.problems,
+                  vision: documentGPV.vision,
+                },
+                tech: {
+                  backend: documentBackend,
+                  frontend: documentFrontend,
+                  security: documentSecurity,
+                  libraries: documentLibraries,
+                },
+                userStories: documentStories,
+                pages: documentPages,
+                timeBudgetRisks: {
+                  timeline: documentTBR.timeline,
+                  budget: documentTBR.budget,
+                  risks: documentTBR.risks,
+                },
+                features: documentFeatures,
+              }}
             />
           </Col>
         </Row>
