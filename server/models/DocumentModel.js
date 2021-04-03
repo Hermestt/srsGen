@@ -16,6 +16,15 @@ const DocumentSchema = new mongoose.Schema(
       problemsToSolve: String,
       vision: String,
     },
+    userStories: [],
+    tech: {
+      backend: [],
+      frontend: [],
+      security: [],
+      libraries: [],
+    },
+    pages: [],
+    features: [],
   },
   { timestamps: true }
 );

@@ -2,6 +2,7 @@ const DocumentModel = require("../models/DocumentModel");
 
 // handleDocumentCreation
 async function handleDocumentCreation(req, res) {
+  console.log(req.body);
   const newDocument = new DocumentModel(req.body);
   newDocument.save();
 

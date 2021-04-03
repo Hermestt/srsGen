@@ -40,7 +40,7 @@ function DocumentForm(props) {
       Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
     ).toUpperCase();
     var newAdd = Array.from(pages);
-    newAdd.push({ id: id, who: "", wants: "", objective: "" });
+    newAdd.push({ id: id, name: "", description: "" });
     setPages(newAdd);
   };
 
@@ -73,7 +73,7 @@ function DocumentForm(props) {
     let newArr = Array.from(features);
     var foundIndex = newArr.findIndex((page) => page.id == id);
     newArr[foundIndex][name] = value;
-    props.onPageChange(newArr);
+    props.onFeatureChange(newArr);
     setFeatures(newArr);
   };
 
@@ -94,8 +94,6 @@ function DocumentForm(props) {
     setBackend(newAdd);
   };
 
-  console.log(backend);
-
   const handleBackend = (name, id, value) => {
     let newArr = Array.from(backend);
     var foundIndex = newArr.findIndex((backend) => backend.id == id);
@@ -109,6 +107,83 @@ function DocumentForm(props) {
     var newArr = backend.filter((backend) => backend.id !== id);
     setBackend(newArr);
   };
+
+  // Frontend $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  const [frontend, setFrontend] = useState([]);
+  const addFrontend = () => {
+    let id = (
+      Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+    ).toUpperCase();
+    var newAdd = Array.from(frontend);
+    newAdd.push({ id: id, description: "" });
+    setFrontend(newAdd);
+  };
+
+  const handleFrontend = (name, id, value) => {
+    let newArr = Array.from(frontend);
+    var foundIndex = newArr.findIndex((frontend) => frontend.id == id);
+    newArr[foundIndex][name] = value;
+    props.onFrontendChange(newArr);
+    setFrontend(newArr);
+  };
+
+  const removeFrontend = (e) => {
+    const id = e.target.value;
+    var newArr = frontend.filter((frontend) => frontend.id !== id);
+    setFrontend(newArr);
+  };
+
+  // Security $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  const [security, setSecurity] = useState([]);
+  const addSecurity = () => {
+    let id = (
+      Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+    ).toUpperCase();
+    var newAdd = Array.from(security);
+    newAdd.push({ id: id, description: "" });
+    setSecurity(newAdd);
+  };
+
+  const handleSecurity = (name, id, value) => {
+    let newArr = Array.from(security);
+    var foundIndex = newArr.findIndex((security) => security.id == id);
+    newArr[foundIndex][name] = value;
+    props.onSecurityChange(newArr);
+    setSecurity(newArr);
+  };
+
+  const removeSecurity = (e) => {
+    const id = e.target.value;
+    var newArr = security.filter((security) => security.id !== id);
+    setSecurity(newArr);
+  };
+
+  // Library $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  const [libraries, setLibrary] = useState([]);
+  const addLibrary = () => {
+    let id = (
+      Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
+    ).toUpperCase();
+    var newAdd = Array.from(libraries);
+    newAdd.push({ id: id, description: "" });
+    setLibrary(newAdd);
+  };
+
+  const handleLibrary = (name, id, value) => {
+    let newArr = Array.from(libraries);
+    var foundIndex = newArr.findIndex((library) => library.id == id);
+    newArr[foundIndex][name] = value;
+    props.onLibraryChange(newArr);
+    setLibrary(newArr);
+  };
+
+  const removeLibrary = (e) => {
+    const id = e.target.value;
+    var newArr = libraries.filter((libraries) => libraries.id !== id);
+    setLibrary(newArr);
+  };
+
+  console.log(document);
 
   return (
     <div className="forms-container">
@@ -145,15 +220,48 @@ function DocumentForm(props) {
         <h3>Goals, Problems and Vision</h3>
         <Form.Group controlId="documentGoals">
           <Form.Label>What is the goal of the project?</Form.Label>
-          <Form.Control as="textarea" rows={1} />
+          <Form.Control
+            as="textarea"
+            rows={1}
+            value={
+              document && document.goalsAndDescriptions
+                ? document.goalsAndDescriptions.goals
+                : ""
+            }
+            onChange={(e) => {
+              props.onGPVChange("goals", e.target.value);
+            }}
+          />
         </Form.Group>
         <Form.Group controlId="documentProblems">
           <Form.Label>What problems does the project solve?</Form.Label>
-          <Form.Control as="textarea" rows={1} />
+          <Form.Control
+            as="textarea"
+            rows={1}
+            value={
+              document && document.goalsAndDescriptions
+                ? document.goalsAndDescriptions.problems
+                : ""
+            }
+            onChange={(e) => {
+              props.onGPVChange("problems", e.target.value);
+            }}
+          />
         </Form.Group>
         <Form.Group controlId="documentVision">
           <Form.Label>What is the vision?</Form.Label>
-          <Form.Control as="textarea" rows={1} />
+          <Form.Control
+            as="textarea"
+            rows={1}
+            value={
+              document && document.goalsAndDescriptions
+                ? document.goalsAndDescriptions.vision
+                : ""
+            }
+            onChange={(e) => {
+              props.onGPVChange("vision", e.target.value);
+            }}
+          />
         </Form.Group>
       </Form>
 
@@ -206,7 +314,9 @@ function DocumentForm(props) {
         </ul>
       </Form>
 
-      <Button onClick={addStory}>Add story</Button>
+      <Button variant="light" onClick={addStory}>
+        Add story
+      </Button>
 
       {/*Step 4 ############################################################################################### */}
       <Form>
@@ -248,33 +358,137 @@ function DocumentForm(props) {
         </ul>
       </Form>
 
-      <Button onClick={addPage}>Add page</Button>
+      <Button variant="light" onClick={addPage}>
+        Add page
+      </Button>
 
       {/*Step 5 ############################################################################################### */}
       <Form>
         <h3>Non-Functional Requirements</h3>
-        <div>
-          <Form.Group controlId="documentBackend">
-            <Form.Label>Backend</Form.Label>
-            <ul>
-              {backend.map((item, i) => (
-                <li key={i}>
-                  <Form.Control />
-                  <div>
-                    <Button
-                      variant="secondary"
-                      onClick={removeBackend}
-                      value={item.id}
-                    >
-                      X
-                    </Button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Form.Group>
+        <div className="multi-form-container d-flex">
+          {/*Backend #################################################################### */}
+          <div className="form-container">
+            <Form.Group controlId="documentBackend">
+              <Form.Label>Backend</Form.Label>
+              <ul>
+                {backend.map((item, i) => (
+                  <li key={i}>
+                    <Form.Control
+                      onChange={(e) =>
+                        handleBackend("description", item.id, e.target.value)
+                      }
+                    />
+                    <div>
+                      <Button
+                        variant="secondary"
+                        onClick={removeBackend}
+                        value={item.id}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Form.Group>
 
-          <Button onClick={addBackend}>Add new</Button>
+            <Button variant="light" onClick={addBackend}>
+              Add new
+            </Button>
+          </div>
+
+          {/*Frontend #################################################################### */}
+          <div className="form-container">
+            <Form.Group controlId="documentFrontend">
+              <Form.Label>Frontend</Form.Label>
+              <ul>
+                {frontend.map((item, i) => (
+                  <li key={i}>
+                    <Form.Control
+                      onChange={(e) =>
+                        handleFrontend("description", item.id, e.target.value)
+                      }
+                    />
+                    <div>
+                      <Button
+                        variant="secondary"
+                        onClick={removeFrontend}
+                        value={item.id}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Form.Group>
+
+            <Button variant="light" onClick={addFrontend}>
+              Add new
+            </Button>
+          </div>
+
+          {/*Security #################################################################### */}
+          <div className="form-container">
+            <Form.Group controlId="documentSecurity">
+              <Form.Label>Security</Form.Label>
+              <ul>
+                {security.map((item, i) => (
+                  <li key={i}>
+                    <Form.Control
+                      onChange={(e) =>
+                        handleSecurity("description", item.id, e.target.value)
+                      }
+                    />
+                    <div>
+                      <Button
+                        variant="secondary"
+                        onClick={removeSecurity}
+                        value={item.id}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Form.Group>
+
+            <Button variant="light" onClick={addSecurity}>
+              Add new
+            </Button>
+          </div>
+
+          {/*3rd Party Libs #################################################################### */}
+          <div className="form-container">
+            <Form.Group controlId="documentLibraries">
+              <Form.Label>Libraries</Form.Label>
+              <ul>
+                {libraries.map((item, i) => (
+                  <li key={i}>
+                    <Form.Control
+                      onChange={(e) =>
+                        handleLibrary("description", item.id, e.target.value)
+                      }
+                    />
+                    <div>
+                      <Button
+                        variant="secondary"
+                        onClick={removeLibrary}
+                        value={item.id}
+                      >
+                        X
+                      </Button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Form.Group>
+
+            <Button variant="light" onClick={addLibrary}>
+              Add new
+            </Button>
+          </div>
         </div>
       </Form>
 
@@ -283,11 +497,38 @@ function DocumentForm(props) {
         <h3>Timeline, budgets and Risks</h3>
         <Form.Group controlId="documentGoals">
           <Form.Label>Timeline</Form.Label>
-          <Form.Control />
+          <Form.Control
+            value={
+              document && document.timeBudgetRisks
+                ? document.timeBudgetRisks.timeline
+                : ""
+            }
+            onChange={(e) => {
+              props.onTBRChange("timeline", e.target.value);
+            }}
+          />
           <Form.Label>Budgets</Form.Label>
-          <Form.Control />
+          <Form.Control
+            value={
+              document && document.timeBudgetRisks
+                ? document.timeBudgetRisks.budget
+                : ""
+            }
+            onChange={(e) => {
+              props.onTBRChange("budget", e.target.value);
+            }}
+          />
           <Form.Label>Risks</Form.Label>
-          <Form.Control />
+          <Form.Control
+            value={
+              document && document.timeBudgetRisks
+                ? document.timeBudgetRisks.risks
+                : ""
+            }
+            onChange={(e) => {
+              props.onTBRChange("risks", e.target.value);
+            }}
+          />
         </Form.Group>
       </Form>
 
@@ -331,7 +572,9 @@ function DocumentForm(props) {
         </ul>
       </Form>
 
-      <Button onClick={() => addFeature()}>Add feature</Button>
+      <Button variant="light" onClick={() => addFeature()}>
+        Add feature
+      </Button>
     </div>
   );
 }

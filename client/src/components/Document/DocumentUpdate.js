@@ -18,12 +18,14 @@ import AuthService from "../../services/AuthService";
 import "./DocumentFormContainer.css";
 
 function DocumentUpdate() {
+  const { document, setDocument } = useContext(documentContext);
   const history = useHistory();
   let { id } = useParams();
 
-  const { documentValue, setDocumentValue } = useContext(documentContext);
+  //const { documentValue, setDocumentValue } = useContext(documentContext);
   const [documentData, setDocumentData] = useState(null);
 
+  /*
   useEffect(() => {
     async function fetchDocument() {
       console.log("Document value in update is " + id);
@@ -32,21 +34,21 @@ function DocumentUpdate() {
     }
     fetchDocument();
   }, []);
-
+*/
   const onInputChange = (childName, childValue) => {
-    setDocumentData({ ...documentData, [childName]: childValue });
+    setDocumentData({ ...document, [childName]: childValue });
   };
 
   const handleSubmit = async () => {
     let documentPack = {
       creator_id: AuthService.auth.user.id,
-      _id: documentValue,
-      name: documentData.name,
-      description: documentData.description,
+      _id: id,
+      name: document.name,
+      description: document.description,
       goalsAndDescription: {
-        goals: documentData.goals,
-        problemsToSolve: documentData.problems,
-        vision: documentData.vision,
+        goals: document.goals,
+        problemsToSolve: document.problems,
+        vision: document.vision,
       },
     };
     console.log(documentPack);
@@ -60,10 +62,7 @@ function DocumentUpdate() {
       <div className="document-form_container">
         <Row className="justify-content-md-center">
           <Col sm={8}>
-            <DocumentForm
-              onFormChange={onInputChange}
-              document={documentData}
-            />
+            <DocumentForm onFormChange={onInputChange} document={document} />
           </Col>
         </Row>
         <Row className="justify-content-md-center">
