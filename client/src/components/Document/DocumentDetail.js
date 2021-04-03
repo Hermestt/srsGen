@@ -1,5 +1,5 @@
 // Import React Libs
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 // Import Contexts
 import { documentContext } from "../../Contexts/documentContext";
@@ -18,11 +18,9 @@ import DocumentService from "../../services/DocumentService";
 import createPDF from "../../Utils/pdf";
 
 function DocumentDetail() {
+  const { document, setDocument } = useContext(documentContext);
   const history = useHistory();
   let { id } = useParams();
-
-  const { documentValue, setDocumentValue } = useContext(documentContext);
-  const [document, setDocument] = useState(null);
 
   useEffect(() => {
     async function fetchDocument() {
@@ -35,7 +33,7 @@ function DocumentDetail() {
   const handleDelete = (e) => {
     e.preventDefault();
     DocumentService.deleteDocument(document._id);
-    setDocumentValue(null);
+    setDocument(null);
     history.push("/");
   };
 
@@ -66,7 +64,7 @@ function DocumentDetail() {
         </Col>
       </Row>
 
-      <ButtonGroup aria-label="Basic example">
+      <ButtonGroup>
         <Button variant="secondary" onClick={handleDelete}>
           Delete
         </Button>
