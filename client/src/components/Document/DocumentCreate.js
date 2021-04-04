@@ -11,13 +11,14 @@ import { documentContext } from "../../Contexts/documentContext";
 import { Button, Row, Col } from "react-bootstrap";
 import MyNavBar from "../NavBar/NavBar";
 import DocumentForm from "./DocumentForm/DocumentForm";
+import "./DocumentForm/DocumentForm.css";
 
 // React Router Components
 import { useHistory } from "react-router-dom";
 
 // Import Services
 import DocumentService from "../../services/DocumentService";
-import AuthService from "../../services/DocumentService";
+import AuthService from "../../services/AuthService";
 
 function DocumentCreate() {
   const history = useHistory();

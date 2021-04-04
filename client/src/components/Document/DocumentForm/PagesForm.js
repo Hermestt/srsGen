@@ -1,16 +1,20 @@
 // Import React Libs
 import React, { useContext } from "react";
+
+// Import Context
 import { documentContext } from "../../../Contexts/documentContext";
+
 // Import Components and Styles
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Table } from "react-bootstrap";
+
+// Import Utilities
+import randomId from "../../../Utils/randomId";
 
 function PagesForm() {
   const { document, setDocument } = useContext(documentContext);
 
   const addPage = () => {
-    let id = (
-      Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
-    ).toUpperCase();
+    let id = randomId();
     var newAdd = Array.from(document.pages);
     newAdd.push({ id: id, name: "", description: "" });
     setDocument({ ...document, pages: newAdd });
@@ -33,28 +37,33 @@ function PagesForm() {
 
   return (
     <Form>
-      <h3>Pages</h3>
-      <ul>
-        {document.pages.map((page, i) => (
-          <li key={i}>
-            <Form.Group className="page-container d-flex" id={page.id}>
-              <div>
-                <Form.Label>Page name</Form.Label>
+      <h4 className="col-header">Project pages</h4>
+      <Table bordered hover>
+        <thead>
+          <tr>
+            <th>Page name</th>
+            <th>Page description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {document.pages.map((page, i) => (
+            <tr key={i} id={page.id}>
+              <th>
                 <Form.Control
                   name="name"
                   value={page.name}
                   onChange={handlePage}
                 />
-              </div>
-              <div>
-                <Form.Label>Page description</Form.Label>
+              </th>
+              <th>
                 <Form.Control
                   name="description"
                   value={page.description}
                   onChange={handlePage}
                 />
-              </div>
-              <div>
+              </th>
+              <th>
                 <Button
                   variant="secondary"
                   onClick={removePage}
@@ -62,14 +71,18 @@ function PagesForm() {
                 >
                   X
                 </Button>
-              </div>
-            </Form.Group>
-          </li>
-        ))}
-      </ul>
-      <Button variant="light" onClick={addPage}>
-        Add page
-      </Button>
+              </th>
+            </tr>
+          ))}
+          <tr>
+            <th colSpan={3}>
+              <Button variant="light" onClick={addPage}>
+                Add page
+              </Button>
+            </th>
+          </tr>
+        </tbody>
+      </Table>
     </Form>
   );
 }

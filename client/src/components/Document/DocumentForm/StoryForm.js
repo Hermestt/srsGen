@@ -1,16 +1,20 @@
 // Import React Libs
 import React, { useContext } from "react";
+
+// Import Context
 import { documentContext } from "../../../Contexts/documentContext";
+
 // Import Components and Styles
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Table } from "react-bootstrap";
+
+// Import Utilities
+import randomId from "../../../Utils/randomId";
 
 function StoryForm() {
   const { document, setDocument } = useContext(documentContext);
 
   const addStory = () => {
-    let id = (
-      Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
-    ).toUpperCase();
+    let id = randomId();
     var newAdd = Array.from(document.userStories);
     newAdd.push({ id: id, who: "", wants: "", objective: "" });
     setDocument({ ...document, userStories: newAdd });
@@ -26,43 +30,47 @@ function StoryForm() {
   };
 
   const removeStory = (e) => {
-    const id = e.currentTarget.value;
-    console.log("id is " + id);
+    const id = e.target.value;
     var newArr = document.userStories.filter((story) => story.id !== id);
     setDocument({ ...document, userStories: newArr });
   };
   return (
     <Form>
-      <h3>User stories</h3>
-      <ul>
-        {document.userStories.map((story, i) => (
-          <li key={i}>
-            <Form.Group className="user-story-container d-flex" id={story.id}>
-              <div>
-                <Form.Label>As a...</Form.Label>
+      <h4 className="col-header">User stories</h4>
+      <Table bordered hover>
+        <thead>
+          <tr>
+            <th>As a...</th>
+            <th>I want to...</th>
+            <th>So I can...</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {document.userStories.map((story, i) => (
+            <tr key={i} id={story.id}>
+              <th>
                 <Form.Control
                   name="who"
-                  onChange={handleStory}
                   value={story.who}
+                  onChange={handleStory}
                 />
-              </div>
-              <div>
-                <Form.Label>I want to...</Form.Label>
+              </th>
+              <th>
                 <Form.Control
                   name="wants"
-                  onChange={handleStory}
                   value={story.wants}
+                  onChange={handleStory}
                 />
-              </div>
-              <div>
-                <Form.Label>So I can...</Form.Label>
+              </th>
+              <th>
                 <Form.Control
                   name="objective"
-                  onChange={handleStory}
                   value={story.objective}
+                  onChange={handleStory}
                 />
-              </div>
-              <div>
+              </th>
+              <th>
                 <Button
                   variant="secondary"
                   onClick={removeStory}
@@ -70,14 +78,18 @@ function StoryForm() {
                 >
                   X
                 </Button>
-              </div>
-            </Form.Group>
-          </li>
-        ))}
-      </ul>
-      <Button variant="light" onClick={addStory}>
-        Add story
-      </Button>
+              </th>
+            </tr>
+          ))}
+          <tr>
+            <th colSpan={4}>
+              <Button variant="light" onClick={addStory}>
+                Add story
+              </Button>
+            </th>
+          </tr>
+        </tbody>
+      </Table>
     </Form>
   );
 }
