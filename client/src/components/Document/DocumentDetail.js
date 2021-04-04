@@ -8,8 +8,16 @@ import { documentContext } from "../../Contexts/documentContext";
 import { useHistory, useParams } from "react-router-dom";
 
 // Import Components and Styles
-import { Button, ButtonGroup, Row, Col, Table } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Row,
+  Col,
+  Table,
+  ListGroup,
+} from "react-bootstrap";
 import MyNavBar from "../NavBar/NavBar";
+import "./DocumentDetail.css";
 
 // Import Services
 import DocumentService from "../../services/DocumentService";
@@ -49,189 +57,220 @@ function DocumentDetail() {
   return (
     <div>
       <MyNavBar />
-      {/*Step 1 ############################################################################################### */}
-      <Row id="document-info">
+      <Row className="document-view-container justify-content-md-center">
         <Col sm={8}>
-          <span>Project title</span>
-          <h1>{document.title ? document.title : "No title was given"}</h1>
-          <span>Project Description</span>
-          <p>
-            {document.description
-              ? document.description
-              : "No description was given"}
-          </p>
-        </Col>
-      </Row>
+          {/*Step 1 ############################################################################################### */}
+          <Row id="document-info">
+            <Col>
+              <h1>{document.title ? document.title : "No title was given"}</h1>
+              <h5>
+                {document.description
+                  ? document.description
+                  : "No description was given"}
+              </h5>
+            </Col>
+          </Row>
 
-      {/*Step 2 ############################################################################################### */}
-      <Row id="document-gpv">
-        <Col sm={8}>
-          <h3>Goals and Project Description</h3>
+          {/*Step 2 ############################################################################################### */}
+          <Row id="document-gpv">
+            <Col>
+              <h4 className="col-header">Goals and Project Description</h4>
 
-          <h5>What is the goal of the project?</h5>
-          <p>{document.goals ? document.goals : "No goals"}</p>
+              <h6 className="fw-bold">What is the goal of the project?</h6>
+              <p>{document.goals ? document.goals : "No goals"}</p>
 
-          <h5>What problems does the project solve?</h5>
-          <p>{document.problems ? document.problems : "No problems"}</p>
+              <h6 className="fw-bold">What problems does the project solve?</h6>
+              <p>{document.problems ? document.problems : "No problems"}</p>
 
-          <h5>What is the vision?</h5>
-          <p>{document.vision ? document.vision : "No vision"}</p>
-        </Col>
-      </Row>
+              <h6 className="fw-bold">What is the vision?</h6>
+              <p>{document.vision ? document.vision : "No vision"}</p>
+            </Col>
+          </Row>
 
-      {/*Step 3 ############################################################################################### */}
-      <Row id="document-user-stories">
-        <Col sm={8}>
-          <h3>User stories</h3>
+          {/*Step 3 ############################################################################################### */}
+          <Row id="document-user-stories">
+            <Col>
+              <h4 className="col-header">User stories</h4>
 
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>As a</th>
-                <th>I want to</th>
-                <th>So I can</th>
-              </tr>
-            </thead>
-            <tbody>
-              {document.userStories ? (
-                document.userStories.map((story, i) => (
-                  <tr key={i}>
-                    <td>{story.who}</td>
-                    <td>{story.wants}</td>
-                    <td>{story.objective}</td>
+              <Table striped bordered>
+                <thead>
+                  <tr>
+                    <th>As a</th>
+                    <th>I want to</th>
+                    <th>So I can</th>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td>"This document doesn't have user stories"</td>
-                </tr>
-              )}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
-
-      {/*Step 4 ############################################################################################### */}
-      <Row id="document-pages">
-        <Col sm={8}>
-          <h3>Page description</h3>
-          <ul>
-            {document.pages
-              ? document.pages.map((page, i) => (
-                  <li key={i}>
-                    <h5>{page.name}</h5>
-                    <p>{page.description}</p>
-                  </li>
-                ))
-              : "This document doesn't have pages"}
-          </ul>
-        </Col>
-      </Row>
-
-      {/*Step 5 ############################################################################################### */}
-      <Row id="document-requirements">
-        <Col sm={8}>
-          <h3>Non-Functional Requirements</h3>
-          <div className="multi-form-container d-flex">
-            <div className="form-container">
-              <h5>Backend</h5>
-              <ul>
-                {document.backend
-                  ? document.backend.map((item, i) => (
-                      <li key={i}>
-                        <p>{item.description}</p>
-                      </li>
+                </thead>
+                <tbody>
+                  {document.userStories ? (
+                    document.userStories.map((story, i) => (
+                      <tr key={i}>
+                        <td>{story.who}</td>
+                        <td>{story.wants}</td>
+                        <td>{story.objective}</td>
+                      </tr>
                     ))
-                  : "No backend"}
-              </ul>
-            </div>
-            <div className="form-container">
-              <h5>Frontend</h5>
-              <ul>
-                {document.frontend
-                  ? document.frontend.map((item, i) => (
-                      <li key={i}>
-                        <p>{item.description}</p>
-                      </li>
+                  ) : (
+                    <tr>
+                      <td>"This document doesn't have user stories"</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+
+          {/*Step 4 ############################################################################################### */}
+          <Row id="document-pages">
+            <Col>
+              <h4 className="col-header">Pages</h4>
+              <Table striped bordered>
+                <thead>
+                  <tr>
+                    <th>Page name</th>
+                    <th>Page description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {document.pages ? (
+                    document.pages.map((item, i) => (
+                      <tr key={i}>
+                        <td>{item.name}</td>
+                        <td>{item.description}</td>
+                      </tr>
                     ))
-                  : "No Frontend"}
-              </ul>
-            </div>
-            <div className="form-container">
-              <h5>Security</h5>
-              <ul>
-                {document.security
-                  ? document.security.map((item, i) => (
-                      <li key={i}>
-                        <p>{item.description}</p>
-                      </li>
+                  ) : (
+                    <tr>
+                      <td>"This document doesn't have pages"</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+
+          {/*Step 5 ############################################################################################### */}
+          <Row id="document-requirements">
+            <Col>
+              <h4 className="col-header">Non-Functional Requirements</h4>
+              <div className="multi-form-container">
+                <div className="form-container">
+                  <ListGroup>
+                    <ListGroup.Item variant="dark">Backend</ListGroup.Item>
+                    {document.backend
+                      ? document.backend.map((item, i) => (
+                          <ListGroup.Item key={i}>
+                            <p>{item.description}</p>
+                          </ListGroup.Item>
+                        ))
+                      : "No backend"}
+                  </ListGroup>
+                </div>
+                <div className="form-container">
+                  <ListGroup>
+                    <ListGroup.Item variant="dark">Frontend</ListGroup.Item>
+                    {document.frontend
+                      ? document.frontend.map((item, i) => (
+                          <ListGroup.Item key={i}>
+                            <p>{item.description}</p>
+                          </ListGroup.Item>
+                        ))
+                      : "No frontend"}
+                  </ListGroup>
+                </div>
+                <div className="form-container">
+                  <ListGroup>
+                    <ListGroup.Item variant="dark">Security</ListGroup.Item>
+                    {document.security
+                      ? document.security.map((item, i) => (
+                          <ListGroup.Item key={i}>
+                            <p>{item.description}</p>
+                          </ListGroup.Item>
+                        ))
+                      : "No security"}
+                  </ListGroup>
+                </div>
+                <div className="form-container">
+                  <ListGroup>
+                    <ListGroup.Item variant="dark">Libraries</ListGroup.Item>
+                    {document.libraries
+                      ? document.libraries.map((item, i) => (
+                          <ListGroup.Item key={i}>
+                            <p>{item.description}</p>
+                          </ListGroup.Item>
+                        ))
+                      : "No libraries"}
+                  </ListGroup>
+                </div>
+              </div>
+            </Col>
+          </Row>
+
+          {/*Step 6 ############################################################################################### */}
+          <Row id="document-tbr">
+            <Col>
+              <h4 className="col-header">Timeline, Budgets, Risks</h4>
+
+              <h6 className="fw-bold">Timeline</h6>
+              <p>{document.timeline ? document.timeline : "Not loaded yet"}</p>
+
+              <h6 className="fw-bold">Budgets</h6>
+              <p>{document.budget ? document.budget : "Not loaded yet"}</p>
+
+              <h6 className="fw-bold">Risks</h6>
+              <p>{document.risks ? document.risks : "Not loaded yet"}</p>
+            </Col>
+          </Row>
+          {/*Step 7 ############################################################################################### */}
+          <Row id="document-features">
+            <Col>
+              <h4 className="col-header">Future implementations</h4>
+              <Table striped bordered>
+                <thead>
+                  <tr>
+                    <th>Feature name</th>
+                    <th>Feature description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {document.features ? (
+                    document.features.map((item, i) => (
+                      <tr key={i}>
+                        <td>{item.name}</td>
+                        <td>{item.description}</td>
+                      </tr>
                     ))
-                  : "No Security"}
-              </ul>
-            </div>
-            <div className="form-container">
-              <h5>Libraries</h5>
-              <ul>
-                {document.libraries
-                  ? document.libraries.map((item, i) => (
-                      <li key={i}>
-                        <p>{item.description}</p>
-                      </li>
-                    ))
-                  : "No Libraries"}
-              </ul>
-            </div>
-          </div>
-        </Col>
-      </Row>
-
-      {/*Step 6 ############################################################################################### */}
-      <Row id="document-tbr">
-        <Col sm={8}>
-          <h3>Timeline, Budgets, Risks</h3>
-
-          <h5>Timeline</h5>
-          <p>{document.timeline ? document.timeline : "Not loaded yet"}</p>
-
-          <h5>Budgets</h5>
-          <p>{document.budget ? document.budget : "Not loaded yet"}</p>
-
-          <h5>Risks</h5>
-          <p>{document.risks ? document.risks : "Not loaded yet"}</p>
-        </Col>
-      </Row>
-      {/*Step 7 ############################################################################################### */}
-      <Row id="document-features">
-        <Col sm={8}>
-          <h3>Features description</h3>
-          <ul>
-            {document.features
-              ? document.features.map((feature, i) => (
-                  <li key={i}>
-                    <h5>{feature.name}</h5>
-                    <p>{feature.description}</p>
-                  </li>
-                ))
-              : "This document doesn't have features"}
-          </ul>
-        </Col>
-      </Row>
-      {/*
+                  ) : (
+                    <tr>
+                      <td>"This document doesn't have features"</td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+          {/*
 
       
       
       BUTTOOOOOOOOOOOOOOOONNNNNNNNNNNNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */}
-      <ButtonGroup>
-        <Button variant="secondary" onClick={handleDelete}>
-          Delete
-        </Button>
-        <Button variant="secondary" onClick={handleEdit}>
-          Update
-        </Button>
-        <Button variant="primary" onClick={handleDownload}>
-          Download
-        </Button>
-      </ButtonGroup>
+
+          <Row className="justify-content-md-center">
+            <Col className="d-flex flex-row-reverse">
+              <ButtonGroup style={{ marginTop: 40 }}>
+                <Button variant="secondary" onClick={handleDelete}>
+                  Delete
+                </Button>
+                <Button variant="secondary" onClick={handleEdit}>
+                  Update
+                </Button>
+                <Button variant="primary" onClick={handleDownload}>
+                  Download
+                </Button>
+              </ButtonGroup>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </div>
   );
 }

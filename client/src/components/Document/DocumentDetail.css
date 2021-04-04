@@ -1,0 +1,22 @@
+.row {
+  margin-top: 32px;
+}
+
+.col-header {
+  margin-bottom: 16px;
+}
+
+.multi-form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+
+.document-view-container {
+  padding-bottom: 80px;
+}
+
+#document-info {
+  background-color: blue;
+  color: white;
+}
