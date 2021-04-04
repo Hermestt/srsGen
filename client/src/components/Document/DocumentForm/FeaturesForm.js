@@ -1,6 +1,6 @@
 // Import React Libs
-import React, { useState, useContext } from "react";
-import { documentContext, document } from "../../../Contexts/documentContext";
+import React, { useContext } from "react";
+import { documentContext } from "../../../Contexts/documentContext";
 // Import Components and Styles
 import { Form, Button } from "react-bootstrap";
 
@@ -20,7 +20,7 @@ function FeaturesForm() {
     let name = e.currentTarget.name;
     let id = e.currentTarget.parentNode.parentNode.id;
     let newArr = Array.from(document.features);
-    var foundIndex = newArr.findIndex((feature) => feature.id == id);
+    var foundIndex = newArr.findIndex((feature) => feature.id === id);
     newArr[foundIndex][name] = e.currentTarget.value;
     setDocument({ ...document, features: newArr });
   };

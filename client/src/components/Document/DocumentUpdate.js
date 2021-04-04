@@ -1,5 +1,5 @@
 // Import React Libs
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 // Import Contexts
 import { documentContext } from "../../Contexts/documentContext";
@@ -28,7 +28,7 @@ function DocumentUpdate() {
       setDocument(doc);
     }
     fetchDocument();
-  }, []);
+  }, [id, setDocument]);
 
   const handleSubmit = async () => {
     document._id = id;

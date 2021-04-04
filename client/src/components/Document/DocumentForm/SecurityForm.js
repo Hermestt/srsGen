@@ -21,7 +21,7 @@ function SecurityForm() {
     let id = e.currentTarget.parentNode.id;
     console.log(id, name);
     let newArr = Array.from(document.security);
-    var foundIndex = newArr.findIndex((security) => security.id == id);
+    var foundIndex = newArr.findIndex((security) => security.id === id);
     newArr[foundIndex][name] = e.currentTarget.value;
     setDocument({ ...document, security: newArr });
   };

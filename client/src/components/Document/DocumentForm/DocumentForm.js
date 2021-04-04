@@ -1,9 +1,9 @@
 // Import React Libs
-import React, { useState, useContext } from "react";
-import { documentContext, document } from "../../../Contexts/documentContext";
+import React, { useContext } from "react";
+import { documentContext } from "../../../Contexts/documentContext";
 
 // Import Components and Styles
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import "./DocumentForm.css";
 import StoryForm from "./StoryForm";
 import PagesForm from "./PagesForm";

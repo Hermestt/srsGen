@@ -21,7 +21,7 @@ function LibrariesForm() {
     let id = e.currentTarget.parentNode.id;
     console.log(id, name);
     let newArr = Array.from(document.libraries);
-    var foundIndex = newArr.findIndex((libraries) => libraries.id == id);
+    var foundIndex = newArr.findIndex((libraries) => libraries.id === id);
     newArr[foundIndex][name] = e.currentTarget.value;
     setDocument({ ...document, libraries: newArr });
   };
