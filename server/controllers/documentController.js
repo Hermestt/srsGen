@@ -16,7 +16,7 @@ async function handleDocumentCreation(req, res) {
 async function handleDocumentListing(req, res) {
   const data = req.params.id;
   const list = await DocumentModel.find({ creator_id: data }).select(
-    "name description"
+    "title description"
   );
 
   res.json({ list });

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 // Import Context
 import { documentContext } from "./Contexts/documentContext";
-
+import AuthService from "./services/AuthService";
 // Import React Router Components
 import {
   Route,
@@ -16,18 +16,36 @@ import {
 import Home from "./components/ProtectedRoutes/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
-import Document from "./components/ProtectedRoutes/Document";
+import DocumentCreate from "./components/Document/DocumentCreate";
 import DocumentDetail from "./components/Document/DocumentDetail";
 import DocumentUpdate from "./components/Document/DocumentUpdate";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [document, setDocument] = useState({});
+  const doc = {
+    creator_id: AuthService.auth.user.id,
+    title: "placeholder",
+    description: "placeholder",
+    goals: "",
+    problems: "",
+    vision: "",
+    userStories: [],
+    backend: [],
+    frontend: [],
+    security: [],
+    libraries: [],
+    pages: [],
+    timeline: "",
+    budget: "",
+    risks: "",
+    features: [],
+  };
+  const [document, setDocument] = useState(doc);
 
   return (
-    <Container fluid="sm">
-      <documentContext.Provider value={{ document, setDocument }}>
+    <documentContext.Provider value={{ document, setDocument }}>
+      <Container fluid="sm">
         <Router>
           <div className="App">
             <Switch>
@@ -37,7 +55,7 @@ function App() {
                 path="/document/read/:id"
                 component={DocumentDetail}
               />
-              <Route exact path="/document/create" component={Document} />
+              <Route exact path="/document/create" component={DocumentCreate} />
               <Route
                 exact
                 path="/document/update/:id"
@@ -49,8 +67,8 @@ function App() {
             </Switch>
           </div>
         </Router>
-      </documentContext.Provider>
-    </Container>
+      </Container>
+    </documentContext.Provider>
   );
 }
 
