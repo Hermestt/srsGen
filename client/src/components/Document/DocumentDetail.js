@@ -33,7 +33,7 @@ function DocumentDetail() {
   const handleDelete = (e) => {
     e.preventDefault();
     DocumentService.deleteDocument(document._id);
-    setDocument(null);
+    setDocument({});
     history.push("/");
   };
 
@@ -52,9 +52,9 @@ function DocumentDetail() {
       {/*Step 1 ############################################################################################### */}
       <Row id="document-info">
         <Col sm={8}>
-          <span>Project Name</span>
+          <span>Project title</span>
           <h1>
-            {document && document.name ? document.name : "Not loaded yet"}
+            {document && document.title ? document.title : "Not loaded yet"}
           </h1>
           <span>Project Description</span>
           <p>
