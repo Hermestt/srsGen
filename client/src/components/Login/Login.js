@@ -7,8 +7,6 @@ import AuthService from "../../services/AuthService";
 // Import Components and Styles
 import { useHistory, Link } from "react-router-dom";
 import { Button, Col, Row, Form } from "react-bootstrap";
-import "./Login.css";
-
 function Login() {
   let history = useHistory(); // The useHistory hook gives you access to the history instance that you may use to navigate. (https://reactrouter.com/web/api/Hooks/usehistory)
 
