@@ -18,7 +18,7 @@ import AuthService from "../../services/AuthService";
 
 function Dashboard() {
   const history = useHistory();
-  const { documentValue, setDocumentValue } = useContext(documentContext);
+  const { document, setDocument } = useContext(documentContext);
 
   const [documentsList, setDocumentsList] = useState([]);
   useEffect(() => {
@@ -31,6 +31,24 @@ function Dashboard() {
   }, []);
 
   const handleDocumentCreation = () => {
+    setDocument({
+      creator_id: AuthService.auth.user.id,
+      title: "",
+      description: "",
+      goals: "",
+      problems: "",
+      vision: "",
+      userStories: [],
+      backend: [],
+      frontend: [],
+      security: [],
+      libraries: [],
+      pages: [],
+      timeline: "",
+      budget: "",
+      risks: "",
+      features: [],
+    }); // Reset the context
     history.push("/document/create");
   };
 
@@ -58,7 +76,7 @@ function Dashboard() {
               value={documentItem._id}
               action={true}
             >
-              {documentItem.name}
+              {documentItem.title}
             </ListGroup.Item>
           ))}
         </ListGroup>

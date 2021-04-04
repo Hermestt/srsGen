@@ -4,31 +4,21 @@ const mongoose = require("mongoose");
 const DocumentSchema = new mongoose.Schema(
   {
     creator_id: String,
-    name: String,
+    title: String,
     description: String,
     sharableLink: String,
-    dataOfCreation: {
-      type: Date,
-      default: Date.now,
-    },
-    goalsAndDescription: {
-      goals: String,
-      problems: String,
-      vision: String,
-    },
+    goals: String,
+    problems: String,
+    vision: String,
     userStories: [],
-    tech: {
-      backend: [],
-      frontend: [],
-      security: [],
-      libraries: [],
-    },
+    backend: [],
+    frontend: [],
+    security: [],
+    libraries: [],
     pages: [],
-    timeBudgetRisks: {
-      timeline: String,
-      budget: String,
-      risks: String,
-    },
+    timeline: String,
+    budget: String,
+    risks: String,
     features: [],
   },
   { timestamps: true }
