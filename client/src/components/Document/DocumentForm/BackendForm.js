@@ -21,7 +21,7 @@ function BackendForm() {
     let id = e.currentTarget.parentNode.id;
     console.log(id, name);
     let newArr = Array.from(document.backend);
-    var foundIndex = newArr.findIndex((backend) => backend.id == id);
+    var foundIndex = newArr.findIndex((backend) => backend.id === id);
     newArr[foundIndex][name] = e.currentTarget.value;
     setDocument({ ...document, backend: newArr });
   };

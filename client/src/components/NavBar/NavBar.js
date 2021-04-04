@@ -18,7 +18,6 @@ function MyNavBar() {
 
   useEffect(() => {
     setUserData(AuthService.auth.user);
-    console.log(userData.firstName);
   }, [userData]);
 
   const handleLogout = (e) => {

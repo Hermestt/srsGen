@@ -21,7 +21,7 @@ function FrontendForm() {
     let id = e.currentTarget.parentNode.id;
     console.log(id, name);
     let newArr = Array.from(document.frontend);
-    var foundIndex = newArr.findIndex((frontend) => frontend.id == id);
+    var foundIndex = newArr.findIndex((frontend) => frontend.id === id);
     newArr[foundIndex][name] = e.currentTarget.value;
     setDocument({ ...document, frontend: newArr });
   };
