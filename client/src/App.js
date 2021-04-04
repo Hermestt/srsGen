@@ -1,9 +1,12 @@
 // Import React Libs
 import React, { useState } from "react";
 
+// Import Utils
+import emptyDoc from "./Utils/doc";
+
 // Import Context
 import { documentContext } from "./Contexts/documentContext";
-import AuthService from "./services/AuthService";
+
 // Import React Router Components
 import {
   Route,
@@ -23,25 +26,7 @@ import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const doc = {
-    creator_id: AuthService.auth.user.id,
-    title: "placeholder",
-    description: "placeholder",
-    goals: "",
-    problems: "",
-    vision: "",
-    userStories: [],
-    backend: [],
-    frontend: [],
-    security: [],
-    libraries: [],
-    pages: [],
-    timeline: "",
-    budget: "",
-    risks: "",
-    features: [],
-  };
-  const [document, setDocument] = useState(doc);
+  const [document, setDocument] = useState(emptyDoc);
 
   return (
     <documentContext.Provider value={{ document, setDocument }}>

@@ -28,7 +28,7 @@ function DocumentDetail() {
       setDocument(givenDocument);
     }
     fetchDocument();
-  }, []);
+  }, [id, setDocument]);
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -53,14 +53,12 @@ function DocumentDetail() {
       <Row id="document-info">
         <Col sm={8}>
           <span>Project title</span>
-          <h1>
-            {document && document.title ? document.title : "Not loaded yet"}
-          </h1>
+          <h1>{document.title ? document.title : "No title was given"}</h1>
           <span>Project Description</span>
           <p>
-            {document && document.description
+            {document.description
               ? document.description
-              : "Not loaded yet"}
+              : "No description was given"}
           </p>
         </Col>
       </Row>
@@ -71,25 +69,13 @@ function DocumentDetail() {
           <h3>Goals and Project Description</h3>
 
           <h5>What is the goal of the project?</h5>
-          <p>
-            {document && document.goalsAndDescription
-              ? document.goalsAndDescription.goals
-              : "Not loaded yet"}
-          </p>
+          <p>{document.goals ? document.goals : "No goals"}</p>
 
           <h5>What problems does the project solve?</h5>
-          <p>
-            {document && document.goalsAndDescription
-              ? document.goalsAndDescription.problems
-              : "Not loaded yet"}
-          </p>
+          <p>{document.problems ? document.problems : "No problems"}</p>
 
           <h5>What is the vision?</h5>
-          <p>
-            {document && document.goalsAndDescription
-              ? document.goalsAndDescription.vision
-              : "Not loaded yet"}
-          </p>
+          <p>{document.vision ? document.vision : "No vision"}</p>
         </Col>
       </Row>
 
@@ -107,9 +93,9 @@ function DocumentDetail() {
               </tr>
             </thead>
             <tbody>
-              {document && document.userStories ? (
+              {document.userStories ? (
                 document.userStories.map((story, i) => (
-                  <tr>
+                  <tr key={i}>
                     <td>{story.who}</td>
                     <td>{story.wants}</td>
                     <td>{story.objective}</td>
@@ -130,9 +116,9 @@ function DocumentDetail() {
         <Col sm={8}>
           <h3>Page description</h3>
           <ul>
-            {document && document.pages
+            {document.pages
               ? document.pages.map((page, i) => (
-                  <li>
+                  <li key={i}>
                     <h5>{page.name}</h5>
                     <p>{page.description}</p>
                   </li>
@@ -148,10 +134,11 @@ function DocumentDetail() {
           <h3>Non-Functional Requirements</h3>
           <div className="multi-form-container d-flex">
             <div className="form-container">
+              <h5>Backend</h5>
               <ul>
-                {document && document.tech
-                  ? document.tech.backend.map((item, i) => (
-                      <li>
+                {document.backend
+                  ? document.backend.map((item, i) => (
+                      <li key={i}>
                         <p>{item.description}</p>
                       </li>
                     ))
@@ -159,10 +146,11 @@ function DocumentDetail() {
               </ul>
             </div>
             <div className="form-container">
+              <h5>Frontend</h5>
               <ul>
-                {document && document.tech
-                  ? document.tech.frontend.map((item, i) => (
-                      <li>
+                {document.frontend
+                  ? document.frontend.map((item, i) => (
+                      <li key={i}>
                         <p>{item.description}</p>
                       </li>
                     ))
@@ -170,10 +158,11 @@ function DocumentDetail() {
               </ul>
             </div>
             <div className="form-container">
+              <h5>Security</h5>
               <ul>
-                {document && document.tech
-                  ? document.tech.security.map((item, i) => (
-                      <li>
+                {document.security
+                  ? document.security.map((item, i) => (
+                      <li key={i}>
                         <p>{item.description}</p>
                       </li>
                     ))
@@ -181,10 +170,11 @@ function DocumentDetail() {
               </ul>
             </div>
             <div className="form-container">
+              <h5>Libraries</h5>
               <ul>
-                {document && document.tech
-                  ? document.tech.libraries.map((item, i) => (
-                      <li>
+                {document.libraries
+                  ? document.libraries.map((item, i) => (
+                      <li key={i}>
                         <p>{item.description}</p>
                       </li>
                     ))
@@ -201,25 +191,13 @@ function DocumentDetail() {
           <h3>Timeline, Budgets, Risks</h3>
 
           <h5>Timeline</h5>
-          <p>
-            {document && document.timeBudgetRisks
-              ? document.timeBudgetRisks.timeline
-              : "Not loaded yet"}
-          </p>
+          <p>{document.timeline ? document.timeline : "Not loaded yet"}</p>
 
           <h5>Budgets</h5>
-          <p>
-            {document && document.timeBudgetRisks
-              ? document.timeBudgetRisks.budget
-              : "Not loaded yet"}
-          </p>
+          <p>{document.budget ? document.budget : "Not loaded yet"}</p>
 
           <h5>Risks</h5>
-          <p>
-            {document && document.timeBudgetRisks
-              ? document.timeBudgetRisks.risks
-              : "Not loaded yet"}
-          </p>
+          <p>{document.risks ? document.risks : "Not loaded yet"}</p>
         </Col>
       </Row>
       {/*Step 7 ############################################################################################### */}
@@ -227,9 +205,9 @@ function DocumentDetail() {
         <Col sm={8}>
           <h3>Features description</h3>
           <ul>
-            {document && document.features
+            {document.features
               ? document.features.map((feature, i) => (
-                  <li>
+                  <li key={i}>
                     <h5>{feature.name}</h5>
                     <p>{feature.description}</p>
                   </li>
