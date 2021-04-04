@@ -15,10 +15,11 @@ import "./Dashboard.css";
 // Import Services
 import DocumentService from "../../services/DocumentService";
 import AuthService from "../../services/AuthService";
+import emptyDoc from "../../Utils/doc";
 
 function Dashboard() {
   const history = useHistory();
-  const { document, setDocument } = useContext(documentContext);
+  const { setDocument } = useContext(documentContext);
 
   const [documentsList, setDocumentsList] = useState([]);
   useEffect(() => {
@@ -31,24 +32,7 @@ function Dashboard() {
   }, []);
 
   const handleDocumentCreation = () => {
-    setDocument({
-      creator_id: AuthService.auth.user.id,
-      title: "",
-      description: "",
-      goals: "",
-      problems: "",
-      vision: "",
-      userStories: [],
-      backend: [],
-      frontend: [],
-      security: [],
-      libraries: [],
-      pages: [],
-      timeline: "",
-      budget: "",
-      risks: "",
-      features: [],
-    }); // Reset the context
+    setDocument(emptyDoc); // Reset the context
     history.push("/document/create");
   };
 

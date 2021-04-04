@@ -4,8 +4,6 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function createPDF(doc) {
-  let document = doc;
-
   var docDefinition = {
     pageSize: "A4",
     // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins

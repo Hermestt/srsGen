@@ -1,5 +1,8 @@
 // Import React Libs
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+
+// Import Utils
+import emptyDoc from "../../Utils/doc";
 
 // Import Contexts
 import { documentContext } from "../../Contexts/documentContext";
@@ -14,12 +17,16 @@ import { useHistory } from "react-router-dom";
 
 // Import Services
 import DocumentService from "../../services/DocumentService";
-function DocumentCreate(props) {
+import AuthService from "../../services/DocumentService";
+
+function DocumentCreate() {
   const history = useHistory();
   const { document, setDocument } = useContext(documentContext);
 
   const handleSubmit = async () => {
+    document.creator_id = AuthService.auth.user.id;
     await DocumentService.saveDocument(document);
+    setDocument(emptyDoc);
     history.push("/");
   };
 

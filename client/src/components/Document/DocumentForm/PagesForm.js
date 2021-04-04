@@ -1,6 +1,6 @@
 // Import React Libs
-import React, { useState, useContext } from "react";
-import { documentContext, document } from "../../../Contexts/documentContext";
+import React, { useContext } from "react";
+import { documentContext } from "../../../Contexts/documentContext";
 // Import Components and Styles
 import { Form, Button } from "react-bootstrap";
 
@@ -20,7 +20,7 @@ function PagesForm() {
     let name = e.currentTarget.name;
     let id = e.currentTarget.parentNode.parentNode.id;
     let newArr = Array.from(document.pages);
-    var foundIndex = newArr.findIndex((page) => page.id == id);
+    var foundIndex = newArr.findIndex((page) => page.id === id);
     newArr[foundIndex][name] = e.currentTarget.value;
     setDocument({ ...document, pages: newArr });
   };

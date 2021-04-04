@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import AuthService from "../../services/AuthService";
 
 // Import Components and Styles
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Button, Col, Row, Form } from "react-bootstrap";
 import "./Register.css";
 
