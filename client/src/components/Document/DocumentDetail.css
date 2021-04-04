@@ -6,17 +6,33 @@
   margin-bottom: 16px;
 }
 
-.multi-form-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 10px;
-}
-
 .document-view-container {
   padding-bottom: 80px;
 }
 
 #document-info {
-  background-color: blue;
+  background-color: #007bff;
   color: white;
+  padding-top: 100px;
+  padding-bottom: 30px;
+}
+
+#document-info .dropdown-container {
+  margin-top: 24px;
+}
+
+@media (min-width: 576px) {
+  .multi-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+  }
+
+  #document-info > .container {
+    display: flex;
+  }
+
+  #document-info .dropdown-container {
+    margin-top: 8px;
+  }
 }

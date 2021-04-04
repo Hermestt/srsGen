@@ -11,6 +11,7 @@ import FrontendForm from "./FrontendForm";
 import SecurityForm from "./SecurityForm";
 import LibrariesForm from "./LibrariesForm";
 import FeaturesForm from "./FeaturesForm";
+import "./DocumentForm.css";
 
 function DocumentForm() {
   const { document, setDocument } = useContext(documentContext);
@@ -21,12 +22,10 @@ function DocumentForm() {
     setDocument({ ...document, [name]: value });
   };
 
-  console.log(document);
-
   return (
     <div className="forms-container">
       <Form>
-        <h3>Standard information</h3>
+        <h4 className="col-header">Standard Information</h4>
         <Form.Group controlId="documentTitle">
           <Form.Label>Document title</Form.Label>
           <Form.Control
@@ -50,7 +49,7 @@ function DocumentForm() {
         </Form.Group>
       </Form>
       <Form>
-        <h3>Goals and project description</h3>
+        <h4 className="col-header">Goals and Project Description</h4>
         <Form.Group controlId="goals">
           <Form.Label>What is the goal of the project?</Form.Label>
           <Form.Control
@@ -87,14 +86,17 @@ function DocumentForm() {
       </Form>
       <StoryForm />
       <PagesForm />
-      <div className="non-func-requirements d-flex">
-        <BackendForm />
-        <FrontendForm />
-        <SecurityForm />
-        <LibrariesForm />
-      </div>
       <Form>
-        <h3>Timeline, budgets and risks</h3>
+        <h4 className="col-header">Non-Functional Requirements</h4>
+        <div className="non-func-forms">
+          <BackendForm />
+          <FrontendForm />
+          <SecurityForm />
+          <LibrariesForm />
+        </div>
+      </Form>
+      <Form>
+        <h4 className="col-header">Timeline, budgets and risks</h4>
         <Form.Group controlId="timeline">
           <Form.Label>Timeline</Form.Label>
           <Form.Control
