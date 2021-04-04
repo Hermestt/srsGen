@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 
 // Import Components and Styles
 import MyNavBar from "../NavBar/NavBar";
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup, Button, Row, Col } from "react-bootstrap";
 import "./Dashboard.css";
 
 // Import Services
@@ -43,32 +43,36 @@ function Dashboard() {
   return (
     <div>
       <MyNavBar />
-      <Button
-        value="login"
-        type="submit"
-        variant="primary"
-        onClick={handleDocumentCreation}
-      >
-        Create new document
-      </Button>
-      {documentsList && documentsList.length > 0 ? (
-        <ListGroup>
-          {documentsList.map((documentItem, i) => (
-            <ListGroup.Item
-              key={i}
-              onClick={handleClick}
-              value={documentItem._id}
-              action={true}
-            >
-              {documentItem.title}
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-      ) : (
-        <p className="no-items">
-          You don't have any documents yet, create a new one.
-        </p>
-      )}
+      <Row className="justify-content-md-center">
+        <Col sm={8}>
+          <Button
+            value="login"
+            type="submit"
+            variant="primary"
+            onClick={handleDocumentCreation}
+          >
+            Create new document
+          </Button>
+          {documentsList && documentsList.length > 0 ? (
+            <ListGroup>
+              {documentsList.map((documentItem, i) => (
+                <ListGroup.Item
+                  key={i}
+                  onClick={handleClick}
+                  value={documentItem._id}
+                  action={true}
+                >
+                  {documentItem.title}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          ) : (
+            <p className="no-items">
+              You don't have any documents yet, create a new one.
+            </p>
+          )}
+        </Col>
+      </Row>
     </div>
   );
 }
