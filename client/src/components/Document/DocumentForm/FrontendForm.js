@@ -2,15 +2,16 @@
 import React, { useContext } from "react";
 import { documentContext } from "../../../Contexts/documentContext";
 // Import Components and Styles
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, ListGroup } from "react-bootstrap";
+
+// Import Utilities
+import randomId from "../../../Utils/randomId";
 
 function FrontendForm() {
   const { document, setDocument } = useContext(documentContext);
 
   const addFrontend = () => {
-    let id = (
-      Date.now().toString(36) + Math.random().toString(36).substr(2, 5)
-    ).toUpperCase();
+    let id = randomId();
     var newAdd = Array.from(document.frontend);
     newAdd.push({ id: id, description: "" });
     setDocument({ ...document, frontend: newAdd });
@@ -35,10 +36,10 @@ function FrontendForm() {
   return (
     <Form>
       <Form.Group controlId="documentFrontend">
-        <Form.Label>Frontend</Form.Label>
-        <ul>
+        <ListGroup>
+          <ListGroup.Item variant="light">Frontend</ListGroup.Item>
           {document.frontend.map((item, i) => (
-            <li key={i} id={item.id}>
+            <ListGroup.Item key={i} id={item.id} className="d-flex">
               <Form.Control
                 name="description"
                 value={item.description}
@@ -53,13 +54,15 @@ function FrontendForm() {
                   X
                 </Button>
               </div>
-            </li>
+            </ListGroup.Item>
           ))}
-        </ul>
+          <ListGroup.Item>
+            <Button variant="light" onClick={addFrontend}>
+              Add new
+            </Button>
+          </ListGroup.Item>
+        </ListGroup>
       </Form.Group>
-      <Button variant="light" onClick={addFrontend}>
-        Add new
-      </Button>
     </Form>
   );
 }
