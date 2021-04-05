@@ -6,7 +6,7 @@ class DocumentService {
     let path = "/document/create";
     try {
       let response = await axios.post(
-        "https://srsgen.herokuapp.com/" + path,
+        "https://srsgen.herokuapp.com" + path,
         data
       );
       return response;
@@ -20,7 +20,7 @@ class DocumentService {
     console.log(data);
     try {
       let response = await axios.put(
-        "https://srsgen.herokuapp.com/" + path,
+        "https://srsgen.herokuapp.com" + path,
         data
       );
       return response;
@@ -32,7 +32,7 @@ class DocumentService {
   async listDocuments(id) {
     let path = "/document/listing/" + id;
     try {
-      let response = await axios.get("https://srsgen.herokuapp.com/" + path, {
+      let response = await axios.get("https://srsgen.herokuapp.com" + path, {
         data: { creator_id: id },
       });
       return response;
@@ -45,7 +45,7 @@ class DocumentService {
   async getDocument(id) {
     let path = "/document/read/" + id;
     try {
-      let response = await axios.get("https://srsgen.herokuapp.com/" + path, {
+      let response = await axios.get("https://srsgen.herokuapp.com" + path, {
         data: { _id: id },
       });
       let documentOnly = response.data.document[0];
@@ -59,12 +59,9 @@ class DocumentService {
   async deleteDocument(id) {
     let path = "/document/delete/" + id;
     try {
-      let response = await axios.delete(
-        "https://srsgen.herokuapp.com/" + path,
-        {
-          data: { _id: id },
-        }
-      );
+      let response = await axios.delete("https://srsgen.herokuapp.com" + path, {
+        data: { _id: id },
+      });
       return response;
     } catch (error) {
       console.log(error);

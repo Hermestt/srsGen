@@ -54,7 +54,7 @@ class AuthService {
   async _handleAuthentication(path, data) {
     try {
       let response = await axios.post(
-        "https://srsgen.herokuapp.com/" + path,
+        "https://srsgen.herokuapp.com" + path,
         data
       );
       return response;
