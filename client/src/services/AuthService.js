@@ -55,7 +55,10 @@ class AuthService {
   // User Authenticator private method
   async _handleAuthentication(path, data) {
     try {
-      let response = await axios.post(getApiPath(path), data);
+      let response = await axios.post(
+        "https://nameless-bayou-14602.herokuapp.com/" + path,
+        data
+      );
       return response;
     } catch (error) {
       // if the authentication fails we have to clean the localStorage and set isSigned property to false
