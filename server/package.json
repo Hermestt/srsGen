@@ -1,11 +1,18 @@
 {
   "name": "server",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "When going on a journey, you must know when you'll arrive.",
+  "main": "server.js",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "startDev": "nodemon server.js"
   },
+  "keywords": [
+    "srs",
+    "heroku"
+  ],
+  "author": "Pedro Oliveira aka c0ffeebreak",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
@@ -23,5 +30,8 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "validator": "^13.5.2"
+  },
+  "engines": {
+    "node": "15.11.0"
   }
 }
