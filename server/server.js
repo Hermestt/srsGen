@@ -1,7 +1,7 @@
 // Express
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = process.env.PORT;
 // CORS
 const cors = require("cors");
 // Mongoose dBConnection
@@ -34,6 +34,6 @@ app.use(passport.initialize());
 require("./validation/passport")(passport);
 
 // App start to listen at port.
-app.listen(port, () => {
+app.listen(port || 3001, () => {
   console.log(`I'm listening at port ${port}`);
 });
