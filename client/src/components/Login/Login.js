@@ -7,6 +7,8 @@ import AuthService from "../../services/AuthService";
 // Import Components and Styles
 import { useHistory, Link } from "react-router-dom";
 import { Button, Col, Row, Form } from "react-bootstrap";
+import "./Login.css";
+
 function Login() {
   let history = useHistory(); // The useHistory hook gives you access to the history instance that you may use to navigate. (https://reactrouter.com/web/api/Hooks/usehistory)
 
@@ -55,6 +57,7 @@ function Login() {
                     email: e.target.value,
                   });
                 }}
+                required
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
@@ -72,13 +75,11 @@ function Login() {
                     password: e.target.value,
                   });
                 }}
+                required
               />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
 
-            <Button value="login" type="submit" variant="primary">
+            <Button value="login" type="submit" variant="primary" block>
               Log In
             </Button>
           </Form>

@@ -57,6 +57,7 @@ function Register() {
                     firstName: e.target.value,
                   });
                 }}
+                required
               />
             </Form.Group>
             <Form.Group controlId="lastName">
@@ -70,6 +71,7 @@ function Register() {
                     lastName: e.target.value,
                   });
                 }}
+                required
               />
             </Form.Group>
             <Form.Group controlId="email">
@@ -83,6 +85,7 @@ function Register() {
                     email: e.target.value,
                   });
                 }}
+                required
               />
             </Form.Group>
             <Form.Group controlId="password">
@@ -96,6 +99,7 @@ function Register() {
                     password: e.target.value,
                   });
                 }}
+                required
               />
             </Form.Group>
             <Form.Group controlId="confirmPassword">
@@ -109,10 +113,11 @@ function Register() {
                     password2: e.target.value,
                   });
                 }}
+                required
               />
             </Form.Group>
 
-            <Button value="login" type="submit" variant="primary">
+            <Button value="login" type="submit" variant="primary" block>
               Register account
             </Button>
           </Form>
