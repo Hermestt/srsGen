@@ -34,6 +34,7 @@ function DocumentForm() {
             placeholder="e.g John"
             value={document ? document.title : "empty"}
             onChange={handleChange}
+            required
           />
         </Form.Group>
         <Form.Group controlId="documentDescription">
@@ -45,6 +46,7 @@ function DocumentForm() {
             placeholder="e.g Solving new projects lack of structure"
             value={document ? document.description : "empty"}
             onChange={handleChange}
+            required
           />
         </Form.Group>
       </Form>
