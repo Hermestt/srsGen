@@ -2,7 +2,7 @@ const express = require("express");
 const documentRouter = express.Router();
 const hasBody = require("../middlewares/hasBody.js");
 const hasJwt = require("../middlewares/hasJwt.js");
-const controller = require("../controllers/documentController");
+const controller = require("../controllers/documentController/documentController");
 
 // Create new Document
 documentRouter.post(
@@ -19,7 +19,7 @@ documentRouter.delete(
   controller.handleDocumentDeletion
 );
 
-// Read selected Document
+// Deliver selected document
 documentRouter.get("/read/:id", hasJwt, controller.handleDocumentDelivery);
 
 // Update selected Document
