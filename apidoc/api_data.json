@@ -715,5 +715,126 @@
     },
     "filename": "server/controllers/documentController/_apidoc.js",
     "groupTitle": "Documents"
+  },
+  {
+    "type": "post",
+    "url": "/login/:id",
+    "title": "Request User information",
+    "name": "GetUser",
+    "group": "User",
+    "version": "0.1.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Users unique email</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>First name of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>Last name of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>JWT token.</p>"
+          }
+        ]
+      }
+    },
+    "filename": "server/controllers/authController/authController.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "/register",
+    "title": "Register a new User.",
+    "name": "RegisterUser",
+    "group": "User",
+    "version": "0.1.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Users registered email</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>First name of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>Last name of the User.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email of the User.</p>"
+          }
+        ]
+      }
+    },
+    "filename": "server/controllers/userController.js",
+    "groupTitle": "User"
   }
 ]
