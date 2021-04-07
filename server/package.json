@@ -13,9 +13,9 @@
     "heroku"
   ],
   "apidoc": {
-    "name": "example",
+    "name": "SRSGen",
     "version": "0.1.0",
-    "description": "apiDoc basic example",
+    "description": "REST API docs of SRSGen",
     "apidoc": {
       "title": "Custom apiDoc browser title",
       "url": "https://api.github.com/v1"

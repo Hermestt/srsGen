@@ -2,7 +2,7 @@ const express = require("express");
 const documentRouter = express.Router();
 const hasBody = require("../middlewares/hasBody.js");
 const hasJwt = require("../middlewares/hasJwt.js");
-const controller = require("../controllers/documentController");
+const controller = require("../controllers/documentController/documentController");
 
 // Create new Document
 documentRouter.post(
