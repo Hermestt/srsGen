@@ -19,7 +19,7 @@ documentRouter.delete(
   controller.handleDocumentDeletion
 );
 
-// Read selected Document
+// Deliver selected document
 documentRouter.get("/read/:id", hasJwt, controller.handleDocumentDelivery);
 
 // Update selected Document

@@ -8,7 +8,8 @@
     "startClient": "cd client && npm start",
     "startServer": "cd server && npm run startDev",
     "runAll": "concurrently \"npm run startClient\" \"npm run startServer\"",
-    "deploy": "git subtree push --prefix server heroku main"
+    "deploy": "git subtree push --prefix server heroku main",
+    "updateApi": "apidoc -i server/ -o apidoc/ -e node_modules"
   },
   "author": "",
   "license": "ISC"
