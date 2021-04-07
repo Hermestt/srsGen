@@ -60,7 +60,7 @@ export default function createPDF(doc) {
         columns[1] = "Description";
         break;
       default:
-        console.log(`FUDEU`);
+        console.log(`Not found`);
     }
     return body;
   }
@@ -238,5 +238,5 @@ export default function createPDF(doc) {
     },
   };
 
-  pdfMake.createPdf(docDefinition).download();
+  pdfMake.createPdf(docDefinition).download(`SRS-${doc.title}`);
 }

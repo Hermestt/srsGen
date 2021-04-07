@@ -1,6 +1,9 @@
 // Import Plugins
 import axios from "axios";
 
+// Import base url
+import { getApiPath } from "../Utils/api";
+
 const SESSION_KEY = "jwt_token";
 const USER_DATA = "user_data";
 
@@ -53,10 +56,7 @@ class AuthService {
   // User Authenticator private method
   async _handleAuthentication(path, data) {
     try {
-      let response = await axios.post(
-        "https://srsgen.herokuapp.com" + path,
-        data
-      );
+      let response = await axios.post(getApiPath(path), data);
       return response;
     } catch (error) {
       // if the authentication fails we have to clean the localStorage and set isSigned property to false

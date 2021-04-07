@@ -32,8 +32,7 @@ function MyNavBar() {
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
-          Signed in as:{" "}
-          <a href="#login">{`${userData.firstName} ${userData.lastName}`}</a>
+          Signed in as: {`  ${userData.firstName} ${userData.lastName}`}
         </Navbar.Text>
         <Button
           variant="outline-secondary"
