@@ -34,15 +34,17 @@ function DocumentForm() {
             placeholder="e.g John"
             value={document ? document.title : "empty"}
             onChange={handleChange}
+            maxLength={69}
             required
           />
         </Form.Group>
         <Form.Group controlId="documentDescription">
           <Form.Label>Document description</Form.Label>
           <Form.Control
-            maxLength={80}
+            maxLength={203}
             name="description"
-            type="text"
+            as="textarea"
+            row={2}
             placeholder="e.g Solving new projects lack of structure"
             value={document ? document.description : "empty"}
             onChange={handleChange}
@@ -55,9 +57,10 @@ function DocumentForm() {
         <Form.Group controlId="goals">
           <Form.Label>What is the goal of the project?</Form.Label>
           <Form.Control
+            maxLength={203}
+            row={2}
             name="goals"
             as="textarea"
-            rows={1}
             placeholder="Add answer..."
             value={document ? document.goals : "empty"}
             onChange={handleChange}
@@ -66,8 +69,9 @@ function DocumentForm() {
         <Form.Group controlId="problems">
           <Form.Label>What problems does the project solve?</Form.Label>
           <Form.Control
+            maxLength={203}
+            row={2}
             as="textarea"
-            rows={1}
             name="problems"
             placeholder="Add answer..."
             value={document ? document.problems : "empty"}
@@ -77,8 +81,9 @@ function DocumentForm() {
         <Form.Group controlId="vision">
           <Form.Label>What is the vision?</Form.Label>
           <Form.Control
+            maxLength={203}
+            row={2}
             as="textarea"
-            rows={1}
             name="vision"
             placeholder="Add answer..."
             value={document ? document.vision : "empty"}
@@ -107,6 +112,7 @@ function DocumentForm() {
             placeholder="e.g. 2 months"
             value={document ? document.timeline : "empty"}
             onChange={handleChange}
+            maxLength={115}
           />
         </Form.Group>
         <Form.Group controlId="budget">
@@ -117,6 +123,7 @@ function DocumentForm() {
             placeholder="e.g. €1000"
             value={document ? document.budget : "empty"}
             onChange={handleChange}
+            maxLength={115}
           />
         </Form.Group>
         <Form.Group controlId="risks">
@@ -127,6 +134,7 @@ function DocumentForm() {
             placeholder="e.g. burnout!"
             value={document ? document.risks : "empty"}
             onChange={handleChange}
+            maxLength={115}
           />
         </Form.Group>
       </Form>

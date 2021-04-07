@@ -110,7 +110,7 @@ async function handleDocumentDeletion(req, res) {
 async function handleDocumentDelivery(req, res) {
   const data = req.params.id;
 
-  const document = await DocumentModel.find({ _id: data });
+  const document = await DocumentModel.findById(data);
 
   res.json({
     success: true,
