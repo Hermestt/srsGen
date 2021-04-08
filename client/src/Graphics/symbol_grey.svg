@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39" height="31" viewBox="0 0 39 31">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #414141;
+      }
+    </style>
+  </defs>
+  <g id="Group_23" data-name="Group 23" transform="translate(-103 -19)">
+    <g id="SRS_Symbol" data-name="SRS Symbol" transform="translate(103 19)">
+      <path id="Subtraction_1" data-name="Subtraction 1" class="cls-1" d="M11.7,31H3.9A3.892,3.892,0,0,1,0,27.125V3.875A3.892,3.892,0,0,1,3.9,0H15.6l3.9,3.875H35.1A3.892,3.892,0,0,1,39,7.749V19.375H35.1V11.625c0-.084,0-.168,0-.251s0-.163,0-.243c.011-1.258.02-2.345-.562-2.926a1.875,1.875,0,0,0-1.39-.457H17.55l-3.9-3.875h-7.8a1.875,1.875,0,0,0-1.39.457C3.878,4.912,3.887,6,3.9,7.256c0,.08,0,.16,0,.241s0,.168,0,.253V25.186c0,1.8,1.276,1.944,2.943,1.944.148,0,.3,0,.449,0H11.7V31Z"/>
+      <g id="Group_10" data-name="Group 10" transform="translate(16.855 15.123)">
+        <rect id="Rectangle_1103" data-name="Rectangle 1103" class="cls-1" width="11.293" height="3.764" transform="translate(10.445 12.008)"/>
+        <path id="ic_keyboard_arrow_right_24px" class="cls-1" d="M8.59,17.468l5.068-5.079L8.59,7.31l1.56-1.56,6.639,6.639L10.15,19.028Z" transform="translate(-8.59 -3.382)"/>
+      </g>
+    </g>
+  </g>
+</svg>

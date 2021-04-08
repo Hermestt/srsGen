@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import "./NavBar.css";
+import logo from "../../Graphics/logo_blue.svg";
 
 // Import Services
 import AuthService from "../../services/AuthService";
@@ -28,7 +29,9 @@ function MyNavBar() {
 
   return (
     <Navbar>
-      <Navbar.Brand href="/">SRSGen</Navbar.Brand>
+      <Navbar.Brand href="/">
+        <img src={logo} />
+      </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
