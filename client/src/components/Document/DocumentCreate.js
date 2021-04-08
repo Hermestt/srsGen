@@ -8,7 +8,7 @@ import emptyDoc from "../../Utils/doc";
 import { documentContext } from "../../Contexts/documentContext";
 
 // Import Components and Styles
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import MyNavBar from "../NavBar/NavBar";
 import DocumentForm from "./DocumentForm/DocumentForm";
 import "./DocumentForm/DocumentForm.css";
