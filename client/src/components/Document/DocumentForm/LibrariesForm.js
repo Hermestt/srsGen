@@ -34,7 +34,7 @@ function LibrariesForm() {
   };
 
   return (
-    <Form>
+    <div>
       <Form.Group controlId="documentLibraries">
         <ListGroup>
           <ListGroup.Item variant="light">Libraries</ListGroup.Item>
@@ -63,7 +63,7 @@ function LibrariesForm() {
           </ListGroup.Item>
         </ListGroup>
       </Form.Group>
-    </Form>
+    </div>
   );
 }
 

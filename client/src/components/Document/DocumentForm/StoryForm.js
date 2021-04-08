@@ -35,7 +35,7 @@ function StoryForm() {
     setDocument({ ...document, userStories: newArr });
   };
   return (
-    <Form>
+    <div>
       <h4 className="col-header">User stories</h4>
       <Table bordered hover>
         <thead>
@@ -90,7 +90,7 @@ function StoryForm() {
           </tr>
         </tbody>
       </Table>
-    </Form>
+    </div>
   );
 }
 

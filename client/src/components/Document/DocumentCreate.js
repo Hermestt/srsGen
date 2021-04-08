@@ -24,7 +24,8 @@ function DocumentCreate() {
   const history = useHistory();
   const { document, setDocument } = useContext(documentContext);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     document.creator_id = AuthService.auth.user.id;
     await DocumentService.saveDocument(document);
     setDocument(emptyDoc);
@@ -37,16 +38,10 @@ function DocumentCreate() {
       <div className="document-form_container">
         <Row className="justify-content-md-center">
           <Col sm={8}>
-            <DocumentForm />
+            <DocumentForm onSubmit={handleSubmit} objective={"save"} />
           </Col>
         </Row>
-        <Row className="justify-content-md-center">
-          <Col sm={8} className="d-flex flex-row-reverse">
-            <Button variant="primary" onClick={handleSubmit}>
-              Save
-            </Button>
-          </Col>
-        </Row>
+        <Row className="justify-content-md-center"></Row>
       </div>
     </div>
   );

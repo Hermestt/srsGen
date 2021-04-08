@@ -34,7 +34,7 @@ function SecurityForm() {
   };
 
   return (
-    <Form>
+    <div>
       <Form.Group controlId="documentSecurity">
         <ListGroup>
           <ListGroup.Item variant="light">Security</ListGroup.Item>
@@ -63,7 +63,7 @@ function SecurityForm() {
           </ListGroup.Item>
         </ListGroup>
       </Form.Group>
-    </Form>
+    </div>
   );
 }
 

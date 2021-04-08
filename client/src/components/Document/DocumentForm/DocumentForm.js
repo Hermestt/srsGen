@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { documentContext } from "../../../Contexts/documentContext";
 
 // Import Components and Styles
-import { Form } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
 import StoryForm from "./StoryForm";
 import PagesForm from "./PagesForm";
 import BackendForm from "./BackendForm";
@@ -13,7 +13,7 @@ import LibrariesForm from "./LibrariesForm";
 import FeaturesForm from "./FeaturesForm";
 import "./DocumentForm.css";
 
-function DocumentForm() {
+function DocumentForm(props) {
   const { document, setDocument } = useContext(documentContext);
 
   const handleChange = (e) => {
@@ -24,7 +24,7 @@ function DocumentForm() {
 
   return (
     <div className="forms-container">
-      <Form>
+      <Form onSubmit={props.onSubmit}>
         <h4 className="col-header">Standard Information</h4>
         <Form.Group controlId="documentTitle">
           <Form.Label>Document title</Form.Label>
@@ -51,8 +51,6 @@ function DocumentForm() {
             required
           />
         </Form.Group>
-      </Form>
-      <Form>
         <h4 className="col-header">Goals and Project Description</h4>
         <Form.Group controlId="goals">
           <Form.Label>What is the goal of the project?</Form.Label>
@@ -90,10 +88,8 @@ function DocumentForm() {
             onChange={handleChange}
           />
         </Form.Group>
-      </Form>
-      <StoryForm />
-      <PagesForm />
-      <Form>
+        <StoryForm />
+        <PagesForm />
         <h4 className="col-header">Non-Functional Requirements</h4>
         <div className="non-func-forms">
           <BackendForm />
@@ -101,8 +97,6 @@ function DocumentForm() {
           <SecurityForm />
           <LibrariesForm />
         </div>
-      </Form>
-      <Form>
         <h4 className="col-header">Timeline, budgets and risks</h4>
         <Form.Group controlId="timeline">
           <Form.Label>Timeline</Form.Label>
@@ -137,8 +131,17 @@ function DocumentForm() {
             maxLength={115}
           />
         </Form.Group>
+        <FeaturesForm />
+        {props.objective === "update" ? (
+          <Button value="update" variant="primary" type="submit">
+            Update
+          </Button>
+        ) : (
+          <Button value="save" variant="primary" type="submit">
+            Save
+          </Button>
+        )}
       </Form>
-      <FeaturesForm />
     </div>
   );
 }
