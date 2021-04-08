@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { documentContext } from "../../../Contexts/documentContext";
 
 // Import Components and Styles
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import StoryForm from "./StoryForm";
 import PagesForm from "./PagesForm";
 import BackendForm from "./BackendForm";
