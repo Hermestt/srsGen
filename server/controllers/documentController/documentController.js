@@ -60,7 +60,7 @@ async function handleDocumentDeletion(req, res) {
  * @api {get} /read/:id Request Document information
  * @apiName GetDocument
  * @apiGroup Documents
- * @apiVersion 0.5.0
+ * @apiVersion 0.6.0
  *
  * @apiSuccess {String} _id Document ID
  * @apiSuccess {String} creator_id ID of the creator of the specific document
@@ -106,16 +106,25 @@ async function handleDocumentDeletion(req, res) {
  * @apiSuccess {String} features.id Page ID
  * @apiSuccess {String} features.name Name of the feature
  * @apiSuccess {String} features.description Description of the feature
+ *
+ * @apiError DocumentDoesntExist Document doesn't exist
  */
 async function handleDocumentDelivery(req, res) {
   const data = req.params.id;
 
-  const document = await DocumentModel.findById(data);
-
-  res.json({
-    success: true,
-    document,
-  });
+  try {
+    const document = await DocumentModel.findById(data);
+    res.json({
+      success: true,
+      document,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      messsage: "Document doesn't exist",
+    });
+    console.log(error);
+  }
 }
 
 /**
