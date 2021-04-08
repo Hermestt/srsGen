@@ -43,7 +43,7 @@ function FeaturesForm() {
   };
 
   return (
-    <Form>
+    <div>
       <h4 className="col-header">Features</h4>
       <Table bordered hover>
         <thead>
@@ -90,7 +90,7 @@ function FeaturesForm() {
           </tr>
         </tbody>
       </Table>
-    </Form>
+    </div>
   );
 }
 

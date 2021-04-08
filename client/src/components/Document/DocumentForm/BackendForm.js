@@ -34,7 +34,7 @@ function BackendForm() {
   };
 
   return (
-    <Form>
+    <div>
       <Form.Group controlId="documentBackend">
         <ListGroup>
           <ListGroup.Item variant="light">Backend</ListGroup.Item>
@@ -63,7 +63,7 @@ function BackendForm() {
           </ListGroup.Item>
         </ListGroup>
       </Form.Group>
-    </Form>
+    </div>
   );
 }
 
