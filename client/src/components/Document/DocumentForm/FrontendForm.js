@@ -35,7 +35,7 @@ function FrontendForm() {
   };
 
   return (
-    <Form>
+    <div>
       <Form.Group controlId="documentFrontend">
         <ListGroup>
           <ListGroup.Item variant="light">Frontend</ListGroup.Item>
@@ -64,7 +64,7 @@ function FrontendForm() {
           </ListGroup.Item>
         </ListGroup>
       </Form.Group>
-    </Form>
+    </div>
   );
 }
 

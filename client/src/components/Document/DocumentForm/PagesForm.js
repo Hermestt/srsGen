@@ -36,7 +36,7 @@ function PagesForm() {
   };
 
   return (
-    <Form>
+    <div>
       <h4 className="col-header">Project pages</h4>
       <Table bordered hover>
         <thead>
@@ -83,7 +83,7 @@ function PagesForm() {
           </tr>
         </tbody>
       </Table>
-    </Form>
+    </div>
   );
 }
 
