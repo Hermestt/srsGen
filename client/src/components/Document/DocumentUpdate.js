@@ -10,11 +10,10 @@ import { useHistory, useParams } from "react-router-dom";
 // Import Components and Styles
 import DocumentForm from "./DocumentForm/DocumentForm";
 import MyNavBar from "../NavBar/NavBar";
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 // Import Services
 import DocumentService from "../../services/DocumentService";
-import emptyDoc from "../../Utils/doc";
 
 function DocumentUpdate() {
   const history = useHistory();

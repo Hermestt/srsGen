@@ -35,7 +35,7 @@ function DocumentDetail() {
         : setDocument(givenDocument);
     }
     fetchDocument();
-  }, [documentExist]);
+  }, [documentExist, id, setDocument]);
 
   const handleDelete = (e) => {
     e.preventDefault();

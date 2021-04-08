@@ -5,7 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Import Components and Styles
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import img404 from "./404.svg";
 
 const imgStyle = {
@@ -17,7 +17,7 @@ const imgStyle = {
 function NoDocument() {
   return (
     <Row className="justify-content-md-center text-center">
-      <img src={img404} style={imgStyle} />
+      <img src={img404} style={imgStyle} alt="Document doesn't exist" />
       <h3>Document doesn't exist</h3>
       <Link to="/">Go back to dashboard</Link>
     </Row>
