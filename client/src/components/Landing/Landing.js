@@ -22,7 +22,7 @@ function Landing() {
       {/* NAVBAR ############################################################################# */}
       <Navbar className="d-flex justify-content-between">
         <Navbar.Brand href="/">
-          <img src={logo} />
+          <img src={logo} alt="srs logo" />
         </Navbar.Brand>
         <Button variant="outline-primary" href="/login">
           Log in
@@ -38,8 +38,8 @@ function Landing() {
             <Button href="/register">Try now, it's free</Button>
           </Col>
           <Col lg={5} id="header-col2">
-            <img src={laptop} className="header-img laptop-img" />
-            <img src={mobile} className="header-img mobile-img" />
+            <img src={laptop} className="header-img laptop-img" alt="" />
+            <img src={mobile} className="header-img mobile-img" alt="" />
           </Col>
         </Row>
         {/* EXPLANATION ############################################################################# */}
@@ -98,33 +98,43 @@ function Landing() {
       <div id="footer" className="text-center">
         <div>
           <a href="/" style={{ marginBottom: 24, display: "block" }}>
-            <img src={logoGrey} />
+            <img src={logoGrey} alt="srs logo grey" />
           </a>
           <p>
             Project developed by{" "}
             <a
               href="https://www.linkedin.com/in/pedromnoliveira/"
               target="_blank"
+              rel="noreferrer"
             >
               Pedro Oliveira
             </a>
           </p>
-          <a href="https://github.com/Hermestt/srsGen" target="_blank">
+          <a
+            href="https://github.com/Hermestt/srsGen"
+            target="_blank"
+            rel="noreferrer"
+          >
             Check out the code
           </a>
         </div>
         <div className="social-media d-flex justify-content-center">
           <div className="icon-container" style={{ marginRight: 24 }}>
-            <a href="https://github.com/Hermestt/" target="_blank">
-              <img src={github}></img>
+            <a
+              href="https://github.com/Hermestt/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={github} alt=""></img>
             </a>
           </div>
           <div className="icon-container">
             <a
               href="https://www.linkedin.com/in/pedromnoliveira/"
               target="_blank"
+              rel="noreferrer"
             >
-              <img src={linkedin}></img>
+              <img src={linkedin} alt=""></img>
             </a>
           </div>
         </div>
