@@ -30,7 +30,7 @@ function MyNavBar() {
   return (
     <Navbar>
       <Navbar.Brand href="/">
-        <img src={logo} />
+        <img src={logo} alt="srs logo" />
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
