@@ -33,7 +33,7 @@ function DocumentUpdate() {
     e.preventDefault();
     document._id = id;
     await DocumentService.updateDocument(document);
-    history.push("/");
+    history.push("/dashboard");
   };
 
   return (

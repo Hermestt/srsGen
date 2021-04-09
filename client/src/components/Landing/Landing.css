@@ -13,16 +13,6 @@
 
 /* ------------------------------------------------------------------------------ */
 
-/* Temporary message */
-.landing-message {
-  padding: 4px;
-  background-color: #ff0077;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
 /* ===HEADER=== */
 .header-container {
   margin-top: 60px;

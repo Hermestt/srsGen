@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 
 // Import Components and Styles
 import MyNavBar from "../NavBar/NavBar";
-import { ListGroup, Button, Row, Col } from "react-bootstrap";
+import { ListGroup, Button, Row, Col, Container } from "react-bootstrap";
 import "./Dashboard.css";
 
 // Import Services
@@ -36,43 +36,45 @@ function Dashboard() {
     history.push("/document/create");
   };
 
-  const handleClick = (e) => {
-    history.push("/document/read/" + e.target.value);
-  };
-
   return (
     <div>
       <MyNavBar />
-      <Row className="justify-content-md-center">
-        <Col sm={8}>
-          <Button
-            value="login"
-            type="submit"
-            variant="primary"
-            onClick={handleDocumentCreation}
-          >
-            Create new document
-          </Button>
-          {documentsList && documentsList.length > 0 ? (
-            <ListGroup>
-              {documentsList.map((documentItem, i) => (
-                <ListGroup.Item
-                  key={i}
-                  onClick={handleClick}
-                  value={documentItem._id}
-                  action={true}
-                >
-                  {documentItem.title}
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          ) : (
-            <p className="no-items">
-              You don't have any documents yet, create a new one.
-            </p>
-          )}
-        </Col>
-      </Row>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col sm={8}>
+            <Button
+              value="login"
+              type="submit"
+              variant="primary"
+              onClick={handleDocumentCreation}
+            >
+              Create new document
+            </Button>
+            {documentsList && documentsList.length > 0 ? (
+              <ListGroup>
+                {documentsList.map((documentItem, i) => (
+                  <ListGroup.Item key={i}>
+                    <a
+                      className="fw-bold"
+                      value={documentItem._id}
+                      href={`/document/read/${documentItem._id}`}
+                    >
+                      {documentItem.title}
+                    </a>
+                    <p className="list-item-description">
+                      {documentItem.description}
+                    </p>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            ) : (
+              <p className="no-items">
+                You don't have any documents yet, create a new one.
+              </p>
+            )}
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

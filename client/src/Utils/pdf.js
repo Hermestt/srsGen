@@ -47,7 +47,6 @@ export default function createPDF(doc) {
       body.push(dataRow);
     });
 
-    console.log(columns[0]);
     // Fix table headers
     switch (columns[0]) {
       case "who":
@@ -65,19 +64,29 @@ export default function createPDF(doc) {
     return body;
   }
 
+  function buildWidths(columns) {
+    let widthArr = [];
+    columns.forEach((column, i) => {
+      widthArr.push("*");
+    });
+    return widthArr;
+  }
+
   function table(data, columns) {
     return {
       table: {
+        widths: buildWidths(columns),
         headerRows: 1,
         body: buildTableBody(data, columns),
       },
+      layout: "lightHorizontalLines",
     };
   }
 
   var docDefinition = {
     pageSize: "A4",
     // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-    pageMargins: [40, 60, 160, 60],
+    pageMargins: [40, 60, 40, 60],
 
     content: [
       // FIRST PAGE (Title and Description) #########################################################################
@@ -133,7 +142,7 @@ export default function createPDF(doc) {
       },
       table(stories, storiesHeaders),
       {
-        text: `User stories`,
+        text: `Pages`,
         style: "subheader",
         margin: [0, 30, 0, 8],
       },
@@ -174,6 +183,7 @@ export default function createPDF(doc) {
       {
         text: `${librariesList}`,
         style: "paragraph",
+        pageBreak: "after",
       },
 
       // FORTH PAGE / Timeline, Budgets and Risks + Future Implementations #########################################################################
@@ -199,7 +209,7 @@ export default function createPDF(doc) {
 
       {
         text: `Future Implementations`,
-        style: "subheader",
+        style: "heading2",
       },
       table(features, featuresHeaders),
 
@@ -234,6 +244,9 @@ export default function createPDF(doc) {
       },
       paragraph: {
         margin: [0, 0, 0, 24],
+      },
+      tableHeader: {
+        bold: true,
       },
     },
   };

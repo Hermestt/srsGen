@@ -16,9 +16,6 @@ import github from "../../Graphics/github.svg";
 function Landing() {
   return (
     <div>
-      <div className="landing-message text-center">
-        Website in continuos development, visit everyday for a new update.
-      </div>
       {/* NAVBAR ############################################################################# */}
       <Navbar className="d-flex justify-content-between">
         <Navbar.Brand href="/">
