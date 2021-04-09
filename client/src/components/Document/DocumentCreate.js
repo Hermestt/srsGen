@@ -37,7 +37,7 @@ function DocumentCreate() {
       <MyNavBar />
       <div className="document-form_container">
         <Row className="justify-content-md-center">
-          <Col sm={8}>
+          <Col>
             <DocumentForm onSubmit={handleSubmit} objective={"save"} />
           </Col>
         </Row>
