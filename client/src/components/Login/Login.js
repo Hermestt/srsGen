@@ -45,7 +45,7 @@ function Login() {
       <Col md="auto">
         <div className="logo-container text-center">
           <a href="/">
-            <img src={logo} />
+            <img src={logo} alt="srs logo" />
           </a>
         </div>
         <div className="form-container">
