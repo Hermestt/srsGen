@@ -29,7 +29,7 @@ function DocumentCreate() {
     document.creator_id = AuthService.auth.user.id;
     await DocumentService.saveDocument(document);
     setDocument(emptyDoc);
-    history.push("/");
+    history.push("/dashboard");
   };
 
   return (

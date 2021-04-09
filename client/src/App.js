@@ -35,22 +35,16 @@ function App() {
         <div className="App">
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Container fluid="sm">
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route
-                exact
-                path="/document/read/:id"
-                component={DocumentDetail}
-              />
-              <Route exact path="/document/create" component={DocumentCreate} />
-              <Route
-                exact
-                path="/document/update/:id"
-                component={DocumentUpdate}
-              />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-            </Container>
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/document/read/:id" component={DocumentDetail} />
+            <Route exact path="/document/create" component={DocumentCreate} />
+            <Route
+              exact
+              path="/document/update/:id"
+              component={DocumentUpdate}
+            />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
             <Redirect from="*" to="/" component={Landing} />
           </Switch>
         </div>
