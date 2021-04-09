@@ -7,6 +7,7 @@ import AuthService from "../../services/AuthService";
 // Import Components and Styles
 import { useHistory } from "react-router-dom";
 import { Button, Col, Row, Form } from "react-bootstrap";
+import logo from "../../Graphics/logo_blue.svg";
 
 function Register() {
   const history = useHistory();
@@ -42,10 +43,15 @@ function Register() {
   return (
     <Row className="justify-content-md-center">
       <Col md="auto">
+        <div className="logo-container text-center">
+          <a href="/">
+            <img src={logo} />
+          </a>
+        </div>
         <div className="form-container">
-          <h2>Create a new SRS Gen account.</h2>
-          <p>We'll protect your data as best as you can.</p>
-          <Form onSubmit={handleSubmit}>
+          <h2 className="text-center">Welcome to SRSGEN</h2>
+          <p>We'll protect your data as best as we can.</p>
+          <Form onSubmit={handleSubmit} style={{ marginTop: 40 }}>
             <Form.Group controlId="firstName">
               <Form.Label>First name</Form.Label>
               <Form.Control
@@ -117,7 +123,13 @@ function Register() {
               />
             </Form.Group>
 
-            <Button value="login" type="submit" variant="primary" block>
+            <Button
+              value="login"
+              type="submit"
+              variant="primary"
+              block
+              style={{ marginTop: 40 }}
+            >
               Register account
             </Button>
           </Form>

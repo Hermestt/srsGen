@@ -16,12 +16,13 @@ import {
 } from "react-router-dom";
 
 //Import components & Styles
-import Home from "./components/ProtectedRoutes/Home";
+import Dashboard from "./components/ProtectedRoutes/Dashboard";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import DocumentCreate from "./components/Document/DocumentCreate";
 import DocumentDetail from "./components/Document/DocumentDetail";
 import DocumentUpdate from "./components/Document/DocumentUpdate";
+import Landing from "./components/Landing/Landing";
 import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -30,11 +31,12 @@ function App() {
 
   return (
     <documentContext.Provider value={{ document, setDocument }}>
-      <Container fluid="sm">
-        <Router>
-          <div className="App">
-            <Switch>
-              <Route exact path="/" component={Home} />
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Container fluid="sm">
+              <Route exact path="/dashboard" component={Dashboard} />
               <Route
                 exact
                 path="/document/read/:id"
@@ -48,11 +50,11 @@ function App() {
               />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Redirect from="*" to="/login" />
-            </Switch>
-          </div>
-        </Router>
-      </Container>
+            </Container>
+            <Redirect from="*" to="/" component={Landing} />
+          </Switch>
+        </div>
+      </Router>
     </documentContext.Provider>
   );
 }

@@ -8,6 +8,7 @@ import AuthService from "../../services/AuthService";
 import { useHistory, Link } from "react-router-dom";
 import { Button, Col, Row, Form } from "react-bootstrap";
 import "./Login.css";
+import logo from "../../Graphics/logo_blue.svg";
 
 function Login() {
   let history = useHistory(); // The useHistory hook gives you access to the history instance that you may use to navigate. (https://reactrouter.com/web/api/Hooks/usehistory)
@@ -29,7 +30,7 @@ function Login() {
       let response = await AuthService.login(loginCredentials);
 
       if (response.data.success) {
-        history.push("/");
+        history.push("/dashboard");
       } else {
         setError(response.message);
         console.log("Auth error: " + error);
@@ -42,9 +43,15 @@ function Login() {
   return (
     <Row className="justify-content-md-center">
       <Col md="auto">
+        <div className="logo-container text-center">
+          <a href="/">
+            <img src={logo} />
+          </a>
+        </div>
         <div className="form-container">
-          <h2>SRS Gen</h2>
-          <p>Welcome, please sign to access your documents.</p>
+          <h3 className="text-center" style={{ marginBottom: 24 }}>
+            Welcome back!
+          </h3>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

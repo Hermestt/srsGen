@@ -1,0 +1,107 @@
+/* DOCUMENT INFORMATION
+	- Document: Landing page styles
+	- Author:   Pedro d'Oliveira
+*/
+
+/* COMPONENTS DIRECTORY
+	  1. =Header
+    2. =Explanation
+    3. =Features
+    4. =CTA
+    5. =Footer
+*/
+
+/* ------------------------------------------------------------------------------ */
+
+/* Temporary message */
+.landing-message {
+  padding: 4px;
+  background-color: #ff0077;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* ===HEADER=== */
+.header-container {
+  margin-top: 60px;
+  margin-bottom: 88px;
+}
+
+.header-text {
+  margin-bottom: 32px;
+}
+
+.header-img {
+  width: 100%;
+}
+
+#header-col1 {
+  margin-bottom: 80px;
+}
+
+.laptop-img {
+  display: none;
+}
+
+.mobile-img {
+  max-width: 300px;
+}
+
+/* ===EXPLANATION=== */
+.explanation-container {
+  margin-bottom: 94px;
+}
+
+/* ===FEATURES=== */
+.feature {
+  max-width: 400px;
+  margin-bottom: 56px;
+}
+
+/* ===CTA=== */
+.cta-container {
+  background-color: #007bff;
+  color: white;
+  padding: 200px 0;
+  margin-top: 80px;
+}
+
+/* ===FOOTER=== */
+#footer {
+  background-color: #f7f7f7;
+  padding: 56px 56px;
+}
+
+/* Social media icons & container */
+.social-media {
+  margin-top: 40px;
+}
+.social-media .icon-container {
+  width: 56px;
+}
+.icon-container img {
+  width: 100%;
+}
+
+/* ===MEDIA QUERIES=== */
+@media (min-width: 992px) {
+  #header-col1 {
+    margin-bottom: 0px;
+  }
+
+  .mobile-img {
+    display: none;
+  }
+
+  .laptop-img {
+    display: block;
+  }
+
+  .header-container,
+  .explanation-container,
+  .features-container {
+    margin-bottom: 200px;
+  }
+}
