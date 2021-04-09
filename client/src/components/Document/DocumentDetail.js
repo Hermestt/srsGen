@@ -89,66 +89,65 @@ function DocumentDetail() {
       <MyNavBar />
 
       {documentExist ? (
-        <Container>
+        <Container fluid>
           <Row className="document-view-container">
             {/*Step 1 ############################################################################################### */}
 
             <Row id="document-info" className="justify-content-md-center">
-              <Col lg={8} className="container">
-                <div style={{ flexGrow: 1 }}>
-                  <h1>
-                    {document.title ? document.title : "No title was given"}
-                  </h1>
-                  <h5>
-                    {document.description
-                      ? document.description
-                      : "No description was given"}
-                  </h5>
-                </div>
-                <div className="dropdown-container">
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      id="dropdown-basic"
-                      variant="outline-light"
-                    >
-                      Options
-                    </Dropdown.Toggle>
+              <Col xl={6} lg={8}>
+                <h1>
+                  {document.title ? document.title : "No title was given"}
+                </h1>
+                <h5>
+                  {document.description
+                    ? document.description
+                    : "No description was given"}
+                </h5>
+                <Dropdown style={{ marginTop: 32 }}>
+                  <Dropdown.Toggle id="dropdown-basic" variant="outline-light">
+                    Options
+                  </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item eventKey="1" onClick={handleDownload}>
-                        Download
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="2" onClick={handleUpdate}>
-                        Update Document
-                      </Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item
-                        style={{ color: "red" }}
-                        eventKey="4"
-                        onClick={handleShow}
-                      >
-                        Delete
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
+                  <Dropdown.Menu>
+                    <Dropdown.Item eventKey="1" onClick={handleDownload}>
+                      Download
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey="2" onClick={handleUpdate}>
+                      Update Document
+                    </Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item
+                      style={{ color: "red" }}
+                      eventKey="4"
+                      onClick={handleShow}
+                    >
+                      Delete
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </Col>
             </Row>
 
             {/*Step 2 ############################################################################################### */}
             <Row id="document-gpv" className="justify-content-md-center">
-              <Col lg={8}>
-                <h4 className="col-header">Goals and Project Description</h4>
+              <Col xl={6} lg={8}>
+                <h4 className="col-header fw-bold">
+                  Goals and Project Description
+                </h4>
 
-                <h6 className="fw-bold">What is the goal of the project?</h6>
+                <h6 className="fw-bold information-label">
+                  What is the goal of the project?
+                </h6>
                 <p>{document.goals ? document.goals : "No goals"}</p>
 
-                <h6 className="fw-bold">
+                <h6 className="fw-bold information-label">
                   What problems does the project solve?
                 </h6>
                 <p>{document.problems ? document.problems : "No problems"}</p>
 
-                <h6 className="fw-bold">What is the vision?</h6>
+                <h6 className="fw-bold information-label">
+                  What is the vision?
+                </h6>
                 <p>{document.vision ? document.vision : "No vision"}</p>
               </Col>
             </Row>
@@ -158,8 +157,8 @@ function DocumentDetail() {
               id="document-user-stories"
               className="justify-content-md-center"
             >
-              <Col lg={8}>
-                <h4 className="col-header">User stories</h4>
+              <Col xl={6} lg={8}>
+                <h4 className="col-header fw-bold">User stories</h4>
 
                 <Table bordered>
                   <thead>
@@ -190,8 +189,8 @@ function DocumentDetail() {
 
             {/*Step 4 ############################################################################################### */}
             <Row id="document-pages" className="justify-content-md-center">
-              <Col lg={8}>
-                <h4 className="col-header">Pages</h4>
+              <Col xl={6} lg={8}>
+                <h4 className="col-header fw-bold">Pages</h4>
                 <Table bordered>
                   <thead>
                     <tr>
@@ -222,8 +221,10 @@ function DocumentDetail() {
               id="document-requirements"
               className="justify-content-md-center"
             >
-              <Col lg={8}>
-                <h4 className="col-header">Non-Functional Requirements</h4>
+              <Col xl={6} lg={8}>
+                <h4 className="col-header  fw-bold">
+                  Non-Functional Requirements
+                </h4>
                 <div className="multi-form-container">
                   <div className="form-container">
                     <ListGroup>
@@ -279,25 +280,27 @@ function DocumentDetail() {
 
             {/*Step 6 ############################################################################################### */}
             <Row id="document-tbr" className="justify-content-md-center">
-              <Col lg={8}>
-                <h4 className="col-header">Timeline, Budgets, Risks</h4>
+              <Col xl={6} lg={8}>
+                <h4 className="col-header  fw-bold">
+                  Timeline, Budgets, Risks
+                </h4>
 
-                <h6 className="fw-bold">Timeline</h6>
+                <h6 className="fw-bold information-label">Timeline</h6>
                 <p>
                   {document.timeline ? document.timeline : "Not loaded yet"}
                 </p>
 
-                <h6 className="fw-bold">Budgets</h6>
+                <h6 className="fw-bold information-label">Budgets</h6>
                 <p>{document.budget ? document.budget : "Not loaded yet"}</p>
 
-                <h6 className="fw-bold">Risks</h6>
+                <h6 className="fw-bold information-label">Risks</h6>
                 <p>{document.risks ? document.risks : "Not loaded yet"}</p>
               </Col>
             </Row>
             {/*Step 7 ############################################################################################### */}
             <Row id="document-features" className="justify-content-md-center">
-              <Col lg={8}>
-                <h4 className="col-header">Future implementations</h4>
+              <Col xl={6} lg={8}>
+                <h4 className="col-header  fw-bold">Future implementations</h4>
                 <Table bordered>
                   <thead>
                     <tr>

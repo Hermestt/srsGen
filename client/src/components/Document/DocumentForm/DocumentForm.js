@@ -28,9 +28,11 @@ function DocumentForm(props) {
         <Col lg={8}>
           <Form onSubmit={props.onSubmit}>
             {/*Step 1 ############################################################################################### */}
-            <h4 className="col-header fw-bold">Document Information</h4>
+            <h4 className="col-header fw-bold" style={{ marginTop: 0 }}>
+              Document Information
+            </h4>
             <Form.Group controlId="documentTitle">
-              <Form.Label>Document title</Form.Label>
+              <Form.Label className="fw-bold">Document title</Form.Label>
               <Form.Control
                 type="text"
                 name="title"
@@ -41,7 +43,7 @@ function DocumentForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="documentDescription">
-              <Form.Label>Document description</Form.Label>
+              <Form.Label className="fw-bold">Document description</Form.Label>
               <Form.Control
                 maxLength={300}
                 name="description"
@@ -57,7 +59,9 @@ function DocumentForm(props) {
               Goals and Project Description
             </h4>
             <Form.Group controlId="goals">
-              <Form.Label>What is the goal of the project?</Form.Label>
+              <Form.Label className="fw-bold">
+                What is the goal of the project?
+              </Form.Label>
               <Form.Control
                 maxLength={300}
                 row={2}
@@ -68,7 +72,9 @@ function DocumentForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="problems">
-              <Form.Label> What problems does the project solve?</Form.Label>
+              <Form.Label className="fw-bold">
+                What problems does the project solve?
+              </Form.Label>
               <Form.Control
                 maxLength={300}
                 row={2}
@@ -79,7 +85,7 @@ function DocumentForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="vision">
-              <Form.Label>What is the vision?</Form.Label>
+              <Form.Label className="fw-bold">What is the vision?</Form.Label>
               <Form.Control
                 maxLength={300}
                 row={2}
@@ -106,7 +112,7 @@ function DocumentForm(props) {
             {/*Step 5 ############################################################################################### */}
             <h4 className="col-header fw-bold">Timeline, budgets and risks</h4>
             <Form.Group controlId="timeline">
-              <Form.Label>Timeline</Form.Label>
+              <Form.Label className="fw-bold">Timeline</Form.Label>
               <Form.Control
                 as="textarea"
                 row={1}
@@ -117,7 +123,9 @@ function DocumentForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="budget">
-              <Form.Label>Budget (numeric field)</Form.Label>
+              <Form.Label className="fw-bold">
+                Budget (numeric field)
+              </Form.Label>
               <InputGroup className="mb-3">
                 <InputGroup.Prepend>
                   <InputGroup.Text>€</InputGroup.Text>
@@ -132,7 +140,7 @@ function DocumentForm(props) {
               </InputGroup>
             </Form.Group>
             <Form.Group controlId="risks">
-              <Form.Label>Risks</Form.Label>
+              <Form.Label className="fw-bold">Risks</Form.Label>
               <Form.Control
                 as="textarea"
                 row={1}
