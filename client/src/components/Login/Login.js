@@ -6,7 +6,7 @@ import AuthService from "../../services/AuthService";
 
 // Import Components and Styles
 import { useHistory, Link } from "react-router-dom";
-import { Button, Col, Row, Form } from "react-bootstrap";
+import { Button, Col, Row, Form, Container } from "react-bootstrap";
 import "./Login.css";
 import logo from "../../Graphics/logo_blue.svg";
 
@@ -41,63 +41,65 @@ function Login() {
   };
 
   return (
-    <Row className="justify-content-md-center">
-      <Col md="auto">
-        <div className="logo-container text-center">
-          <a href="/">
-            <img src={logo} alt="srs logo" />
-          </a>
-        </div>
-        <div className="form-container">
-          <h3 className="text-center" style={{ marginBottom: 24 }}>
-            Welcome back!
-          </h3>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={(e) => {
-                  setLoginCredentials({
-                    ...loginCredentials,
-                    email: e.target.value,
-                  });
-                }}
-                required
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col md="auto">
+          <div className="logo-container text-center">
+            <a href="/">
+              <img src={logo} alt="srs logo" />
+            </a>
+          </div>
+          <div className="form-container">
+            <h3 className="text-center" style={{ marginBottom: 24 }}>
+              Welcome back!
+            </h3>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={(e) => {
+                    setLoginCredentials({
+                      ...loginCredentials,
+                      email: e.target.value,
+                    });
+                  }}
+                  required
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={(e) => {
-                  setLoginCredentials({
-                    ...loginCredentials,
-                    password: e.target.value,
-                  });
-                }}
-                required
-              />
-            </Form.Group>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => {
+                    setLoginCredentials({
+                      ...loginCredentials,
+                      password: e.target.value,
+                    });
+                  }}
+                  required
+                />
+              </Form.Group>
 
-            <Button value="login" type="submit" variant="primary" block>
-              Log In
-            </Button>
-          </Form>
-        </div>
+              <Button value="login" type="submit" variant="primary" block>
+                Log In
+              </Button>
+            </Form>
+          </div>
 
-        <hr></hr>
-        <p className="no-account">
-          Don't have an account? <Link to="/register">Register one now</Link>
-        </p>
-      </Col>
-    </Row>
+          <hr></hr>
+          <p className="no-account">
+            Don't have an account? <Link to="/register">Register one now</Link>
+          </p>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

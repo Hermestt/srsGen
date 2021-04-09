@@ -10,7 +10,7 @@ import { useHistory, useParams } from "react-router-dom";
 // Import Components and Styles
 import DocumentForm from "./DocumentForm/DocumentForm";
 import MyNavBar from "../NavBar/NavBar";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 // Import Services
 import DocumentService from "../../services/DocumentService";
@@ -39,14 +39,16 @@ function DocumentUpdate() {
   return (
     <div>
       <MyNavBar />
-      <div className="document-form_container">
-        <Row className="justify-content-md-center">
-          <Col sm={8}>
-            <DocumentForm onSubmit={handleSubmit} objective={"update"} />
-          </Col>
-        </Row>
-        <Row className="justify-content-md-center"></Row>
-      </div>
+      <Container>
+        <div className="document-form_container">
+          <Row className="justify-content-md-center">
+            <Col>
+              <DocumentForm onSubmit={handleSubmit} objective={"update"} />
+            </Col>
+          </Row>
+          <Row className="justify-content-md-center"></Row>
+        </div>
+      </Container>
     </div>
   );
 }
