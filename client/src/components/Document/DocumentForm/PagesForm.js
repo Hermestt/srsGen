@@ -36,54 +36,51 @@ function PagesForm() {
   };
 
   return (
-    <div>
-      <h4 className="col-header">Project pages</h4>
-      <Table bordered hover>
-        <thead>
-          <tr>
-            <th>Page name</th>
-            <th>Page description</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {document.pages.map((page, i) => (
-            <tr key={i} id={page.id}>
-              <th>
-                <Form.Control
-                  name="name"
-                  value={page.name}
-                  onChange={handlePage}
-                />
-              </th>
-              <th>
-                <Form.Control
-                  name="description"
-                  value={page.description}
-                  onChange={handlePage}
-                />
-              </th>
-              <th>
-                <Button
-                  variant="secondary"
-                  onClick={removePage}
-                  value={page.id}
-                >
-                  X
-                </Button>
-              </th>
-            </tr>
-          ))}
-          <tr>
-            <th colSpan={3}>
-              <Button variant="light" onClick={addPage}>
-                Add page
+    <Table bordered hover size="sm">
+      <thead>
+        <tr>
+          <th>Page name</th>
+          <th>Page description</th>
+          <th style={{ width: 40 }}></th>
+        </tr>
+      </thead>
+      <tbody>
+        {document.pages.map((page, i) => (
+          <tr key={i} id={page.id}>
+            <th>
+              <Form.Control
+                maxLength={30}
+                name="name"
+                value={page.name}
+                onChange={handlePage}
+              />
+            </th>
+            <th>
+              <Form.Control
+                as="textarea"
+                row={1}
+                maxLength={150}
+                name="description"
+                value={page.description}
+                onChange={handlePage}
+              />
+            </th>
+            <th>
+              <Button variant="secondary" onClick={removePage} value={page.id}>
+                X
               </Button>
             </th>
           </tr>
-        </tbody>
-      </Table>
-    </div>
+        ))}
+        <tr>
+          <th colSpan={3}>
+            <Button variant="light" onClick={addPage}>
+              Add page
+            </Button>
+          </th>
+        </tr>
+      </tbody>
+    </Table>
   );
 }
 
