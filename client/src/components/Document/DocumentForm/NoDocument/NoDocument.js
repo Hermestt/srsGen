@@ -19,7 +19,7 @@ function NoDocument() {
     <Row className="justify-content-md-center text-center">
       <img src={img404} style={imgStyle} alt="Document doesn't exist" />
       <h3>Document doesn't exist</h3>
-      <Link to="/">Go back to dashboard</Link>
+      <Link to="/dashboard">Go back to dashboard</Link>
     </Row>
   );
 }
