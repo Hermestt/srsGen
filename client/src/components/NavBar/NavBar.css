@@ -4,3 +4,13 @@
 .navbar {
   margin-bottom: 32px;
 }
+
+.navbar-text {
+  display: none !important;
+}
+
+@media (min-width: 576px) {
+  .navbar-text {
+    display: inline-block !important  ;
+  }
+}

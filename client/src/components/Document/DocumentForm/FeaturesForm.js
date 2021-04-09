@@ -43,54 +43,53 @@ function FeaturesForm() {
   };
 
   return (
-    <div>
-      <h4 className="col-header">Features</h4>
-      <Table bordered hover>
-        <thead>
-          <tr>
-            <th>Feature name</th>
-            <th>Feature description</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {document.features.map((feature, i) => (
-            <tr key={i} id={feature.id}>
-              <th>
-                <Form.Control
-                  name="name"
-                  value={feature.name}
-                  onChange={handleFeature}
-                />
-              </th>
-              <th>
-                <Form.Control
-                  name="description"
-                  value={feature.description}
-                  onChange={handleFeature}
-                />
-              </th>
-              <th>
-                <Button
-                  variant="secondary"
-                  onClick={removeFeature}
-                  value={feature.id}
-                >
-                  X
-                </Button>
-              </th>
-            </tr>
-          ))}
-          <tr>
-            <th colSpan={3}>
-              <Button variant="light" onClick={addFeature}>
-                Add feature
+    <Table bordered hover size="sm">
+      <thead>
+        <tr>
+          <th>Feature name</th>
+          <th>Feature description</th>
+          <th style={{ width: 40 }}></th>
+        </tr>
+      </thead>
+      <tbody>
+        {document.features.map((feature, i) => (
+          <tr key={i} id={feature.id}>
+            <th>
+              <Form.Control
+                name="name"
+                value={feature.name}
+                onChange={handleFeature}
+              />
+            </th>
+            <th>
+              <Form.Control
+                name="description"
+                value={feature.description}
+                onChange={handleFeature}
+                as="textarea"
+                row={1}
+              />
+            </th>
+            <th>
+              <Button
+                variant="secondary"
+                onClick={removeFeature}
+                value={feature.id}
+              >
+                X
               </Button>
             </th>
           </tr>
-        </tbody>
-      </Table>
-    </div>
+        ))}
+        <tr>
+          <th colSpan={3}>
+            <Button variant="light" onClick={addFeature}>
+              Add feature
+            </Button>
+          </th>
+        </tr>
+      </tbody>
+    </Table>
   );
 }
 
