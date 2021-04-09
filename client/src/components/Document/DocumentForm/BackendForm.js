@@ -34,36 +34,36 @@ function BackendForm() {
   };
 
   return (
-    <div>
-      <Form.Group controlId="documentBackend">
-        <ListGroup>
-          <ListGroup.Item variant="light">Backend</ListGroup.Item>
-          {document.backend.map((item, i) => (
-            <ListGroup.Item key={i} id={item.id} className="d-flex">
-              <Form.Control
-                name="description"
-                value={item.description}
-                onChange={handleBackend}
-              />
-              <div>
-                <Button
-                  variant="secondary"
-                  onClick={removeBackend}
-                  value={item.id}
-                >
-                  X
-                </Button>
-              </div>
-            </ListGroup.Item>
-          ))}
-          <ListGroup.Item>
-            <Button variant="light" onClick={addBackend}>
-              Add new
+    <Form.Group controlId="documentBackend">
+      <ListGroup>
+        <ListGroup.Item variant="light" className="fw-bold">
+          Backend
+        </ListGroup.Item>
+        {document.backend.map((item, i) => (
+          <ListGroup.Item key={i} id={item.id} className="d-flex">
+            <Form.Control
+              maxLength={50}
+              name="description"
+              value={item.description}
+              onChange={handleBackend}
+            />
+            <Button
+              variant="secondary"
+              onClick={removeBackend}
+              value={item.id}
+              className="remove-btn"
+            >
+              X
             </Button>
           </ListGroup.Item>
-        </ListGroup>
-      </Form.Group>
-    </div>
+        ))}
+        <ListGroup.Item>
+          <Button variant="light" onClick={addBackend}>
+            Add new
+          </Button>
+        </ListGroup.Item>
+      </ListGroup>
+    </Form.Group>
   );
 }
 

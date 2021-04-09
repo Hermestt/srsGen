@@ -35,36 +35,36 @@ function FrontendForm() {
   };
 
   return (
-    <div>
-      <Form.Group controlId="documentFrontend">
-        <ListGroup>
-          <ListGroup.Item variant="light">Frontend</ListGroup.Item>
-          {document.frontend.map((item, i) => (
-            <ListGroup.Item key={i} id={item.id} className="d-flex">
-              <Form.Control
-                name="description"
-                value={item.description}
-                onChange={handleFrontend}
-              />
-              <div>
-                <Button
-                  variant="secondary"
-                  onClick={removeFrontend}
-                  value={item.id}
-                >
-                  X
-                </Button>
-              </div>
-            </ListGroup.Item>
-          ))}
-          <ListGroup.Item>
-            <Button variant="light" onClick={addFrontend}>
-              Add new
+    <Form.Group controlId="documentFrontend">
+      <ListGroup>
+        <ListGroup.Item variant="light" className="fw-bold">
+          Frontend
+        </ListGroup.Item>
+        {document.frontend.map((item, i) => (
+          <ListGroup.Item key={i} id={item.id} className="d-flex">
+            <Form.Control
+              maxLength={50}
+              name="description"
+              value={item.description}
+              onChange={handleFrontend}
+            />
+            <Button
+              className="remove-btn"
+              variant="secondary"
+              onClick={removeFrontend}
+              value={item.id}
+            >
+              X
             </Button>
           </ListGroup.Item>
-        </ListGroup>
-      </Form.Group>
-    </div>
+        ))}
+        <ListGroup.Item>
+          <Button variant="light" onClick={addFrontend}>
+            Add new
+          </Button>
+        </ListGroup.Item>
+      </ListGroup>
+    </Form.Group>
   );
 }
 

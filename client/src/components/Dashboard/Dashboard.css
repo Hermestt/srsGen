@@ -9,7 +9,7 @@
 .list-item-description {
   text-overflow: ellipsis;
   display: block;
-  width: 300px;
+  width: 70%;
   overflow: hidden;
   white-space: nowrap;
 }
