@@ -34,36 +34,36 @@ function SecurityForm() {
   };
 
   return (
-    <div>
-      <Form.Group controlId="documentSecurity">
-        <ListGroup>
-          <ListGroup.Item variant="light">Security</ListGroup.Item>
-          {document.security.map((item, i) => (
-            <ListGroup.Item key={i} id={item.id} className="d-flex">
-              <Form.Control
-                name="description"
-                value={item.description}
-                onChange={handleSecurity}
-              />
-              <div>
-                <Button
-                  variant="secondary"
-                  onClick={removeSecurity}
-                  value={item.id}
-                >
-                  X
-                </Button>
-              </div>
-            </ListGroup.Item>
-          ))}
-          <ListGroup.Item>
-            <Button variant="light" onClick={addSecurity}>
-              Add new
+    <Form.Group controlId="documentSecurity">
+      <ListGroup>
+        <ListGroup.Item variant="light" className="fw-bold">
+          Security
+        </ListGroup.Item>
+        {document.security.map((item, i) => (
+          <ListGroup.Item key={i} id={item.id} className="d-flex">
+            <Form.Control
+              maxLength={50}
+              name="description"
+              value={item.description}
+              onChange={handleSecurity}
+            />
+            <Button
+              variant="secondary"
+              onClick={removeSecurity}
+              value={item.id}
+              className="remove-btn"
+            >
+              X
             </Button>
           </ListGroup.Item>
-        </ListGroup>
-      </Form.Group>
-    </div>
+        ))}
+        <ListGroup.Item>
+          <Button variant="light" onClick={addSecurity}>
+            Add new
+          </Button>
+        </ListGroup.Item>
+      </ListGroup>
+    </Form.Group>
   );
 }
 

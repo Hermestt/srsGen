@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { documentContext } from "../../../Contexts/documentContext";
 
 // Import Components and Styles
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, InputGroup } from "react-bootstrap";
 import StoryForm from "./StoryForm";
 import PagesForm from "./PagesForm";
 import BackendForm from "./BackendForm";
@@ -27,7 +27,8 @@ function DocumentForm(props) {
       <Row className="d-flex justify-content-center">
         <Col lg={8}>
           <Form onSubmit={props.onSubmit}>
-            <h4 className="col-header">Standard Information</h4>
+            {/*Step 1 ############################################################################################### */}
+            <h4 className="col-header fw-bold">Document Information</h4>
             <Form.Group controlId="documentTitle">
               <Form.Label>Document title</Form.Label>
               <Form.Control
@@ -42,7 +43,7 @@ function DocumentForm(props) {
             <Form.Group controlId="documentDescription">
               <Form.Label>Document description</Form.Label>
               <Form.Control
-                maxLength={203}
+                maxLength={300}
                 name="description"
                 as="textarea"
                 row={2}
@@ -51,11 +52,14 @@ function DocumentForm(props) {
                 required
               />
             </Form.Group>
-            <h4 className="col-header">Goals and Project Description</h4>
+            {/*Step 2 ############################################################################################### */}
+            <h4 className="col-header fw-bold">
+              Goals and Project Description
+            </h4>
             <Form.Group controlId="goals">
               <Form.Label>What is the goal of the project?</Form.Label>
               <Form.Control
-                maxLength={203}
+                maxLength={300}
                 row={2}
                 name="goals"
                 as="textarea"
@@ -64,9 +68,9 @@ function DocumentForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="problems">
-              <Form.Label>What problems does the project solve?</Form.Label>
+              <Form.Label> What problems does the project solve?</Form.Label>
               <Form.Control
-                maxLength={203}
+                maxLength={300}
                 row={2}
                 as="textarea"
                 name="problems"
@@ -77,7 +81,7 @@ function DocumentForm(props) {
             <Form.Group controlId="vision">
               <Form.Label>What is the vision?</Form.Label>
               <Form.Control
-                maxLength={203}
+                maxLength={300}
                 row={2}
                 as="textarea"
                 name="vision"
@@ -85,21 +89,27 @@ function DocumentForm(props) {
                 onChange={handleChange}
               />
             </Form.Group>
-
+            {/*Step 3 ############################################################################################### */}
+            <h4 className="col-header fw-bold">User stories</h4>
             <StoryForm />
+            {/*Step 4 ############################################################################################### */}
+            <h4 className="col-header fw-bold">Pages</h4>
             <PagesForm />
-            <h4 className="col-header">Non-Functional Requirements</h4>
-            <div className="non-func-forms">
+            {/*Step 5 ############################################################################################### */}
+            <h4 className="col-header fw-bold">Non-Functional Requirements</h4>
+            <div className="non-func-forms" style={{ marginTop: -24 }}>
               <BackendForm />
               <FrontendForm />
               <SecurityForm />
               <LibrariesForm />
             </div>
-            <h4 className="col-header">Timeline, budgets and risks</h4>
+            {/*Step 5 ############################################################################################### */}
+            <h4 className="col-header fw-bold">Timeline, budgets and risks</h4>
             <Form.Group controlId="timeline">
               <Form.Label>Timeline</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                row={1}
                 name="timeline"
                 value={document ? document.timeline : "empty"}
                 onChange={handleChange}
@@ -107,32 +117,42 @@ function DocumentForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="budget">
-              <Form.Label>Budget</Form.Label>
-              <Form.Control
-                type="text"
-                name="budget"
-                value={document ? document.budget : "empty"}
-                onChange={handleChange}
-                maxLength={115}
-              />
+              <Form.Label>Budget (numeric field)</Form.Label>
+              <InputGroup className="mb-3">
+                <InputGroup.Prepend>
+                  <InputGroup.Text>€</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  type="number"
+                  name="budget"
+                  value={document ? document.budget : "empty"}
+                  onChange={handleChange}
+                  maxLength={115}
+                />
+              </InputGroup>
             </Form.Group>
             <Form.Group controlId="risks">
               <Form.Label>Risks</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                row={1}
                 name="risks"
                 value={document ? document.risks : "empty"}
                 onChange={handleChange}
                 maxLength={115}
               />
             </Form.Group>
+            {/*Step 6 ############################################################################################### */}
+            <h4 className="col-header fw-bold">Future features</h4>
             <FeaturesForm />
+            <hr style={{ marginTop: 40, marginBottom: 40 }} />
+            {/*BUTTONS ############################################################################################### */}
             {props.objective === "update" ? (
-              <Button value="update" variant="primary" type="submit">
+              <Button value="update" variant="primary" type="submit" block>
                 Update
               </Button>
             ) : (
-              <Button value="save" variant="primary" type="submit">
+              <Button value="save" variant="primary" type="submit" block>
                 Save
               </Button>
             )}

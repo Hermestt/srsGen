@@ -34,36 +34,36 @@ function LibrariesForm() {
   };
 
   return (
-    <div>
-      <Form.Group controlId="documentLibraries">
-        <ListGroup>
-          <ListGroup.Item variant="light">Libraries</ListGroup.Item>
-          {document.libraries.map((item, i) => (
-            <ListGroup.Item key={i} id={item.id} className="d-flex">
-              <Form.Control
-                name="description"
-                value={item.description}
-                onChange={handleLibraries}
-              />
-              <div>
-                <Button
-                  variant="secondary"
-                  onClick={removeLibraries}
-                  value={item.id}
-                >
-                  X
-                </Button>
-              </div>
-            </ListGroup.Item>
-          ))}
-          <ListGroup.Item>
-            <Button variant="light" onClick={addLibraries}>
-              Add new
+    <Form.Group controlId="documentLibraries">
+      <ListGroup>
+        <ListGroup.Item variant="light" className="fw-bold">
+          Libraries
+        </ListGroup.Item>
+        {document.libraries.map((item, i) => (
+          <ListGroup.Item key={i} id={item.id} className="d-flex">
+            <Form.Control
+              maxLength={50}
+              name="description"
+              value={item.description}
+              onChange={handleLibraries}
+            />
+            <Button
+              className="remove-btn"
+              variant="secondary"
+              onClick={removeLibraries}
+              value={item.id}
+            >
+              X
             </Button>
           </ListGroup.Item>
-        </ListGroup>
-      </Form.Group>
-    </div>
+        ))}
+        <ListGroup.Item>
+          <Button variant="light" onClick={addLibraries}>
+            Add new
+          </Button>
+        </ListGroup.Item>
+      </ListGroup>
+    </Form.Group>
   );
 }
 

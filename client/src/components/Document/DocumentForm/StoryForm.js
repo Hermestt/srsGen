@@ -35,62 +35,62 @@ function StoryForm() {
     setDocument({ ...document, userStories: newArr });
   };
   return (
-    <div>
-      <h4 className="col-header">User stories</h4>
-      <Table bordered hover>
-        <thead>
-          <tr>
-            <th>As a...</th>
-            <th>I want to...</th>
-            <th>So I can...</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {document.userStories.map((story, i) => (
-            <tr key={i} id={story.id}>
-              <th>
-                <Form.Control
-                  name="who"
-                  value={story.who}
-                  onChange={handleStory}
-                />
-              </th>
-              <th>
-                <Form.Control
-                  name="wants"
-                  value={story.wants}
-                  onChange={handleStory}
-                />
-              </th>
-              <th>
-                <Form.Control
-                  name="objective"
-                  value={story.objective}
-                  onChange={handleStory}
-                />
-              </th>
-              <th>
-                <Button
-                  variant="secondary"
-                  onClick={removeStory}
-                  value={story.id}
-                >
-                  X
-                </Button>
-              </th>
-            </tr>
-          ))}
-          <tr>
-            <th colSpan={4}>
-              <Button variant="light" onClick={addStory}>
-                Add story
+    <Table bordered hover size="sm">
+      <thead>
+        <tr>
+          <th>As a...</th>
+          <th>I want to...</th>
+          <th>So I can...</th>
+          <th style={{ width: 40 }}></th>
+        </tr>
+      </thead>
+      <tbody>
+        {document.userStories.map((story, i) => (
+          <tr key={i} id={story.id}>
+            <td>
+              <Form.Control
+                maxLength={20}
+                name="who"
+                value={story.who}
+                onChange={handleStory}
+              />
+            </td>
+            <td>
+              <Form.Control
+                maxLength={50}
+                name="wants"
+                value={story.wants}
+                onChange={handleStory}
+              />
+            </td>
+            <td>
+              <Form.Control
+                maxLength={50}
+                name="objective"
+                value={story.objective}
+                onChange={handleStory}
+              />
+            </td>
+            <td>
+              <Button
+                variant="secondary"
+                onClick={removeStory}
+                value={story.id}
+              >
+                X
               </Button>
-            </th>
+            </td>
           </tr>
-        </tbody>
-      </Table>
-    </div>
+        ))}
+        <tr>
+          <th colSpan={4}>
+            <Button variant="light" onClick={addStory}>
+              Add story
+            </Button>
+          </th>
+        </tr>
+      </tbody>
+    </Table>
   );
 }
 

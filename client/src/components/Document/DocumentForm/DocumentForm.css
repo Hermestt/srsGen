@@ -6,6 +6,10 @@
   margin-top: 80px;
 }
 
+.remove-btn {
+  margin-left: 16px;
+}
+
 @media (min-width: 576px) {
   .non-func-forms {
     display: grid;
