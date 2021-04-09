@@ -31,7 +31,6 @@ function DocumentForm(props) {
           <Form.Control
             type="text"
             name="title"
-            placeholder="e.g John"
             value={document ? document.title : "empty"}
             onChange={handleChange}
             maxLength={69}
@@ -45,7 +44,6 @@ function DocumentForm(props) {
             name="description"
             as="textarea"
             row={2}
-            placeholder="e.g Solving new projects lack of structure"
             value={document ? document.description : "empty"}
             onChange={handleChange}
             required
@@ -59,7 +57,6 @@ function DocumentForm(props) {
             row={2}
             name="goals"
             as="textarea"
-            placeholder="Add answer..."
             value={document ? document.goals : "empty"}
             onChange={handleChange}
           />
@@ -71,7 +68,6 @@ function DocumentForm(props) {
             row={2}
             as="textarea"
             name="problems"
-            placeholder="Add answer..."
             value={document ? document.problems : "empty"}
             onChange={handleChange}
           />
@@ -83,7 +79,6 @@ function DocumentForm(props) {
             row={2}
             as="textarea"
             name="vision"
-            placeholder="Add answer..."
             value={document ? document.vision : "empty"}
             onChange={handleChange}
           />
@@ -103,7 +98,6 @@ function DocumentForm(props) {
           <Form.Control
             type="text"
             name="timeline"
-            placeholder="e.g. 2 months"
             value={document ? document.timeline : "empty"}
             onChange={handleChange}
             maxLength={115}
@@ -114,7 +108,6 @@ function DocumentForm(props) {
           <Form.Control
             type="text"
             name="budget"
-            placeholder="e.g. €1000"
             value={document ? document.budget : "empty"}
             onChange={handleChange}
             maxLength={115}
@@ -125,7 +118,6 @@ function DocumentForm(props) {
           <Form.Control
             type="text"
             name="risks"
-            placeholder="e.g. burnout!"
             value={document ? document.risks : "empty"}
             onChange={handleChange}
             maxLength={115}
