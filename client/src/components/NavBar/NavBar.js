@@ -24,7 +24,7 @@ function MyNavBar() {
   const handleLogout = (e) => {
     e.preventDefault();
     AuthService.logout();
-    history.push("/login");
+    history.push("/");
   };
 
   return (

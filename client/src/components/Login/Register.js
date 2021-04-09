@@ -6,7 +6,7 @@ import AuthService from "../../services/AuthService";
 
 // Import Components and Styles
 import { useHistory } from "react-router-dom";
-import { Button, Col, Row, Form } from "react-bootstrap";
+import { Button, Col, Row, Form, Container } from "react-bootstrap";
 import logo from "../../Graphics/logo_blue.svg";
 
 function Register() {
@@ -41,16 +41,24 @@ function Register() {
   };
 
   return (
-    <Row className="justify-content-md-center">
-      <Col md="auto">
-        <div className="logo-container text-center">
-          <a href="/">
-            <img src={logo} alt="srs logo" />
-          </a>
-        </div>
-        <div className="form-container">
-          <h2 className="text-center">Welcome to SRSGEN</h2>
-          <p>We'll protect your data as best as we can.</p>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col md="auto">
+          <div className="logo-container text-center">
+            <a href="/">
+              <img src={logo} alt="srs logo" />
+            </a>
+          </div>
+          <div>
+            <h2 className="text-center">Welcome to SRSGEN</h2>
+            <p className="text-center">
+              I'll protect your data as best as I can.
+            </p>
+            <hr></hr>
+            <p className="text-center">
+              Already have an account? <a href="/login">Log in then</a>
+            </p>
+          </div>
           <Form onSubmit={handleSubmit} style={{ marginTop: 40 }}>
             <Form.Group controlId="firstName">
               <Form.Label>First name</Form.Label>
@@ -133,9 +141,9 @@ function Register() {
               Register account
             </Button>
           </Form>
-        </div>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
