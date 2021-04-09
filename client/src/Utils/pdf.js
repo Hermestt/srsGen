@@ -36,8 +36,6 @@ export default function createPDF(doc) {
   function buildTableBody(data, columns) {
     var body = [];
 
-    columns.style = " WE";
-    console.log(columns);
     body.push(columns);
 
     data.forEach(function (row) {
