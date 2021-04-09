@@ -211,7 +211,7 @@ export default function createPDF(doc) {
 
       {
         text: `Future Implementations`,
-        style: "subheader",
+        style: "heading2",
       },
       table(features, featuresHeaders),
 

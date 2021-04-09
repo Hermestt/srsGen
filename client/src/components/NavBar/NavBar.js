@@ -29,7 +29,7 @@ function MyNavBar() {
 
   return (
     <Navbar>
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/dashboard">
         <img src={logo} alt="srs logo" />
       </Navbar.Brand>
       <Navbar.Toggle />
