@@ -17,6 +17,7 @@ import {
   Modal,
   Button,
   Container,
+  Spinner,
 } from "react-bootstrap";
 import MyNavBar from "../NavBar/NavBar";
 import NoDocument from "./DocumentForm/NoDocument/NoDocument";
@@ -33,6 +34,9 @@ function DocumentDetail() {
   const history = useHistory();
   let { id } = useParams();
 
+  // Loading state for download interaction
+  const [isLoading, setIsLoading] = useState(false);
+
   // This state will handle the case of the user trying to access a non-existing document.
   const [documentExist, setDocumentExist] = useState(true);
   useEffect(() => {
@@ -46,6 +50,16 @@ function DocumentDetail() {
     fetchDocument();
   }, [documentExist, id, setDocument]);
 
+  // Download, Update and Delete functions
+  const handleDownload = (e) => {
+    setIsLoading(true);
+    createPDF(document);
+    setIsLoading(false);
+  };
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    history.push("/document/update/" + id);
+  };
   const handleDelete = (e) => {
     e.preventDefault();
     setShow(false);
@@ -54,17 +68,8 @@ function DocumentDetail() {
     history.push("/dashboard");
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    history.push("/document/update/" + id);
-  };
-
-  const handleDownload = (e) => {
-    createPDF(document);
-  };
-
+  // Delete Warning Modal state and handling states
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -109,9 +114,21 @@ function DocumentDetail() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item eventKey="1" onClick={handleDownload}>
-                      Download
-                    </Dropdown.Item>
+                    {isLoading ? (
+                      <Dropdown.Item eventKey="2" onClick={handleDownload}>
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      </Dropdown.Item>
+                    ) : (
+                      <Dropdown.Item eventKey="2" onClick={handleDownload}>
+                        Download
+                      </Dropdown.Item>
+                    )}
                     <Dropdown.Item eventKey="2" onClick={handleUpdate}>
                       Update Document
                     </Dropdown.Item>
