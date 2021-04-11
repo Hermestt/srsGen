@@ -6,7 +6,7 @@ import AuthService from "../../services/AuthService";
 
 // Import Components and Styles
 import { useHistory } from "react-router-dom";
-import { Button, Col, Row, Form, Container } from "react-bootstrap";
+import { Button, Col, Row, Form, Container, Spinner } from "react-bootstrap";
 import logo from "../../Graphics/logo_blue.svg";
 
 function Register() {
@@ -19,9 +19,12 @@ function Register() {
     password2: "",
   });
 
+  // Loading state for submit request
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     if (!verifyPasswords()) {
       return "Passwords dont match";
     }
@@ -29,9 +32,10 @@ function Register() {
     const response = await AuthService.registerUser(registerData);
 
     if (response.data.success) {
+      setIsLoading(false);
       history.push("/login");
     } else {
-      console.log("there was a problem");
+      setIsLoading(false);
       console.log(response);
     }
   };
@@ -130,16 +134,27 @@ function Register() {
                 required
               />
             </Form.Group>
-
-            <Button
-              value="login"
-              type="submit"
-              variant="primary"
-              block
-              style={{ marginTop: 40 }}
-            >
-              Register account
-            </Button>
+            {isLoading ? (
+              <Button variant="primary" disabled block>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              </Button>
+            ) : (
+              <Button
+                value="login"
+                type="submit"
+                variant="primary"
+                block
+                style={{ marginTop: 40 }}
+              >
+                Register account
+              </Button>
+            )}
           </Form>
         </Col>
       </Row>

@@ -6,7 +6,7 @@ import AuthService from "../../services/AuthService";
 
 // Import Components and Styles
 import { useHistory, Link } from "react-router-dom";
-import { Button, Col, Row, Form, Container } from "react-bootstrap";
+import { Button, Col, Row, Form, Container, Spinner } from "react-bootstrap";
 import "./Login.css";
 import logo from "../../Graphics/logo_blue.svg";
 
@@ -23,16 +23,22 @@ function Login() {
   // We'll handle the error we might get from the authentication service
   const [error, setError] = useState("");
 
+  // Loading state for auth request
+  const [isLoading, setIsLoading] = useState(false);
+
   // Send the credentials to the AuthService and update the history of ReactRouter if we get a success 200
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       let response = await AuthService.login(loginCredentials);
 
       if (response.data.success) {
+        setIsLoading(false);
         history.push("/dashboard");
       } else {
         setError(response.message);
+        setIsLoading(false);
         console.log("Auth error: " + error);
       }
     } catch (err) {
@@ -87,9 +93,21 @@ function Login() {
                 />
               </Form.Group>
 
-              <Button value="login" type="submit" variant="primary" block>
-                Log In
-              </Button>
+              {isLoading ? (
+                <Button variant="primary" disabled block>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </Button>
+              ) : (
+                <Button value="login" type="submit" variant="primary" block>
+                  Log In
+                </Button>
+              )}
             </Form>
           </div>
 
