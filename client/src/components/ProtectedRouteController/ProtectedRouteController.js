@@ -15,7 +15,7 @@ const ProtectedRouteController = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isSigned ? <Component {...props} /> : <Redirect to={"/login"} />
+        isSigned ? <Component {...props} /> : <Redirect to={"/"} />
       }
     />
   );
