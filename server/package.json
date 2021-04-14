@@ -14,12 +14,10 @@
   ],
   "apidoc": {
     "name": "SRSGen",
-    "version": "0.1.0",
-    "description": "REST API docs of SRSGen",
-    "apidoc": {
-      "title": "Custom apiDoc browser title",
-      "url": "https://api.github.com/v1"
-    }
+    "version": "1.0.0",
+    "description": "REST API docs of SRSGen. Visit https://srsgen.netlify.app",
+    "url": "https://srsgen.herokuapp.com",
+    "sampleUrl": false
   },
   "author": "Pedro Oliveira aka c0ffeebreak",
   "dependencies": {
