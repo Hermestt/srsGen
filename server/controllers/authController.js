@@ -1,20 +1,5 @@
-const UserModel = require("../../models/UserModel");
+const UserModel = require("../models/UserModel");
 
-/**
- * @api {post} /login/:id Request User information
- * @apiName GetUser
- * @apiGroup User
- * @apiVersion 0.1.0
- *
- * @apiParam {String} email Users unique email
- *
- * @apiSuccess {String} id ID of the User.
- * @apiSuccess {String} firstName First name of the User.
- * @apiSuccess {String} lastName Last name of the User.
- * @apiSuccess {String} email Email of the User.
- * @apiSuccess {String} token JWT token.
- *
- */
 async function handleLogin(req, res) {
   const email = req.body.email;
   const password = req.body.password;
